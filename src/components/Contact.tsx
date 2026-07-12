@@ -5,6 +5,7 @@ import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { CharRoll } from "@/components/CharRoll";
 import { ArrowRightIcon } from "@/components/icons";
 import { SOCIALS, COPY } from "@/data/site";
+import { asset } from "@/lib/asset";
 
 /** Display order for the contact socials column (differs from SOCIALS order). */
 const SOCIAL_ORDER = ["GitHub", "LinkedIn", "Behance"];
@@ -269,7 +270,7 @@ export function Contact() {
             <img
               className="contact-frame-img"
               id="contact-frame-img"
-              src="/assets/paria/contact-1.jpg"
+              src={asset("/assets/paria/contact-1.jpg")}
               alt=""
               loading="lazy"
               decoding="async"
@@ -287,7 +288,7 @@ export function Contact() {
             <img
               className="contact-frame-img"
               id="contact-frame-img-2"
-              src="/assets/paria/contact-2.jpg"
+              src={asset("/assets/paria/contact-2.jpg")}
               alt=""
               loading="lazy"
               decoding="async"

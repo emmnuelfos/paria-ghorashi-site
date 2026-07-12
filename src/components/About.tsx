@@ -6,6 +6,7 @@ import { wrapWords } from "@/lib/text";
 import { CharRoll } from "@/components/CharRoll";
 import { ArrowRightIcon } from "@/components/icons";
 import { COPY } from "@/data/site";
+import { asset } from "@/lib/asset";
 
 /**
  * About section (.about inside section.section-after):
@@ -163,7 +164,7 @@ export function About() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className="about-photo"
-          src="/assets/paria/about.jpg"
+          src={asset("/assets/paria/about.jpg")}
           alt="Paria Ghorashi"
           width={1013}
           height={1500}

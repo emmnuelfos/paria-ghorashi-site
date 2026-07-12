@@ -5,6 +5,7 @@ import { gsap, isMobileViewport } from "@/lib/gsap";
 import { CharRoll } from "@/components/CharRoll";
 import { HeroCanvas } from "@/components/HeroCanvas";
 import { COPY, NAV_LINKS, SOCIALS } from "@/data/site";
+import { asset } from "@/lib/asset";
 
 /**
  * Sticky hero inside the 400vh scroll-wrap. After `intro:done`, a scrubbed
@@ -87,7 +88,7 @@ export function Hero() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               className="brand-logo"
-              src="/assets/paria/paria-logo.svg"
+              src={asset("/assets/paria/paria-logo.svg")}
               alt="Paria Ghorashi"
               width={791}
               height={537}

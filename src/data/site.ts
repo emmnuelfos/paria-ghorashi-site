@@ -1,4 +1,5 @@
 import type { Project, SkillGroup, Award, SocialLink } from "@/types";
+import { asset } from "@/lib/asset";
 
 /** Content for Paria Ghorashi — Direction C "The Motion Study".
  *  All copy sourced from her supplied brief, brand portfolio and PGPM deck. */
@@ -12,7 +13,7 @@ export const PROJECTS: Project[] = [
   { id: "unscripted", name: "Unscripted", date: "Talk Show", category: "Media", cover: "/assets/paria/ventures/unscripted.jpg", coverAlt: "Unscripted with Paria — original talk show" },
   { id: "speaking", name: "Speaking", date: "Worldwide", category: "Keynotes", cover: "/assets/paria/ventures/speaking.jpg", coverAlt: "International speaking engagements" },
   { id: "partnerships", name: "Partnerships", date: "Select", category: "Collaborations", cover: "/assets/paria/ventures/partnerships.jpg", coverAlt: "Brand partnerships and collaborations" },
-];
+].map((p) => ({ ...p, cover: asset(p.cover) }));
 
 /** 3:2 covers for the orbit gallery — her world. */
 export const GALLERY_COVERS: string[] = [
@@ -24,7 +25,7 @@ export const GALLERY_COVERS: string[] = [
   "/assets/paria/cg-whitehat.jpg",
   "/assets/paria/cg-dock.jpg",
   "/assets/paria/cg-hatcar.jpg",
-];
+].map(asset);
 
 export const SKILL_GROUPS: SkillGroup[] = [
   { key: "strategy", title: "Brand Strategy", items: ["Positioning", "Identity", "Market Relevance", "Differentiation", "Long-term Growth"] },
@@ -42,7 +43,7 @@ export const AWARDS: Award[] = [
   { org: "Vogue", site: "bgX", prize: "A hairdresser in one click", date: "2018", cursorImg: "/assets/paria/ventures/blowoutandgo.jpg" },
   { org: "Ahlan!", site: "Hot 100", prize: "Leading social influencers of the UAE", date: "2016", cursorImg: "/assets/paria/world-redgown.jpg" },
   { org: "Hello! Middle East", site: "Cover feature", prize: "Into her world", date: "2015", cursorImg: "/assets/paria/press-bluegown.jpg" },
-];
+].map((a) => ({ ...a, cursorImg: asset(a.cursorImg) }));
 
 export const SOCIALS: SocialLink[] = [
   { label: "Instagram", href: "https://instagram.com/pariaghorashi" },

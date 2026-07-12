@@ -8,13 +8,14 @@ import {
   prefersReducedMotion,
 } from "@/lib/gsap";
 import { COPY } from "@/data/site";
+import { asset } from "@/lib/asset";
 
 const FRAME_COUNT = 217;
 const PHRASE = COPY.revealPhrase;
 
 /** Optimized WebP frame sequence exported from Paria's cinematic reveal clip. */
 const frameUrl = (i: number) =>
-  `/assets/paria/reveal/${String(i).padStart(4, "0")}.webp`;
+  asset(`/assets/paria/reveal/${String(i).padStart(4, "0")}.webp`);
 
 /**
  * Scroll-scrubbed reveal: a cinematic frame sequence (golden night → the

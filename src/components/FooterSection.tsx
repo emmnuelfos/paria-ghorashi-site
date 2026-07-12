@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { CharRoll } from "@/components/CharRoll";
 import { SOCIALS } from "@/data/site";
+import { asset } from "@/lib/asset";
 import type { SocialLink } from "@/types";
 
 const ASCII_COLS = 80;
@@ -238,8 +239,8 @@ export function FooterSection() {
       });
 
     Promise.all([
-      loadImage("/assets/paria/ascii-left.png"),
-      loadImage("/assets/paria/ascii-right.png"),
+      loadImage(asset("/assets/paria/ascii-left.png")),
+      loadImage(asset("/assets/paria/ascii-right.png")),
     ])
       .then(([leftImg, rightImg]) => {
         if (disposed) return;
@@ -519,7 +520,7 @@ export function FooterSection() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               className="brand-logo"
-              src="/assets/paria/paria-logo.svg"
+              src={asset("/assets/paria/paria-logo.svg")}
               alt="Paria Ghorashi"
               width={791}
               height={537}
