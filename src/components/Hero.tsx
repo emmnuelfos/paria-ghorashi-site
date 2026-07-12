@@ -42,7 +42,7 @@ export function Hero() {
         });
         tl.to(pContent, { y: 0, duration: 0.3 }, 0);
         tl.to(
-          ["#hero-tagline", "#hero-bar", "#hero-line"],
+          ["#hero-tagline", "#hero-bar", "#hero-line", "#hero-brand"],
           { opacity: 0, duration: 0.15 },
           0
         );
@@ -78,6 +78,14 @@ export function Hero() {
           <HeroCanvas />
         </div>
         <div className="hero-content">
+          <a
+            className="monogram hero-brand"
+            id="hero-brand"
+            href="#hero"
+            aria-label="Paria Ghorashi — top"
+          >
+            <span className="monogram-seal">PG</span>
+          </a>
           <div
             className="hero-tagline"
             id="hero-tagline"

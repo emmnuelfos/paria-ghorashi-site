@@ -511,6 +511,13 @@ export function FooterSection() {
               <pre id="ascii-right"></pre>
             </div>
           </div>
+          <a
+            className="monogram footer-monogram"
+            href="#hero"
+            aria-label="Paria Ghorashi — top"
+          >
+            <span className="monogram-seal">PG</span>
+          </a>
           <div className="footer-name">
             <span className="footer-name-luke">
               <span className="first-letter">P</span>aria

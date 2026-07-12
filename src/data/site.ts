@@ -59,13 +59,17 @@ export const NAV_LINKS: SocialLink[] = [
 export const COPY = {
   heroTagline:
     'Serial entrepreneur, <span class="other-accent">building brands that matter</span>,<br/>across luxury, business &amp; culture.',
-  revealPhrase: "Welcome to my world.",
+  revealPhrase: "World full of possibilities.",
   aboutText:
     'As a<span class="other-accent"> serial entrepreneur</span>, I transform brands, scale businesses, and build influential ventures — blending strategy and <span class="other-accent">emotion</span>.',
   aboutSub:
     "My name is Paria. A brand strategist and growth architect with more than twenty-five years across luxury, beauty, technology and media — always seeking the meeting point of identity and influence.",
   cgPhrase:
     'Great brands are built through <span class="other-accent">identity</span>, <span class="other-accent">emotion</span> and long-term positioning.',
+  manifestoKicker: "The Ethos",
+  manifestoQuote:
+    'I don\'t build companies. I build <span class="mf-em">worlds</span> people want to <span class="mf-em">belong</span> to.',
+  manifestoCite: "Paria Ghorashi",
   skillsSubtitle: "What She Does",
   skillsText:
     "Entrepreneur, brand partner and public figure — 25+ years across luxury, beauty, technology and media.",

@@ -231,6 +231,59 @@ body {
   font-style: italic;
 }
 
+/* ---- Signature monogram seal (nav + footer) ---- */
+.monogram {
+  text-decoration: none;
+  display: inline-flex;
+}
+
+.monogram-seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.4rem;
+  height: 3.4rem;
+  border: 1px solid rgba(167, 139, 101, 0.55);
+  border-radius: 50%;
+  font-family: var(--font-bodoni), 'Bodoni Moda', serif;
+  font-weight: 500;
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  color: #A78B65;
+  line-height: 1;
+  user-select: none;
+  transition: border-color 0.45s ease, color 0.45s ease, transform 0.45s ease;
+}
+
+.monogram:hover .monogram-seal {
+  border-color: #A78B65;
+  color: #EDECEB;
+  transform: rotate(8deg);
+}
+
+.hero-brand {
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
+  z-index: 5;
+}
+
+.footer-monogram {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.footer-monogram .monogram-seal {
+  width: 4.6rem;
+  height: 4.6rem;
+  font-size: 1.55rem;
+  border-color: rgba(167, 139, 101, 0.7);
+}
+
 
 .hero-bar {
   position: absolute;
@@ -480,6 +533,89 @@ a.chr-hover {
   z-index: 3;
 }
 
+
+/* ---- Manifesto pull-quote (between the reveal and About) ---- */
+.manifesto {
+  position: relative;
+  z-index: 20;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 20vh 8vw;
+}
+
+.manifesto-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.manifesto-kicker {
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: #A78B65;
+  margin: 0 0 3.5vh;
+}
+
+.manifesto-quote {
+  margin: 0;
+  font-family: var(--font-bodoni), 'Bodoni Moda', serif;
+  font-weight: 500;
+  font-size: clamp(2.2rem, 5.4vw, 5.4rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #EDECEB;
+  max-width: 20ch;
+}
+
+.manifesto-quote .word {
+  display: inline-block;
+  opacity: 0;
+  will-change: transform, filter, opacity;
+}
+
+.manifesto-quote .mf-em {
+  color: #A78B65;
+  font-style: italic;
+}
+
+.manifesto-cite {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin: 4.5vh 0 0;
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.82rem;
+  color: rgba(237, 236, 235, 0.6);
+}
+
+.manifesto-cite-line {
+  display: inline-block;
+  width: clamp(2rem, 4vw, 4rem);
+  height: 1px;
+  background: #A78B65;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .manifesto-quote .word {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .manifesto {
+    padding: 16vh 8vw;
+  }
+  .manifesto-quote {
+    max-width: 100%;
+  }
+}
 
 .about {
   position: relative;
@@ -1986,10 +2122,138 @@ a.chr-hover {
   position: relative;
   background: #000000;
   z-index: 30010;
-  padding: 0 4rem 15vh;
+  padding: 0 0 15vh;
+  overflow: hidden;
 }
 .awards-inner {
   max-width: 100%;
+}
+
+/* ---- "As Seen In" publication marquee ---- */
+.press-head {
+  padding: 6vh 4rem 5vh;
+}
+
+.press-kicker {
+  display: block;
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 0.76rem;
+  color: #A78B65;
+  margin-bottom: 1.2rem;
+}
+
+.press-title {
+  margin: 0;
+  font-family: var(--font-bodoni), 'Bodoni Moda', serif;
+  font-weight: 500;
+  font-style: italic;
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #EDECEB;
+}
+
+.press-marquee {
+  width: 100%;
+  overflow: hidden;
+  padding: 1.2vh 0;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
+
+.press-track {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  will-change: transform;
+  animation: press-scroll 42s linear infinite;
+}
+
+.press-marquee.reverse .press-track {
+  animation-duration: 58s;
+  animation-direction: reverse;
+}
+
+.press-marquee:hover .press-track {
+  animation-play-state: paused;
+}
+
+@keyframes press-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.press-pub {
+  font-family: var(--font-bodoni), 'Bodoni Moda', serif;
+  font-weight: 500;
+  font-size: clamp(2.2rem, 5vw, 4.6rem);
+  letter-spacing: -0.01em;
+  color: rgba(237, 236, 235, 0.82);
+  padding: 0 2.2rem;
+}
+
+.press-feature {
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(0.95rem, 1.5vw, 1.4rem);
+  letter-spacing: 0.01em;
+  color: rgba(237, 236, 235, 0.42);
+  padding: 0 1.6rem;
+}
+
+.press-sep {
+  color: #A78B65;
+  font-size: clamp(1rem, 1.6vw, 1.6rem);
+  opacity: 0.9;
+}
+
+.press-sep.sm {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.press-note {
+  margin: 6vh 0 0;
+  padding: 0 4rem;
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+  letter-spacing: 0.02em;
+  color: rgba(237, 236, 235, 0.5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .press-track {
+    animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .press-head {
+    padding: 6vh 1.5rem 4vh;
+  }
+  .press-note {
+    padding: 0 1.5rem;
+  }
 }
 .awards-list {
   display: flex;
