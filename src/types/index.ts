@@ -2,6 +2,7 @@ export interface Project {
   id: string;
   name: string;
   date: string; // "MM YYYY" as shown in preview meta
+  category: string; // short editorial tag shown in the ventures index
   cover: string; // public path to cover image
   coverAlt: string;
 }

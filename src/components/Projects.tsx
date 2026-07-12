@@ -284,9 +284,13 @@ export function Projects() {
         </svg>
         <div className="projects-inner">
           <div className="projects-list" id="projects-list" ref={listRef}>
-            {PROJECTS.map((p) => (
+            {PROJECTS.map((p, i) => (
               <div key={p.id} className="proj-item" data-id={p.id}>
-                {p.name}
+                <span className="proj-index">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="proj-name">{p.name}</span>
+                <span className="proj-cat">{p.category}</span>
               </div>
             ))}
           </div>

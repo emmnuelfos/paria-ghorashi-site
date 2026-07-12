@@ -6,6 +6,7 @@ import { About } from "@/components/About";
 import { Projects } from "@/components/Projects";
 import { CircleGallery } from "@/components/CircleGallery";
 import { Skills } from "@/components/Skills";
+import { Metrics } from "@/components/Metrics";
 import { Awards } from "@/components/Awards";
 import { Contact } from "@/components/Contact";
 import { FooterSection } from "@/components/FooterSection";
@@ -14,8 +15,9 @@ import { ScrollChrome } from "@/components/ScrollChrome";
 /**
  * Assembly per docs/research/PAGE_TOPOLOGY.md:
  * intro layers → 400vh scroll-wrap (sticky hero) → fixed reveal sequence →
- * section-after (about + projects) → 600vh circle gallery → skills → awards →
- * contact (blob/pin) → footer transition + fixed footer, with fixed scroll chrome.
+ * section-after (about + projects) → 600vh circle gallery → skills → metrics →
+ * awards → contact (blob/pin) → footer transition + fixed footer, with fixed
+ * scroll chrome.
  */
 export default function Home() {
   return (
@@ -29,6 +31,7 @@ export default function Home() {
       </section>
       <CircleGallery />
       <Skills />
+      <Metrics />
       <Awards />
       <Contact />
       <FooterSection />

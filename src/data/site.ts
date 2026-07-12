@@ -4,14 +4,14 @@ import type { Project, SkillGroup, Award, SocialLink } from "@/types";
  *  All copy sourced from her supplied brief, brand portfolio and PGPM deck. */
 
 export const PROJECTS: Project[] = [
-  { id: "blowoutandgo", name: "Blowout&Go", date: "Est. 2012", cover: "/assets/paria/ventures/blowoutandgo.jpg", coverAlt: "Blowout&Go — at-home beauty services" },
-  { id: "bgx", name: "bgX", date: "Est. 2016", cover: "/assets/paria/ventures/bgx.jpg", coverAlt: "bgX — beauty-tech platform with Uber and Balmain Hair Couture" },
-  { id: "pgpm", name: "PGPM", date: "Est. 2016", cover: "/assets/paria/ventures/pgpm.jpg", coverAlt: "PGPM — global boutique agency" },
-  { id: "madeforyou", name: "Made For You", date: "Est. 2022", cover: "/assets/paria/ventures/madeforyou.jpg", coverAlt: "Made For You Global — members club for female entrepreneurs" },
-  { id: "book", name: "The Book", date: "In Progress", cover: "/assets/paria/ventures/book.jpg", coverAlt: "Upcoming book" },
-  { id: "unscripted", name: "Unscripted", date: "Talk Show", cover: "/assets/paria/ventures/unscripted.jpg", coverAlt: "Unscripted with Paria — original talk show" },
-  { id: "speaking", name: "Speaking", date: "Worldwide", cover: "/assets/paria/ventures/speaking.jpg", coverAlt: "International speaking engagements" },
-  { id: "partnerships", name: "Partnerships", date: "Select", cover: "/assets/paria/ventures/partnerships.jpg", coverAlt: "Brand partnerships and collaborations" },
+  { id: "blowoutandgo", name: "Blowout&Go", date: "Est. 2012", category: "Beauty Services", cover: "/assets/paria/ventures/blowoutandgo.jpg", coverAlt: "Blowout&Go — at-home beauty services" },
+  { id: "bgx", name: "bgX", date: "Est. 2016", category: "Beauty-Tech", cover: "/assets/paria/ventures/bgx.jpg", coverAlt: "bgX — beauty-tech platform with Uber and Balmain Hair Couture" },
+  { id: "pgpm", name: "PGPM", date: "Est. 2016", category: "Brand Agency", cover: "/assets/paria/ventures/pgpm.jpg", coverAlt: "PGPM — global boutique agency" },
+  { id: "madeforyou", name: "Made For You", date: "Est. 2022", category: "Members Club", cover: "/assets/paria/ventures/madeforyou.jpg", coverAlt: "Made For You Global — members club for female entrepreneurs" },
+  { id: "book", name: "The Book", date: "In Progress", category: "Publishing", cover: "/assets/paria/ventures/book.jpg", coverAlt: "Upcoming book" },
+  { id: "unscripted", name: "Unscripted", date: "Talk Show", category: "Media", cover: "/assets/paria/ventures/unscripted.jpg", coverAlt: "Unscripted with Paria — original talk show" },
+  { id: "speaking", name: "Speaking", date: "Worldwide", category: "Keynotes", cover: "/assets/paria/ventures/speaking.jpg", coverAlt: "International speaking engagements" },
+  { id: "partnerships", name: "Partnerships", date: "Select", category: "Collaborations", cover: "/assets/paria/ventures/partnerships.jpg", coverAlt: "Brand partnerships and collaborations" },
 ];
 
 /** 3:2 covers for the orbit gallery — her world. */
@@ -59,7 +59,7 @@ export const NAV_LINKS: SocialLink[] = [
 export const COPY = {
   heroTagline:
     'Serial entrepreneur, <span class="other-accent">building brands that matter</span>,<br/>across luxury, business &amp; culture.',
-  revealPhrase: "Basically, I build brands.",
+  revealPhrase: "Welcome to my world.",
   aboutText:
     'As a<span class="other-accent"> serial entrepreneur</span>, I transform brands, scale businesses, and build influential ventures — blending strategy and <span class="other-accent">emotion</span>.',
   aboutSub:
