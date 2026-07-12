@@ -87,20 +87,36 @@ export function About() {
     const buildPhotoTimeline = () => {
       if (cancelled || !img) return;
       ctx.add(() => {
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: "#about-photo-wrap",
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-          },
-        });
-        tl.fromTo(img, { y: "-50%" }, { y: "50%", ease: "none" }, 0);
-        tl.fromTo(
+        // Parallax across the full journey through the viewport.
+        gsap.fromTo(
           img,
-          { opacity: 0, filter: "blur(20px)" },
-          { opacity: 1, filter: "blur(0px)", ease: "none", duration: 0.3 },
-          0
+          { y: "-50%" },
+          {
+            y: "50%",
+            ease: "none",
+            scrollTrigger: {
+              trigger: "#about-photo-wrap",
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          }
+        );
+        // Blur/opacity clears early — crisp shortly after the photo enters view.
+        gsap.fromTo(
+          img,
+          mobile ? { opacity: 0 } : { opacity: 0, filter: "blur(20px)" },
+          {
+            opacity: 1,
+            ...(mobile ? {} : { filter: "blur(0px)" }),
+            ease: "none",
+            scrollTrigger: {
+              trigger: "#about-photo-wrap",
+              start: "top 95%",
+              end: "top 68%",
+              scrub: true,
+            },
+          }
         );
       });
       ScrollTrigger.refresh();
@@ -147,10 +163,10 @@ export function About() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className="about-photo"
-          src="/assets/paria/portrait-desk.jpg"
+          src="/assets/paria/about.jpg"
           alt="Paria Ghorashi"
-          width={1081}
-          height={1600}
+          width={1013}
+          height={1500}
           decoding="async"
         />
       </div>

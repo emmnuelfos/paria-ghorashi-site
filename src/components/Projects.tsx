@@ -301,14 +301,7 @@ export function Projects() {
             <span className="proj-label">Preview</span>
           </div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            id="proj-cover"
-            ref={coverRef}
-            src={PROJECTS[0].cover}
-            alt=""
-            width={1333}
-            height={1000}
-          />
+          <img id="proj-cover" ref={coverRef} src={PROJECTS[0].cover} alt="" />
         </div>
       </div>
       <div className="proj-cursor" id="proj-cursor" ref={cursorRef}>

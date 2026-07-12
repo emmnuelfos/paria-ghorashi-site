@@ -4,14 +4,14 @@ import type { Project, SkillGroup, Award, SocialLink } from "@/types";
  *  All copy sourced from her supplied brief, brand portfolio and PGPM deck. */
 
 export const PROJECTS: Project[] = [
-  { id: "blowoutandgo", name: "Blowout&Go", date: "Est. 2012", cover: "/assets/paria/portrait-lipstick.jpg", coverAlt: "Blowout&Go — at-home beauty services" },
-  { id: "bgx", name: "bgX", date: "Est. 2016", cover: "/assets/paria/phone-instagram.jpg", coverAlt: "bgX — beauty-tech platform with Uber and Balmain Hair Couture" },
-  { id: "pgpm", name: "PGPM", date: "Est. 2016", cover: "/assets/paria/tex-runway.jpg", coverAlt: "PGPM — global boutique agency" },
-  { id: "madeforyou", name: "Made For You", date: "Est. 2022", cover: "/assets/paria/speak-stage.jpg", coverAlt: "Made For You Global — members club for female entrepreneurs" },
-  { id: "book", name: "The Book", date: "In Progress", cover: "/assets/paria/world-cafe.jpg", coverAlt: "Upcoming book" },
-  { id: "unscripted", name: "Unscripted", date: "Talk Show", cover: "/assets/paria/world-podcast.jpg", coverAlt: "Unscripted with Paria — original talk show" },
-  { id: "speaking", name: "Speaking", date: "Worldwide", cover: "/assets/paria/speak-screen.jpg", coverAlt: "International speaking engagements" },
-  { id: "partnerships", name: "Partnerships", date: "Select", cover: "/assets/paria/production.jpg", coverAlt: "Brand partnerships and collaborations" },
+  { id: "blowoutandgo", name: "Blowout&Go", date: "Est. 2012", cover: "/assets/paria/ventures/blowoutandgo.jpg", coverAlt: "Blowout&Go — at-home beauty services" },
+  { id: "bgx", name: "bgX", date: "Est. 2016", cover: "/assets/paria/ventures/bgx.jpg", coverAlt: "bgX — beauty-tech platform with Uber and Balmain Hair Couture" },
+  { id: "pgpm", name: "PGPM", date: "Est. 2016", cover: "/assets/paria/ventures/pgpm.jpg", coverAlt: "PGPM — global boutique agency" },
+  { id: "madeforyou", name: "Made For You", date: "Est. 2022", cover: "/assets/paria/ventures/madeforyou.jpg", coverAlt: "Made For You Global — members club for female entrepreneurs" },
+  { id: "book", name: "The Book", date: "In Progress", cover: "/assets/paria/ventures/book.jpg", coverAlt: "Upcoming book" },
+  { id: "unscripted", name: "Unscripted", date: "Talk Show", cover: "/assets/paria/ventures/unscripted.jpg", coverAlt: "Unscripted with Paria — original talk show" },
+  { id: "speaking", name: "Speaking", date: "Worldwide", cover: "/assets/paria/ventures/speaking.jpg", coverAlt: "International speaking engagements" },
+  { id: "partnerships", name: "Partnerships", date: "Select", cover: "/assets/paria/ventures/partnerships.jpg", coverAlt: "Brand partnerships and collaborations" },
 ];
 
 /** 3:2 covers for the orbit gallery — her world. */
@@ -38,8 +38,8 @@ export const SKILL_GROUPS: SkillGroup[] = [
 
 export const AWARDS: Award[] = [
   { org: "Harper's Bazaar", site: "pariaghorashi", prize: "The Watch Collector Series", date: "2016", cursorImg: "/assets/paria/press-spotlight.jpg" },
-  { org: "Evening Standard", site: "bgX × Uber", prize: "The Uber blow dry", date: "2016", cursorImg: "/assets/paria/phone-instagram.jpg" },
-  { org: "Vogue", site: "bgX", prize: "A hairdresser in one click", date: "2018", cursorImg: "/assets/paria/portrait-lipstick.jpg" },
+  { org: "Evening Standard", site: "bgX × Uber", prize: "The Uber blow dry", date: "2016", cursorImg: "/assets/paria/ventures/bgx.jpg" },
+  { org: "Vogue", site: "bgX", prize: "A hairdresser in one click", date: "2018", cursorImg: "/assets/paria/ventures/blowoutandgo.jpg" },
   { org: "Ahlan!", site: "Hot 100", prize: "Leading social influencers of the UAE", date: "2016", cursorImg: "/assets/paria/world-redgown.jpg" },
   { org: "Hello! Middle East", site: "Cover feature", prize: "Into her world", date: "2015", cursorImg: "/assets/paria/press-bluegown.jpg" },
 ];
