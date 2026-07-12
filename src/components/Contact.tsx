@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { CharRoll } from "@/components/CharRoll";
+import { ArrowRightIcon } from "@/components/icons";
 import { SOCIALS, COPY } from "@/data/site";
 
 /** Display order for the contact socials column (differs from SOCIALS order). */
@@ -15,6 +16,26 @@ const SOCIAL_ORDER = ["GitHub", "LinkedIn", "Behance"];
  * #contact-blob-wrap / #contact-pin belongs to FooterSection — not here.
  */
 export function Contact() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  const [sent, setSent] = useState(false);
+
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!name.trim() || !message.trim()) {
+      setError("Please add your name and a short message.");
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+    setError("");
+    setSent(true);
+  };
+
   useEffect(() => {
     const blobWrap = document.getElementById("contact-blob-wrap");
     const blob = document.getElementById("contact-blob");
@@ -28,6 +49,7 @@ export function Contact() {
     const frameImg2 = document.getElementById("contact-frame-img-2");
     const dispo1 = document.getElementById("contact-dispo");
     const dispo2 = document.getElementById("contact-dispo-2");
+    const form = document.getElementById("contact-form");
 
     if (
       !blobWrap ||
@@ -41,7 +63,8 @@ export function Contact() {
       !frame2 ||
       !frameImg2 ||
       !dispo1 ||
-      !dispo2
+      !dispo2 ||
+      !form
     ) {
       return;
     }
@@ -141,6 +164,14 @@ export function Contact() {
         { clipPath: "inset(0 0 100% 0)" },
         { clipPath: "inset(0 0 0% 0)", duration: 0.2, ease: "none" },
         0.36,
+      );
+
+      // Enquiry form wipes in under the title, alongside the socials reveal.
+      tl.fromTo(
+        form,
+        { clipPath: "inset(0 0 100% 0)" },
+        { clipPath: "inset(0 0 0% 0)", duration: 0.22, ease: "none" },
+        0.42,
       );
 
       // Frame pair 1 + dispo 1
@@ -266,6 +297,78 @@ export function Contact() {
             <span className="frame-corner bl"></span>
             <span className="frame-corner br"></span>
           </div>
+          <form
+            className="contact-form"
+            id="contact-form"
+            onSubmit={onSubmit}
+            noValidate
+          >
+            {sent ? (
+              <div className="cf-sent">
+                <p className="cf-sent-title">
+                  Thank <span className="cf-em">you.</span>
+                </p>
+                <p className="cf-sent-sub">
+                  Your note is on its way. I read every message myself — expect
+                  a reply shortly.
+                </p>
+              </div>
+            ) : (
+              <>
+                <p className="cf-head">
+                  Start a <span className="cf-em">conversation</span>
+                </p>
+                <div className="cf-row">
+                  <label className="cf-label" htmlFor="cf-name">
+                    Name
+                  </label>
+                  <input
+                    className="cf-input"
+                    id="cf-name"
+                    name="name"
+                    type="text"
+                    autoComplete="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+                <div className="cf-row">
+                  <label className="cf-label" htmlFor="cf-email">
+                    Email
+                  </label>
+                  <input
+                    className="cf-input"
+                    id="cf-email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
+                <div className="cf-row">
+                  <label className="cf-label" htmlFor="cf-message">
+                    Message
+                  </label>
+                  <textarea
+                    className="cf-input cf-textarea"
+                    id="cf-message"
+                    name="message"
+                    rows={3}
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                  />
+                </div>
+                <button className="cf-submit" type="submit">
+                  <span className="cf-submit-label">Send message</span>
+                  <ArrowRightIcon className="cf-submit-arrow" />
+                </button>
+                <p className="cf-error" role="alert">
+                  {error}
+                </p>
+              </>
+            )}
+          </form>
           <div className="contact-bottom" id="contact-bottom">
             <nav
               className="contact-socials"

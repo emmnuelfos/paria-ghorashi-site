@@ -758,12 +758,6 @@ a.chr-hover {
   stroke-linejoin: round;
 }
 
-/* Glitter flowing along the ribbon — added additively for a premium glow. */
-.fluid-glints {
-  mix-blend-mode: screen;
-  pointer-events: none;
-}
-
 .about-photo-wrap {
   position: absolute;
   right: 0;
@@ -1256,6 +1250,144 @@ a.chr-hover {
   opacity: 0.4;
 }
 
+/* ---- Enquiry form (left column of the landed contact view) ---- */
+/* Left column has no flying frames (those travel up the centre-right) and is
+   the stable anchor alongside the title + socials, so the form sits cleanly. */
+.contact-form {
+  position: absolute;
+  top: 33%;
+  left: 6%;
+  width: min(34%, 460px);
+  z-index: 6;
+  pointer-events: auto;
+  background: #EDECEB;
+  will-change: clip-path;
+}
+
+.cf-head {
+  font-family: var(--font-bodoni), 'Bodoni Moda', serif;
+  font-size: clamp(1.6rem, 2.4vw, 2.4rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: #000000;
+  margin: 0 0 2.2rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.18);
+}
+
+.cf-em {
+  color: #A78B65;
+  font-style: italic;
+}
+
+.cf-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+.cf-label {
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 0.5rem;
+}
+
+.cf-input {
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  color: #000000;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.28);
+  border-radius: 0;
+  padding: 0.45rem 0;
+  width: 100%;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: border-color 0.35s ease;
+}
+
+.cf-input:focus {
+  border-bottom-color: #A78B65;
+}
+
+.cf-textarea {
+  resize: none;
+  line-height: 1.5;
+  min-height: 3.2rem;
+}
+
+.cf-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 1.6rem;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  font-weight: 500;
+  color: #000000;
+  transition: color 0.35s ease;
+}
+
+.cf-submit-arrow {
+  color: #A78B65;
+  transition: transform 0.4s ease;
+}
+
+.cf-submit:hover {
+  color: #A78B65;
+}
+
+.cf-submit:hover .cf-submit-arrow {
+  transform: translateX(6px);
+}
+
+.cf-error {
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: #9a3b3b;
+  margin: 0.9rem 0 0;
+  min-height: 1rem;
+}
+
+.cf-sent {
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.18);
+}
+
+.cf-sent-title {
+  font-family: var(--font-bodoni), 'Bodoni Moda', serif;
+  font-size: clamp(1.8rem, 2.6vw, 2.6rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #000000;
+  margin: 0 0 0.8rem;
+}
+
+.cf-sent-sub {
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: rgba(0, 0, 0, 0.7);
+  max-width: 22rem;
+  margin: 0;
+}
+
 
 .footer-transition {
   position: relative;
@@ -1616,6 +1748,28 @@ a.chr-hover {
     bottom: 8vh;
     align-items: center;
     width: 100%;
+  }
+
+  /* Decorative dispos give way to the form on small screens. */
+  #contact-dispo,
+  #contact-dispo-2 {
+    display: none !important;
+  }
+
+  .contact-form {
+    top: 30%;
+    left: 6%;
+    right: 6%;
+    width: auto;
+  }
+
+  .cf-head {
+    font-size: 1.5rem;
+    margin-bottom: 1.3rem;
+  }
+
+  .cf-row {
+    margin-bottom: 1rem;
   }
 
 
