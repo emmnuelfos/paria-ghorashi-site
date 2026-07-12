@@ -516,7 +516,14 @@ export function FooterSection() {
             href="#hero"
             aria-label="Paria Ghorashi — top"
           >
-            <span className="monogram-seal">PG</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="brand-logo"
+              src="/assets/paria/paria-logo.svg"
+              alt="Paria Ghorashi"
+              width={791}
+              height={537}
+            />
           </a>
           <div className="footer-name">
             <span className="footer-name-luke">

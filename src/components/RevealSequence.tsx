@@ -334,7 +334,7 @@ export function RevealSequence() {
             className="rp-char"
             style={{ display: "inline-block" }}
           >
-            {ch === " " ? " " : ch}
+            {ch === " " ? "\u00A0" : ch}
           </span>
         ))}
       </p>
