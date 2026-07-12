@@ -28,12 +28,19 @@ export function Skills() {
     }
 
     const ctx = gsap.context(() => {
-      // Red arrow slides across the left column, scrubbed with scroll.
+      // Gold arrow crosses the left column as you scroll through the section.
+      // Travel is mapped to #skills' OWN pinned range (top top -> bottom
+      // bottom) so the full sweep plays while the sticky column is in view.
+      //
+      // NB: pass the ELEMENTS (arrow, section) not selector strings. The
+      // context is scoped to `section` (= #skills), so a "#skills" string
+      // resolves to section.querySelector("#skills") === null, and a null
+      // trigger makes ScrollTrigger span nearly the whole page — which is why
+      // the arrow barely moved before.
       gsap.fromTo(
-        "#skills-arrow",
-        { xPercent: 0 },
+        arrow,
+        { x: 0 },
         {
-          xPercent: 100,
           x: () => {
             const left = arrow.parentElement;
             if (!left) return 0;
@@ -47,11 +54,11 @@ export function Skills() {
           },
           ease: "none",
           scrollTrigger: {
-            trigger: "#skills",
+            trigger: section,
             start: "top top",
-            endTrigger: "#contact",
-            end: "top center",
+            end: "bottom bottom",
             scrub: 0.5,
+            invalidateOnRefresh: true,
           },
         }
       );

@@ -758,6 +758,12 @@ a.chr-hover {
   stroke-linejoin: round;
 }
 
+/* Glitter flowing along the ribbon — added additively for a premium glow. */
+.fluid-glints {
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
 .about-photo-wrap {
   position: absolute;
   right: 0;
@@ -945,6 +951,9 @@ a.chr-hover {
   user-select: none;
   pointer-events: none;
   will-change: transform;
+  /* Shrink to the glyph (not the full flex column) so the scroll-scrub
+     travel maps to the real column width and the arrow visibly crosses. */
+  align-self: flex-start;
 }
 
 .skills-right {

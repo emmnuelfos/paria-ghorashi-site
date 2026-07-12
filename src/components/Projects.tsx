@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap, ScrollTrigger, prefersReducedMotion } from "@/lib/gsap";
 import { useLenis } from "@/components/LenisProvider";
 import { PROJECTS } from "@/data/site";
 import type Lenis from "lenis";
@@ -55,6 +55,7 @@ export function Projects() {
       // 1. Fluid line self-draw, scrubbed across the section.
       const len = path.getTotalLength();
       gsap.set(path, { strokeDasharray: len, strokeDashoffset: len });
+      let lineProgress = 0;
       gsap.to(path, {
         strokeDashoffset: 0,
         ease: "none",
@@ -63,8 +64,119 @@ export function Projects() {
           start: "top 70%",
           end: "bottom 20%",
           scrub: 1,
+          onUpdate: (self) => {
+            lineProgress = self.progress;
+          },
         },
       });
+
+      // 1b. Gold glitter flowing along the ribbon, revealed as it draws.
+      const reduced = prefersReducedMotion();
+      const svg = path.ownerSVGElement;
+      if (svg && !reduced) {
+        const NS = "http://www.w3.org/2000/svg";
+
+        // Soft white->gold->transparent sparkle fill (shared by every glint).
+        const defs = document.createElementNS(NS, "defs");
+        const grad = document.createElementNS(NS, "radialGradient");
+        grad.setAttribute("id", "fluid-glint-grad");
+        (
+          [
+            ["0%", "#FFFFFF", "1"],
+            ["32%", "#F5E7C4", "0.92"],
+            ["68%", "#A78B65", "0.34"],
+            ["100%", "#A78B65", "0"],
+          ] as const
+        ).forEach(([off, col, op]) => {
+          const st = document.createElementNS(NS, "stop");
+          st.setAttribute("offset", off);
+          st.setAttribute("stop-color", col);
+          st.setAttribute("stop-opacity", op);
+          grad.appendChild(st);
+        });
+        defs.appendChild(grad);
+        svg.appendChild(defs);
+
+        const layer = document.createElementNS(NS, "g");
+        layer.setAttribute("class", "fluid-glints");
+        svg.appendChild(layer);
+        disposers.push(() => {
+          layer.remove();
+          defs.remove();
+        });
+
+        // Pre-sample the path into position + unit-normal lookup (avoids
+        // getPointAtLength in the hot loop).
+        const SAMPLES = 260;
+        const tbl: { x: number; y: number; nx: number; ny: number }[] = [];
+        for (let s = 0; s <= SAMPLES; s++) {
+          const t = s / SAMPLES;
+          const p = path.getPointAtLength(t * len);
+          const p2 = path.getPointAtLength(
+            Math.min(len, (t + 1 / SAMPLES) * len),
+          );
+          const dx = p2.x - p.x;
+          const dy = p2.y - p.y;
+          const d = Math.hypot(dx, dy) || 1;
+          tbl.push({ x: p.x, y: p.y, nx: -dy / d, ny: dx / d });
+        }
+
+        const rnd = gsap.utils.random;
+        const N = 22;
+        const glints = Array.from({ length: N }, (_, i) => {
+          const big = i % 5 === 0;
+          const c = document.createElementNS(NS, "circle");
+          c.setAttribute("r", String(big ? rnd(9, 14) : rnd(4, 8)));
+          c.setAttribute("fill", "url(#fluid-glint-grad)");
+          c.setAttribute("opacity", "0");
+          layer.appendChild(c);
+          return {
+            el: c,
+            base: (i + rnd(-0.4, 0.4)) / N,
+            speed: big ? rnd(0.006, 0.012) : rnd(0.012, 0.022),
+            offset: rnd(-24, 24),
+            twPhase: rnd(0, Math.PI * 2),
+            twSpeed: rnd(1.6, 3.4),
+            baseOp: big ? rnd(0.55, 0.8) : rnd(0.75, 1),
+          };
+        });
+
+        // Pause when the section is well out of view.
+        let inView = false;
+        const io = new IntersectionObserver(
+          (entries) => {
+            inView = entries[0]?.isIntersecting ?? false;
+          },
+          { rootMargin: "25% 0px 25% 0px" },
+        );
+        io.observe(path.closest("#projects") ?? path);
+        disposers.push(() => io.disconnect());
+
+        const c01 = (v: number) => (v < 0 ? 0 : v > 1 ? 1 : v);
+        const glintTick = (time: number) => {
+          if (!inView) return;
+          const drawn = lineProgress;
+          for (let i = 0; i < glints.length; i++) {
+            const g = glints[i];
+            let t = (g.base + time * g.speed) % 1;
+            if (t < 0) t += 1;
+            // Only sparkle over the already-drawn portion of the ribbon.
+            if (t > drawn) {
+              if (g.el.getAttribute("opacity") !== "0")
+                g.el.setAttribute("opacity", "0");
+              continue;
+            }
+            const s = tbl[Math.round(t * SAMPLES)];
+            const twinkle = 0.45 + 0.55 * Math.sin(time * g.twSpeed + g.twPhase);
+            const fade = c01((drawn - t) / 0.06) * c01(t / 0.04);
+            g.el.setAttribute("cx", (s.x + s.nx * g.offset).toFixed(1));
+            g.el.setAttribute("cy", (s.y + s.ny * g.offset).toFixed(1));
+            g.el.setAttribute("opacity", c01(g.baseOp * twinkle * fade).toFixed(3));
+          }
+        };
+        gsap.ticker.add(glintTick);
+        disposers.push(() => gsap.ticker.remove(glintTick));
+      }
 
       // 2. Visibility window for the fixed preview layer.
       const showPreview = () => {

@@ -26,9 +26,13 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     gsap.ticker.add(cb);
     gsap.ticker.lagSmoothing(0);
     setLenis(instance);
+    // Harmless test hook (mirrors HeroCanvas's ?mx/?my) so headless QA can
+    // drive the smooth scroller directly instead of fighting it.
+    (window as unknown as { __lenis?: Lenis }).__lenis = instance;
 
     return () => {
       if (rafCb.current) gsap.ticker.remove(rafCb.current);
+      delete (window as unknown as { __lenis?: Lenis }).__lenis;
       instance.destroy();
     };
   }, []);
