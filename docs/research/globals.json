@@ -1,0 +1,882 @@
+{
+  "fontsOut": {
+    "Inter, \"Helvetica Neue\", Arial, sans-serif": {
+      "sizes": [
+        "32px",
+        "16px",
+        "28.8px",
+        "17.6px",
+        "19.2px"
+      ],
+      "weights": [
+        "700",
+        "400",
+        "600"
+      ],
+      "els": [
+        "h1",
+        "a",
+        "span",
+        "body"
+      ]
+    },
+    "Breton, sans-serif": {
+      "sizes": [
+        "72px",
+        "50.4px",
+        "21.6px",
+        "15.84px",
+        "20px",
+        "250.521px",
+        "51.84px",
+        "40.32px",
+        "28.8px",
+        "244.8px",
+        "14.4px",
+        "18.72px"
+      ],
+      "weights": [
+        "700",
+        "400",
+        "300",
+        "600"
+      ],
+      "els": [
+        "h1",
+        "p",
+        "a",
+        "span",
+        "li"
+      ]
+    },
+    "other, sans-serif": {
+      "sizes": [
+        "31.68px",
+        "250.521px",
+        "13.6px",
+        "51.84px",
+        "50.4px",
+        "21.6px",
+        "244.8px"
+      ],
+      "weights": [
+        "400"
+      ],
+      "els": [
+        "p",
+        "span"
+      ]
+    },
+    "Inter, sans-serif": {
+      "sizes": [
+        "12px",
+        "12.8px"
+      ],
+      "weights": [
+        "600"
+      ],
+      "els": [
+        "span"
+      ]
+    }
+  },
+  "topColors": [
+    [
+      "rgb(240, 240, 240)",
+      1046
+    ],
+    [
+      "rgb(255, 255, 255)",
+      293
+    ],
+    [
+      "rgba(255, 255, 255, 0.8)",
+      272
+    ],
+    [
+      "rgb(10, 10, 10)",
+      111
+    ],
+    [
+      "rgba(255, 255, 255, 0.45)",
+      90
+    ],
+    [
+      "rgb(0, 0, 0)",
+      60
+    ],
+    [
+      "rgba(255, 255, 255, 0.3)",
+      45
+    ],
+    [
+      "rgba(255, 255, 255, 0.2)",
+      12
+    ],
+    [
+      "rgb(255, 30, 0)",
+      12
+    ],
+    [
+      "rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.08)",
+      7
+    ],
+    [
+      "rgba(255, 255, 255, 0.08)",
+      5
+    ],
+    [
+      "rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.15)",
+      4
+    ],
+    [
+      "rgb(255, 59, 20)",
+      4
+    ],
+    [
+      "rgba(255, 255, 255, 0.5)",
+      1
+    ],
+    [
+      "rgba(255, 255, 255, 0.08) rgba(255, 255, 255, 0.2)",
+      1
+    ],
+    [
+      "rgba(255, 255, 255, 0.15)",
+      1
+    ],
+    [
+      "rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.3)",
+      1
+    ]
+  ],
+  "links": [
+    {
+      "rel": "icon",
+      "href": "https://lukebaffait.fr/assets/favicon/favicon.ico",
+      "as": null
+    },
+    {
+      "rel": "stylesheet",
+      "href": "https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap",
+      "as": null
+    },
+    {
+      "rel": "preload",
+      "href": "https://lukebaffait.fr/assets/fonts/Breton.woff2",
+      "as": "font"
+    },
+    {
+      "rel": "preload",
+      "href": "https://lukebaffait.fr/assets/fonts/Machine.otf",
+      "as": "font"
+    },
+    {
+      "rel": "preload",
+      "href": "https://lukebaffait.fr/assets/images/hero%20sequence/0001.jpg?v=20260416-r2",
+      "as": "image"
+    },
+    {
+      "rel": "preload",
+      "href": "https://lukebaffait.fr/assets/images/profile/me.avif",
+      "as": "image"
+    },
+    {
+      "rel": "preload",
+      "href": "https://lukebaffait.fr/assets/images/projects/Covers/cyberDiag_web.avif",
+      "as": "image"
+    },
+    {
+      "rel": "preload",
+      "href": "https://lukebaffait.fr/assets/images/projects/Covers/Anima.avif",
+      "as": "image"
+    },
+    {
+      "rel": "stylesheet",
+      "href": "https://lukebaffait.fr/styles/index.css?v=20260423-r12",
+      "as": null
+    }
+  ],
+  "images": [
+    {
+      "src": "https://lukebaffait.fr/assets/images/profile/me.avif",
+      "alt": "Luke Baffait",
+      "w": 2500,
+      "h": 3001,
+      "cls": "about-photo",
+      "parent": "DIV.about-photo-wrap"
+    },
+    {
+      "src": "https://lukebaffait.fr/assets/images/art/Untitled2.png",
+      "alt": "",
+      "w": 1400,
+      "h": 1920,
+      "cls": "contact-frame-img",
+      "parent": "DIV.contact-frame"
+    },
+    {
+      "src": "https://lukebaffait.fr/assets/images/art/Untitled1.png",
+      "alt": "",
+      "w": 1400,
+      "h": 1920,
+      "cls": "contact-frame-img",
+      "parent": "DIV.contact-frame"
+    },
+    {
+      "src": "https://lukebaffait.fr/assets/images/projects/Covers/Echo.avif",
+      "alt": "",
+      "w": 2667,
+      "h": 2000,
+      "cls": "",
+      "parent": "DIV.proj-card"
+    },
+    {
+      "src": "",
+      "alt": "",
+      "w": 0,
+      "h": 0,
+      "cls": "",
+      "parent": "BODY."
+    }
+  ],
+  "videos": [],
+  "bgImgs": [
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/cyberDiag_web.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/cyberDiag_web.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/cyberDiag_web.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/cyberDiag_web.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/cyberDiag_web.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/cyberDiag_web.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/cyberDiag_web.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/cyberDiag_web.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/cyberDiag_web.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/cyberDiag_web.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Anima.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Anima.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Anima.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Anima.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Anima.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Anima.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Anima.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Anima.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Anima.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Anima.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/CyberDiag.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/CyberDiag.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/CyberDiag.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/CyberDiag.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/CyberDiag.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/CyberDiag.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/CyberDiag.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/CyberDiag.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/CyberDiag.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/CyberDiag.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Zenith.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Zenith.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Zenith.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Zenith.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Zenith.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Zenith.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Zenith.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Zenith.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Zenith.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Zenith.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/SkymcDB.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/SkymcDB.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/SkymcDB.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/SkymcDB.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/SkymcDB.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/SkymcDB.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/SkymcDB.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/SkymcDB.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/SkymcDB.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/SkymcDB.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/ChromaBlock.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/ChromaBlock.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/ChromaBlock.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/ChromaBlock.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/ChromaBlock.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/ChromaBlock.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/ChromaBlock.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/ChromaBlock.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/ChromaBlock.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/ChromaBlock.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Symphony.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Symphony.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Symphony.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Symphony.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Symphony.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Symphony.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Symphony.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Symphony.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Symphony.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Symphony.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Echo.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Echo.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Echo.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Echo.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Echo.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Echo.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Echo.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Echo.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Echo.avif\")",
+      "el": "DIV.cg-slice"
+    },
+    {
+      "bg": "url(\"https://lukebaffait.fr/assets/images/projects/Covers/Echo.avif\")",
+      "el": "DIV.cg-slice"
+    }
+  ],
+  "scripts": [
+    "https://www.googletagmanager.com/gtag/js?id=G-4Z7YDEBY2R",
+    "https://lukebaffait.fr/js/i18n.js",
+    "https://lukebaffait.fr/js/core-renderer.js",
+    "https://lukebaffait.fr/js/hero-project.js",
+    "https://lukebaffait.fr/js/vendor/gsap.min.js",
+    "https://lukebaffait.fr/js/vendor/ScrollTrigger.min.js",
+    "https://lukebaffait.fr/js/vendor/lenis.min.js",
+    "https://lukebaffait.fr/js/index.js?v=20260423-r14"
+  ],
+  "libs": {
+    "gsap": true,
+    "ScrollTrigger": true,
+    "lenis": true,
+    "barba": false,
+    "three": false,
+    "lenisClasses": "lenis",
+    "canvases": [
+      {
+        "w": 2160,
+        "h": 1350,
+        "cls": "",
+        "parent": "DIV.hero-canvas"
+      },
+      {
+        "w": 1440,
+        "h": 900,
+        "cls": "reveal-image reveal-seq",
+        "parent": "DIV.reveal-image-wrap"
+      }
+    ]
+  },
+  "sections": [
+    {
+      "tag": "DIV",
+      "id": "name-layer",
+      "cls": "name-layer",
+      "top": 16560,
+      "h": 900,
+      "pos": "fixed",
+      "z": "10005",
+      "display": "flex"
+    },
+    {
+      "tag": "DIV",
+      "id": "scroll-wrap",
+      "cls": "scroll-wrap",
+      "top": 0,
+      "h": 3600,
+      "pos": "relative",
+      "z": "auto",
+      "display": "block"
+    },
+    {
+      "tag": "SECTION",
+      "id": "hero",
+      "cls": "hero",
+      "top": 2700,
+      "h": 900,
+      "pos": "sticky",
+      "z": "auto",
+      "display": "block"
+    },
+    {
+      "tag": "NAV",
+      "id": null,
+      "cls": "hero-bar-center",
+      "top": 3528,
+      "h": 24,
+      "pos": "absolute",
+      "z": "auto",
+      "display": "flex"
+    },
+    {
+      "tag": "NAV",
+      "id": null,
+      "cls": "hero-bar-right",
+      "top": 3531,
+      "h": 21,
+      "pos": "static",
+      "z": "auto",
+      "display": "flex"
+    },
+    {
+      "tag": "DIV",
+      "id": "reveal-image-wrap",
+      "cls": "reveal-image-wrap",
+      "top": 16110,
+      "h": 900,
+      "pos": "fixed",
+      "z": "10002",
+      "display": "flex"
+    },
+    {
+      "tag": "SECTION",
+      "id": "section-after",
+      "cls": "section-after",
+      "top": 3600,
+      "h": 3388,
+      "pos": "relative",
+      "z": "20010",
+      "display": "block"
+    },
+    {
+      "tag": "SECTION",
+      "id": "circle-gallery",
+      "cls": "circle-gallery",
+      "top": 6988,
+      "h": 5400,
+      "pos": "relative",
+      "z": "20001",
+      "display": "block"
+    },
+    {
+      "tag": "SECTION",
+      "id": "skills",
+      "cls": "skills",
+      "top": 12388,
+      "h": 2137,
+      "pos": "relative",
+      "z": "30010",
+      "display": "block"
+    },
+    {
+      "tag": "SECTION",
+      "id": "awards",
+      "cls": "awards",
+      "top": 14390,
+      "h": 983,
+      "pos": "relative",
+      "z": "30010",
+      "display": "block"
+    },
+    {
+      "tag": "DIV",
+      "id": "contact-bg",
+      "cls": "contact-bg",
+      "top": 16560,
+      "h": 0,
+      "pos": "fixed",
+      "z": "5",
+      "display": "none"
+    },
+    {
+      "tag": "DIV",
+      "id": "contact-blob-wrap",
+      "cls": "contact-blob-wrap",
+      "top": 14852,
+      "h": 990,
+      "pos": "fixed",
+      "z": "30012",
+      "display": "flex"
+    },
+    {
+      "tag": "SECTION",
+      "id": "contact",
+      "cls": "contact",
+      "top": 15373,
+      "h": 1620,
+      "pos": "relative",
+      "z": "30015",
+      "display": "block"
+    },
+    {
+      "tag": "NAV",
+      "id": "contact-socials",
+      "cls": "contact-socials",
+      "top": 15740,
+      "h": 116,
+      "pos": "static",
+      "z": "auto",
+      "display": "flex"
+    },
+    {
+      "tag": "DIV",
+      "id": "footer-transition",
+      "cls": "footer-transition",
+      "top": 16993,
+      "h": 720,
+      "pos": "relative",
+      "z": "20007",
+      "display": "block"
+    },
+    {
+      "tag": "FOOTER",
+      "id": "footer",
+      "cls": "footer",
+      "top": 16560,
+      "h": 900,
+      "pos": "fixed",
+      "z": "20008",
+      "display": "block"
+    },
+    {
+      "tag": "NAV",
+      "id": null,
+      "cls": "footer-top-col",
+      "top": 16600,
+      "h": 83,
+      "pos": "static",
+      "z": "auto",
+      "display": "flex"
+    },
+    {
+      "tag": "NAV",
+      "id": null,
+      "cls": "footer-top-col",
+      "top": 16600,
+      "h": 83,
+      "pos": "static",
+      "z": "auto",
+      "display": "flex"
+    },
+    {
+      "tag": "DIV",
+      "id": "proj-preview",
+      "cls": "proj-preview",
+      "top": 16560,
+      "h": 900,
+      "pos": "fixed",
+      "z": "30005",
+      "display": "flex"
+    },
+    {
+      "tag": "DIV",
+      "id": "proj-cursor",
+      "cls": "proj-cursor",
+      "top": 34255,
+      "h": 36,
+      "pos": "fixed",
+      "z": "30006",
+      "display": "block"
+    },
+    {
+      "tag": "DIV",
+      "id": "page-fade",
+      "cls": "page-fade",
+      "top": 16560,
+      "h": 900,
+      "pos": "fixed",
+      "z": "30012",
+      "display": "block"
+    },
+    {
+      "tag": "DIV",
+      "id": "flying-title",
+      "cls": "flying-title",
+      "top": 34273,
+      "h": 0,
+      "pos": "fixed",
+      "z": "30030",
+      "display": "block"
+    },
+    {
+      "tag": "DIV",
+      "id": "work-transition-overlay",
+      "cls": "work-transition-overlay",
+      "top": 16560,
+      "h": 900,
+      "pos": "fixed",
+      "z": "30030",
+      "display": "block"
+    },
+    {
+      "tag": "DIV",
+      "id": "work-flying-text",
+      "cls": "work-flying-text",
+      "top": 34273,
+      "h": 19,
+      "pos": "fixed",
+      "z": "30035",
+      "display": "block"
+    },
+    {
+      "tag": "SECTION",
+      "id": "project-detail",
+      "cls": "project-detail",
+      "top": 16560,
+      "h": 900,
+      "pos": "fixed",
+      "z": "30015",
+      "display": "block"
+    },
+    {
+      "tag": "DIV",
+      "id": "scroll-pct",
+      "cls": "scroll-pct",
+      "top": 16998,
+      "h": 25,
+      "pos": "fixed",
+      "z": "30015",
+      "display": "block"
+    },
+    {
+      "tag": "DIV",
+      "id": "scroll-timeline",
+      "cls": "scroll-timeline",
+      "top": 16650,
+      "h": 720,
+      "pos": "fixed",
+      "z": "30015",
+      "display": "flex"
+    },
+    {
+      "tag": "IMG",
+      "id": null,
+      "cls": "",
+      "top": 16560,
+      "h": 0,
+      "pos": "fixed",
+      "z": "99999",
+      "display": "block"
+    }
+  ],
+  "title": "Luke Baffait, Creative Developer",
+  "bodyClass": "",
+  "htmlClass": "lenis"
+}
