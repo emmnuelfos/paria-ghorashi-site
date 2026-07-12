@@ -172,7 +172,7 @@ export function FooterSection() {
               anyActive = true;
               const pool = POOLS[7 - pi];
               const ch = pool[Math.floor(Math.random() * pool.length)];
-              html += `<span style="color:#0a0a0a;background:#ff3b14">${escapeChar(ch)}</span>`;
+              html += `<span style="color:#000000;background:#C1A375">${escapeChar(ch)}</span>`;
             } else {
               html += escapeChar(chars[y][x]);
             }
@@ -238,8 +238,8 @@ export function FooterSection() {
       });
 
     Promise.all([
-      loadImage("/assets/images/footer/left.png"),
-      loadImage("/assets/images/footer/right.png"),
+      loadImage("/assets/paria/ascii-left.png"),
+      loadImage("/assets/paria/ascii-right.png"),
     ])
       .then(([leftImg, rightImg]) => {
         if (disposed) return;
@@ -481,8 +481,8 @@ export function FooterSection() {
               <CharRoll
                 spaceGaps
                 className="footer-mail"
-                text="luke.baffait@yahoo.com"
-                href="mailto:luke.baffait@yahoo.com"
+                text="paria@pgpm.ae"
+                href="mailto:paria@pgpm.ae"
               />
               <CharRoll spaceGaps className="footer-date" text="© 2026" />
             </div>
@@ -498,8 +498,8 @@ export function FooterSection() {
               ))}
             </nav>
             <nav className="footer-top-col" aria-label="Footer navigation">
-              <CharRoll spaceGaps text="Work" href="#projects" />
-              <CharRoll spaceGaps text="Info" href="#about" />
+              <CharRoll spaceGaps text="Ventures" href="#projects" />
+              <CharRoll spaceGaps text="Story" href="#about" />
               <CharRoll spaceGaps text="Contact" href="#contact" />
             </nav>
           </div>
@@ -513,10 +513,10 @@ export function FooterSection() {
           </div>
           <div className="footer-name">
             <span className="footer-name-luke">
-              <span className="first-letter">L</span>uke
+              <span className="first-letter">P</span>aria
             </span>
             <span className="footer-name-baffait-wrap">
-              <span className="footer-name-baffait">Baffait</span>
+              <span className="footer-name-baffait">Ghorashi</span>
               <span className="footer-name-dot">.</span>
             </span>
           </div>

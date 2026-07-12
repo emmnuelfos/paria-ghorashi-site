@@ -1,27 +1,34 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Bodoni_Moda, Jost } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const bodoni = Bodoni_Moda({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  variable: "--font-inter",
+  weight: ["400", "500", "600", "700", "800"],
+  style: ["normal", "italic"],
+  variable: "--font-bodoni",
+  display: "block",
+});
+
+const jost = Jost({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-jost",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Luke Baffait, Creative Developer — Study Clone",
+  title: "Paria Ghorashi — Entrepreneur, Brand Partner, Public Figure",
   description:
-    "Local study clone of lukebaffait.fr rebuilt in Next.js for animation/technique research. Not for publication.",
+    "Direction C concept — the world of Paria Ghorashi as a cinematic scroll experience. Internal design review build.",
   robots: { index: false, follow: false },
-  icons: { icon: "/assets/favicon/favicon.ico" },
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${bodoni.variable} ${jost.variable}`}>
       <body>{children}</body>
     </html>
   );

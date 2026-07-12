@@ -7,18 +7,26 @@ import {
   isMobileDevice,
   prefersReducedMotion,
 } from "@/lib/gsap";
+import { COPY } from "@/data/site";
 
-const FRAME_COUNT = 341;
-const PHRASE = "Basically, I make websites.";
+const PHRASE = COPY.revealPhrase;
 
-/** Directory name contains a real space — keep '%20' in the URL. */
-const frameUrl = (i: number) =>
-  `/assets/images/hero%20sequence/${String(i).padStart(4, "0")}.jpg`;
+/** Cinematic two-shot scrub: portrait A slow-zooms, crossfades into portrait B. */
+const SHOTS = [
+  "/assets/paria/hero-hand-hair.jpg",
+  "/assets/paria/portrait-lipstick.jpg",
+] as const;
+
+/** Progress window where shot A hands over to shot B. */
+const XFADE_START = 0.52;
+const XFADE_END = 0.66;
 
 /**
- * Scroll-scrubbed 341-frame canvas reveal: the framed image scales in over
- * the hero scroll range (#scroll-wrap), scrubs through the sequence, then
- * darkens/blurs and slides away as #section-after scrolls in.
+ * Scroll-scrubbed canvas reveal: the framed image scales in over the hero
+ * scroll range (#scroll-wrap), Ken-Burns-zooms through two of Paria's
+ * portraits with a crossfade, then darkens/blurs and slides away as
+ * #section-after scrolls in. (Same trigger architecture as the studied
+ * frame-sequence version — only the draw model changed.)
  */
 export function RevealSequence() {
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -44,26 +52,11 @@ export function RevealSequence() {
     const useBlur = !mobile && !reduced;
     const dpr = slowHw ? 1 : Math.min(window.devicePixelRatio || 1, 1.5);
 
-    const frames: Array<HTMLImageElement | undefined> = new Array(
-      FRAME_COUNT + 1,
-    );
-    const loadedFrameIdx: number[] = [];
-    let lastDrawnIdx = -1;
+    const shots: Array<HTMLImageElement | undefined> = new Array(SHOTS.length);
+    let lastDrawnP = -1;
     let lastDrawTime = 0;
-    let currentIdx = 1;
+    let currentP = 0;
     let destroyed = false;
-
-    /** Keep loadedFrameIdx sorted (binary-search insert). */
-    const insertLoaded = (i: number) => {
-      let lo = 0;
-      let hi = loadedFrameIdx.length;
-      while (lo < hi) {
-        const mid = (lo + hi) >> 1;
-        if (loadedFrameIdx[mid] < i) lo = mid + 1;
-        else hi = mid;
-      }
-      loadedFrameIdx.splice(lo, 0, i);
-    };
 
     const sizeCanvas = () => {
       canvas.width = Math.round(window.innerWidth * dpr);
@@ -71,110 +64,96 @@ export function RevealSequence() {
     };
     sizeCanvas();
 
-    /** Cover-fit centered draw; `force` bypasses same-frame + throttle checks. */
-    const drawFrame = (i: number, force = false) => {
+    /** Cover-fit draw of one shot with progress-driven zoom + vertical drift. */
+    const drawShot = (
+      img: HTMLImageElement,
+      zoom: number,
+      driftY: number,
+      alpha: number,
+    ) => {
+      const cw = canvas.width;
+      const ch = canvas.height;
+      const iw = img.naturalWidth;
+      const ih = img.naturalHeight;
+      const scale = Math.max(cw / iw, ch / ih) * zoom;
+      const dw = iw * scale;
+      const dh = ih * scale;
+      ctx2d.globalAlpha = alpha;
+      ctx2d.drawImage(
+        img,
+        (cw - dw) / 2,
+        (ch - dh) / 2 + driftY * ch,
+        dw,
+        dh,
+      );
+      ctx2d.globalAlpha = 1;
+    };
+
+    /**
+     * p in [0,1] across the whole reveal:
+     * shot A zooms 1.00→1.18 drifting up; across the crossfade window shot B
+     * fades in at 1.06→1.22. `force` bypasses the same-progress/throttle check.
+     */
+    const drawAtProgress = (p: number, force = false) => {
       if (destroyed) return;
-      const img = frames[i];
-      if (!img || img.naturalWidth <= 0) return;
+      const clamped = Math.min(1, Math.max(0, p));
       if (!force) {
-        if (i === lastDrawnIdx) return;
+        if (Math.abs(clamped - lastDrawnP) < 0.0015) return;
         if (slowHw) {
           const now = performance.now();
           if (now - lastDrawTime < 32) return;
           lastDrawTime = now;
         }
       }
+      const a = shots[0];
+      const b = shots[1];
+      if (!a || a.naturalWidth <= 0) return;
+
       const cw = canvas.width;
       const ch = canvas.height;
-      const iw = img.naturalWidth;
-      const ih = img.naturalHeight;
-      const scale = Math.max(cw / iw, ch / ih);
-      const dw = iw * scale;
-      const dh = ih * scale;
       ctx2d.clearRect(0, 0, cw, ch);
-      ctx2d.drawImage(img, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
-      lastDrawnIdx = i;
-      currentIdx = i;
+
+      const xfade =
+        b && b.naturalWidth > 0
+          ? Math.min(
+              1,
+              Math.max(0, (clamped - XFADE_START) / (XFADE_END - XFADE_START)),
+            )
+          : 0;
+
+      if (xfade < 1) {
+        drawShot(a, 1 + clamped * 0.18, -clamped * 0.04, 1);
+      }
+      if (xfade > 0 && b) {
+        drawShot(b, 1.06 + clamped * 0.16, (1 - clamped) * 0.03, xfade);
+      }
+      lastDrawnP = clamped;
+      currentP = clamped;
     };
 
-    const drawFrameAtProgress = (p: number) => {
-      const count = loadedFrameIdx.length;
-      if (count === 0) return;
-      const clamped = Math.min(1, Math.max(0, p));
-      const idx = loadedFrameIdx[Math.round(clamped * (count - 1))];
-      drawFrame(idx);
-    };
-
-    const loadImage = (i: number) =>
+    const loadShot = (i: number) =>
       new Promise<boolean>((resolve) => {
         const img = new Image();
         img.onload = () => {
-          frames[i] = img;
-          const ok = img.naturalWidth > 0;
-          if (ok) insertLoaded(i);
-          resolve(ok);
+          shots[i] = img;
+          resolve(img.naturalWidth > 0);
         };
         img.onerror = () => resolve(false);
-        img.src = frameUrl(i);
+        img.src = SHOTS[i];
       });
-
-    const failed: number[] = [];
 
     const startLoading = async () => {
-      // Frame 1 first: draw as soon as it lands.
-      const ok1 = await loadImage(1);
+      const ok = await loadShot(0);
       if (destroyed) return;
-      if (ok1) drawFrame(1, true);
-      else failed.push(1);
-
-      // Frames 2–11 in parallel; time the batch to gauge connection speed.
-      const t0 = performance.now();
-      const probe: number[] = [];
-      for (let i = 2; i <= 11; i++) probe.push(i);
-      const probeResults = await Promise.all(probe.map(loadImage));
-      if (destroyed) return;
-      probeResults.forEach((ok, j) => {
-        if (!ok) failed.push(probe[j]);
-      });
-      const elapsed = performance.now() - t0;
-
-      let skip = 1;
-      if (elapsed > 4000) skip = 3;
-      else if (elapsed > 2000) skip = 2;
-      if (isMobileDevice()) skip = Math.max(skip, 3);
-
-      // Remaining frames from 12, honoring the skip stride.
-      const targets: number[] = [];
-      for (let i = 12; i <= FRAME_COUNT; i++) {
-        if (skip <= 1 || i % skip === 0) targets.push(i);
-      }
-
-      const concurrency = slowHw ? 2 : 6;
-      let cursor = 0;
-      const worker = async () => {
-        while (cursor < targets.length && !destroyed) {
-          const i = targets[cursor];
-          cursor += 1;
-          const ok = await loadImage(i);
-          if (!ok) failed.push(i);
-        }
-      };
-      await Promise.all(Array.from({ length: concurrency }, worker));
-      if (destroyed) return;
-
-      // Retry each failed frame once more at the end.
-      const retries = failed.splice(0, failed.length);
-      for (const i of retries) {
-        if (destroyed) return;
-        await loadImage(i);
-      }
+      if (ok) drawAtProgress(currentP, true);
+      await loadShot(1);
+      if (!destroyed) drawAtProgress(currentP, true);
     };
     void startLoading();
 
     const onResize = () => {
       sizeCanvas();
-      lastDrawnIdx = -1;
-      drawFrame(currentIdx, true);
+      drawAtProgress(currentP, true);
     };
     window.addEventListener("resize", onResize);
 
@@ -203,7 +182,7 @@ export function RevealSequence() {
       }
 
       ctx.add(() => {
-        // --- ScrollTrigger 1: entry (scale in + sequence scrub + phrase in) ---
+        // --- ScrollTrigger 1: entry (scale in + zoom scrub + phrase in) ---
         const entryTl = gsap.timeline({
           scrollTrigger: {
             trigger: scrollWrap,
@@ -212,8 +191,8 @@ export function RevealSequence() {
             scrub: 0.5,
             onUpdate: (self) => {
               const p = self.progress;
-              if (p < 0.3) drawFrameAtProgress(0);
-              else drawFrameAtProgress(((p - 0.3) / 0.7) * 0.82);
+              if (p < 0.3) drawAtProgress(0);
+              else drawAtProgress(((p - 0.3) / 0.7) * 0.82);
             },
           },
         });
@@ -249,10 +228,10 @@ export function RevealSequence() {
             end: "top top",
             scrub: true,
             onUpdate: (self) => {
-              drawFrameAtProgress(0.82 + self.progress * 0.18);
+              drawAtProgress(0.82 + self.progress * 0.18);
             },
-            onLeave: () => drawFrameAtProgress(1),
-            onLeaveBack: () => drawFrameAtProgress(0.82),
+            onLeave: () => drawAtProgress(1),
+            onLeaveBack: () => drawAtProgress(0.82),
           },
         });
         exitTl.to(wrap, { y: "-50vh", ease: "none", duration: 1 }, 0);
@@ -329,7 +308,7 @@ export function RevealSequence() {
             className="rp-char"
             style={{ display: "inline-block" }}
           >
-            {ch === " " ? "\u00A0" : ch}
+            {ch === " " ? " " : ch}
           </span>
         ))}
       </p>

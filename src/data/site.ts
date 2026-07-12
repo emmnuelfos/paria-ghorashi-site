@@ -1,66 +1,77 @@
 import type { Project, SkillGroup, Award, SocialLink } from "@/types";
 
-/** Content extracted verbatim from lukebaffait.fr (EN i18n) — local study clone. */
+/** Content for Paria Ghorashi — Direction C "The Motion Study".
+ *  All copy sourced from her supplied brief, brand portfolio and PGPM deck. */
 
 export const PROJECTS: Project[] = [
-  { id: "cyberdiag", name: "CyberDiag website", date: "01 2025", cover: "/assets/images/projects/Covers/cyberDiag_web.avif", coverAlt: "CyberDiag website" },
-  { id: "anima", name: "Anima", date: "06 2025", cover: "/assets/images/projects/Covers/Anima.avif", coverAlt: "Anima website" },
-  { id: "cyberdiag-app", name: "CyberDiag app", date: "09 2025", cover: "/assets/images/projects/Covers/CyberDiag.avif", coverAlt: "CyberDiag desktop app" },
-  { id: "zenith", name: "Zenith", date: "11 2025", cover: "/assets/images/projects/Covers/Zenith.avif", coverAlt: "Zenith web browser" },
-  { id: "skymcdb", name: "SkymcDB", date: "02 2026", cover: "/assets/images/projects/Covers/SkymcDB.avif", coverAlt: "SkymcDB tool" },
-  { id: "chromablock", name: "ChromaBlock", date: "03 2026", cover: "/assets/images/projects/Covers/ChromaBlock.avif", coverAlt: "ChromaBlock web app" },
-  { id: "symphony", name: "Symphony", date: "03 2026", cover: "/assets/images/projects/Covers/Symphony.avif", coverAlt: "Symphony music app" },
-  { id: "echo", name: "Echo", date: "03 2026", cover: "/assets/images/projects/Covers/Echo.avif", coverAlt: "Echo AI chat interface" },
+  { id: "blowoutandgo", name: "Blowout&Go", date: "Est. 2012", cover: "/assets/paria/portrait-lipstick.jpg", coverAlt: "Blowout&Go — at-home beauty services" },
+  { id: "bgx", name: "bgX", date: "Est. 2016", cover: "/assets/paria/phone-instagram.jpg", coverAlt: "bgX — beauty-tech platform with Uber and Balmain Hair Couture" },
+  { id: "pgpm", name: "PGPM", date: "Est. 2016", cover: "/assets/paria/tex-runway.jpg", coverAlt: "PGPM — global boutique agency" },
+  { id: "madeforyou", name: "Made For You", date: "Est. 2022", cover: "/assets/paria/speak-stage.jpg", coverAlt: "Made For You Global — members club for female entrepreneurs" },
+  { id: "book", name: "The Book", date: "In Progress", cover: "/assets/paria/world-cafe.jpg", coverAlt: "Upcoming book" },
+  { id: "unscripted", name: "Unscripted", date: "Talk Show", cover: "/assets/paria/world-podcast.jpg", coverAlt: "Unscripted with Paria — original talk show" },
+  { id: "speaking", name: "Speaking", date: "Worldwide", cover: "/assets/paria/speak-screen.jpg", coverAlt: "International speaking engagements" },
+  { id: "partnerships", name: "Partnerships", date: "Select", cover: "/assets/paria/production.jpg", coverAlt: "Brand partnerships and collaborations" },
 ];
 
-export const GALLERY_COVERS: string[] = PROJECTS.map((p) => p.cover);
+/** 3:2 covers for the orbit gallery — her world. */
+export const GALLERY_COVERS: string[] = [
+  "/assets/paria/cg-450sl.jpg",
+  "/assets/paria/cg-cannes.jpg",
+  "/assets/paria/cg-tulle.jpg",
+  "/assets/paria/cg-overwater.jpg",
+  "/assets/paria/cg-redgown.jpg",
+  "/assets/paria/cg-whitehat.jpg",
+  "/assets/paria/cg-dock.jpg",
+  "/assets/paria/cg-hatcar.jpg",
+];
 
 export const SKILL_GROUPS: SkillGroup[] = [
-  { key: "frontend", title: "Frontend", items: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js", "Tailwind", "Bootstrap", "Electron"] },
-  { key: "animation", title: "Animation & 3D", items: ["GSAP", "Lenis", "Barba.js", "Three.js", "WebGL", "Blender"] },
-  { key: "backend", title: "Backend", items: ["Node.js", "Express.js", "Python", "Java", "PHP", "Netlify"] },
-  { key: "database", title: "Databases", items: ["MySQL", "PostgreSQL", "MongoDB", "Supabase"] },
-  { key: "devops", title: "DevOps & Tools", items: ["Docker", "Vercel", "Git", "GitHub", "GitLab", "Cloudflare"] },
-  { key: "sysadmin", title: "System & Security", items: ["Linux", "Bash", "Shell", "Owasp", "Metasploit", "Nmap", "OpenVAS", "Ossec"] },
-  { key: "design", title: "Design", items: ["Photoshop", "Canva", "Figma"] },
+  { key: "strategy", title: "Brand Strategy", items: ["Positioning", "Identity", "Market Relevance", "Differentiation", "Long-term Growth"] },
+  { key: "growth", title: "Business Growth", items: ["Startup to Scale", "Commercial Development", "Investment-led Ventures", "International Expansion"] },
+  { key: "partnerships", title: "Partnerships", items: ["Strategic Introductions", "Brand Collaborations", "Ambassadorships", "High-level Networks"] },
+  { key: "media", title: "Media & Positioning", items: ["Public Relations", "Founder Positioning", "Thought Leadership", "Reputation", "Strategic Storytelling"] },
+  { key: "creative", title: "Creative Direction", items: ["Campaigns", "Editorial", "Photography", "Video-first Content"] },
+  { key: "speaking", title: "Speaking", items: ["Keynotes", "Panels", "Hosting", "Moderation", "Representation"] },
+  { key: "industries", title: "Industries", items: ["Luxury", "Beauty", "Technology", "Media", "Hospitality", "Real Estate", "Lifestyle"] },
 ];
 
 export const AWARDS: Award[] = [
-  { org: "GSAP", site: "lukebaffait.fr", prize: "Site of the week", date: "17 05 2026", cursorImg: "/assets/images/projects/Covers/Portfolio.avif" },
-  { org: "Awwwards", site: "lukebaffait.fr", prize: "Honorable Mention", date: "26 05 2026", cursorImg: "/assets/images/projects/Covers/Portfolio.avif" },
-  { org: "Youtube", site: "lukebaffait.fr", prize: "Featured on Codegrid", date: "25 06 2026", cursorImg: "/assets/images/projects/Covers/Portfolio.avif" },
-  { org: "Awwwards", site: "lukebaffait.fr", prize: "Portfolio Honors nomination", date: "01 07 2026", cursorImg: "/assets/images/projects/Covers/Portfolio.avif" },
-  { org: "landing.love", site: "lukebaffait.fr", prize: "featured for the Best animations", date: "10 06 2026", cursorImg: "/assets/images/projects/Covers/Portfolio.avif" },
+  { org: "Harper's Bazaar", site: "pariaghorashi", prize: "The Watch Collector Series", date: "2016", cursorImg: "/assets/paria/press-spotlight.jpg" },
+  { org: "Evening Standard", site: "bgX × Uber", prize: "The Uber blow dry", date: "2016", cursorImg: "/assets/paria/phone-instagram.jpg" },
+  { org: "Vogue", site: "bgX", prize: "A hairdresser in one click", date: "2018", cursorImg: "/assets/paria/portrait-lipstick.jpg" },
+  { org: "Ahlan!", site: "Hot 100", prize: "Leading social influencers of the UAE", date: "2016", cursorImg: "/assets/paria/world-redgown.jpg" },
+  { org: "Hello! Middle East", site: "Cover feature", prize: "Into her world", date: "2015", cursorImg: "/assets/paria/press-bluegown.jpg" },
 ];
 
 export const SOCIALS: SocialLink[] = [
-  { label: "Behance", href: "https://www.behance.net/lukebaffait" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/luke-baffait/" },
-  { label: "GitHub", href: "https://github.com/SkyNigh1" },
+  { label: "Instagram", href: "https://instagram.com/pariaghorashi" },
+  { label: "LinkedIn", href: "https://linkedin.com/in/pariaghorashi" },
+  { label: "PGPM", href: "mailto:paria@pgpm.ae" },
 ];
 
 export const NAV_LINKS: SocialLink[] = [
-  { label: "Work", href: "#projects" },
-  { label: "Info", href: "#about" },
+  { label: "Ventures", href: "#projects" },
+  { label: "Story", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
 
 export const COPY = {
   heroTagline:
-    'Quiet creator, <span class="other-accent">bringing ideas to life</span>,<br/>through motion, detail and softness.',
-  revealPhrase: "Basically, I make websites.",
+    'Serial entrepreneur, <span class="other-accent">building brands that matter</span>,<br/>across luxury, business &amp; culture.',
+  revealPhrase: "Basically, I build brands.",
   aboutText:
-    'As a<span class="other-accent"> creative developer</span>, I craft tailor-made web experiences, blending technical precision and <span class="other-accent">emotion</span>.',
+    'As a<span class="other-accent"> serial entrepreneur</span>, I transform brands, scale businesses, and build influential ventures — blending strategy and <span class="other-accent">emotion</span>.',
   aboutSub:
-    "My name is Luke. A passionate creator and computer science student in Vannes, I build memorable digital experiences, always seeking the symbiosis between art and information.",
+    "My name is Paria. A brand strategist and growth architect with more than twenty-five years across luxury, beauty, technology and media — always seeking the meeting point of identity and influence.",
   cgPhrase:
-    'Each project is a chance to <span class="other-accent">learn</span>, <span class="other-accent">experiment</span> and push my limits.',
-  skillsSubtitle: "Skills",
+    'Great brands are built through <span class="other-accent">identity</span>, <span class="other-accent">emotion</span> and long-term positioning.',
+  skillsSubtitle: "What She Does",
   skillsText:
-    "Computer Science student in Vannes, specialized in cybersecurity, passionate about web development and design.",
+    "Entrepreneur, brand partner and public figure — 25+ years across luxury, beauty, technology and media.",
   contactDispo1:
-    'Looking for an <span class="other-accent">apprenticeship</span> starting September. Eager to join an innovative team and contribute to ambitious projects.',
+    'Open to <span class="other-accent">brand collaborations</span>, strategic partnerships and speaking engagements — worldwide.',
   contactDispo2:
-    'I\'m available for<span class="other-accent"> freelance missions worldwide</span>, on<span class="other-accent"> your ambitious projects</span> and international collaborations.',
-  mail: "luke.baffait@yahoo.com",
+    'For<span class="other-accent"> media, advisory</span> and<span class="other-accent"> business development</span> enquiries — let\'s create something exceptional.',
+  mail: "paria@pgpm.ae",
 };

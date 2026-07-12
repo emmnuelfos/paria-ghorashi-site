@@ -100,7 +100,7 @@ export function Awards() {
   return (
     <section className="awards" id="awards" ref={sectionRef}>
       <div className="awards-inner">
-        <div className="skills-subtitle awards-title">Awards &amp; Misc</div>
+        <div className="skills-subtitle awards-title">Media &amp; Press</div>
         <div className="awards-list" id="awards-list">
           {AWARDS.map((a) => (
             <div

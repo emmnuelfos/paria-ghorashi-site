@@ -97,7 +97,7 @@ export function Skills() {
     <section className="skills" id="skills" ref={sectionRef}>
       <div className="skills-inner">
         <div className="skills-left">
-          <div className="skills-subtitle">Skills</div>
+          <div className="skills-subtitle">What She Does</div>
           <div className="skills-text">{COPY.skillsText}</div>
           <div className="skills-separator"></div>
           <div>

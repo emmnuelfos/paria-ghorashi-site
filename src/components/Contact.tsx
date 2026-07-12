@@ -238,7 +238,7 @@ export function Contact() {
             <img
               className="contact-frame-img"
               id="contact-frame-img"
-              src="/assets/images/art/Untitled2.png"
+              src="/assets/paria/beach-tulle.jpg"
               alt=""
               loading="lazy"
               decoding="async"
@@ -256,7 +256,7 @@ export function Contact() {
             <img
               className="contact-frame-img"
               id="contact-frame-img-2"
-              src="/assets/images/art/Untitled1.png"
+              src="/assets/paria/press-bluegown.jpg"
               alt=""
               loading="lazy"
               decoding="async"

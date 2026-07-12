@@ -18,12 +18,12 @@ interface HeroBlob {
   coreAlpha: number;
 }
 
-/** Red core #ff1e00 (one deeper #7a0f00), drifting on distinct slow sin/cos paths. */
+/** Signature-gold cores #A78B65 (one deeper bronze), drifting on distinct slow sin/cos paths. */
 const BLOBS: readonly HeroBlob[] = [
-  { baseX: 0.6, baseY: 0.18, radius: 0.42, periodX: 16, periodY: 12, phaseX: 0.0, phaseY: 1.7, ampX: 0.06, ampY: 0.05, rgb: [255, 30, 0], coreAlpha: 0.9 },
-  { baseX: 0.82, baseY: 0.42, radius: 0.32, periodX: 10, periodY: 14, phaseX: 2.1, phaseY: 4.2, ampX: 0.05, ampY: 0.08, rgb: [255, 30, 0], coreAlpha: 0.75 },
-  { baseX: 0.38, baseY: 0.06, radius: 0.26, periodX: 20, periodY: 9, phaseX: 3.9, phaseY: 0.6, ampX: 0.07, ampY: 0.04, rgb: [255, 30, 0], coreAlpha: 0.55 },
-  { baseX: 0.68, baseY: 0.78, radius: 0.36, periodX: 13, periodY: 18, phaseX: 5.2, phaseY: 2.9, ampX: 0.08, ampY: 0.06, rgb: [122, 15, 0], coreAlpha: 0.85 },
+  { baseX: 0.6, baseY: 0.18, radius: 0.42, periodX: 16, periodY: 12, phaseX: 0.0, phaseY: 1.7, ampX: 0.06, ampY: 0.05, rgb: [167, 139, 101], coreAlpha: 0.9 },
+  { baseX: 0.82, baseY: 0.42, radius: 0.32, periodX: 10, periodY: 14, phaseX: 2.1, phaseY: 4.2, ampX: 0.05, ampY: 0.08, rgb: [167, 139, 101], coreAlpha: 0.75 },
+  { baseX: 0.38, baseY: 0.06, radius: 0.26, periodX: 20, periodY: 9, phaseX: 3.9, phaseY: 0.6, ampX: 0.07, ampY: 0.04, rgb: [193, 163, 117], coreAlpha: 0.55 },
+  { baseX: 0.68, baseY: 0.78, radius: 0.36, periodX: 13, periodY: 18, phaseX: 5.2, phaseY: 2.9, ampX: 0.08, ampY: 0.06, rgb: [96, 76, 52], coreAlpha: 0.85 },
 ];
 
 const FRAME_MS = 1000 / 30;
@@ -74,7 +74,7 @@ export function HeroCanvas() {
       lastT = t;
       const sf = off.width / w;
       octx.globalCompositeOperation = "source-over";
-      octx.fillStyle = "#0a0a0a";
+      octx.fillStyle = "#000000";
       octx.fillRect(0, 0, off.width, off.height);
       octx.globalCompositeOperation = "lighter";
       for (const b of BLOBS) {
@@ -100,7 +100,7 @@ export function HeroCanvas() {
         octx.fill();
       }
       // Upscale the small render for cheap blur, plus ctx.filter when supported.
-      main.fillStyle = "#0a0a0a";
+      main.fillStyle = "#000000";
       main.fillRect(0, 0, w, h);
       if (supportsFilter) main.filter = "blur(40px)";
       main.drawImage(off, 0, 0, w, h);

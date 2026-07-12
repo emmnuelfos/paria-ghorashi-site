@@ -72,9 +72,7 @@ export function Hero() {
     <div className="scroll-wrap" id="scroll-wrap">
       <section className="hero" id="hero">
         <h1 className="sr-only">
-          Luke Baffait — Creative Developer, computer science student in
-          Vannes, specialized in web development, animation and interactive
-          design.
+          Paria Ghorashi — Entrepreneur, brand strategist and growth architect, building meaningful partnerships across luxury, business and culture.
         </h1>
         <div className="hero-canvas" id="hero-canvas">
           <HeroCanvas />
@@ -88,7 +86,7 @@ export function Hero() {
           <div className="hero-line" id="hero-line" />
           <div className="hero-bar" id="hero-bar">
             <div className="hero-bar-left">
-              <CharRoll text={"\u{1F87A}V3.0"} />
+              <CharRoll text={"\u{1F87A}SINCE 2012"} />
             </div>
             <nav className="hero-bar-center" aria-label="Social links">
               {SOCIALS.map((social, i) => (

@@ -312,7 +312,7 @@ export function Projects() {
         </div>
       </div>
       <div className="proj-cursor" id="proj-cursor" ref={cursorRef}>
-        See project
+        See more
       </div>
     </>
   );

@@ -141,16 +141,16 @@ export function About() {
       </div>
       <div className="about-version">
         <ArrowRightIcon />
-        V3.0
+        SINCE 2012
       </div>
       <div className="about-photo-wrap" id="about-photo-wrap">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className="about-photo"
-          src="/assets/images/profile/me.avif"
-          alt="Luke Baffait"
-          width={2500}
-          height={3001}
+          src="/assets/paria/portrait-desk.jpg"
+          alt="Paria Ghorashi"
+          width={1081}
+          height={1600}
           decoding="async"
         />
       </div>

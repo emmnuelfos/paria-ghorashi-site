@@ -12,7 +12,7 @@ import { useLenis } from "@/components/LenisProvider";
 import { splitIntoChars } from "@/lib/text";
 
 /**
- * Time-driven intro (runs once): masked char rise of "Luke Baffait.",
+ * Time-driven intro (runs once): masked char rise of "Paria Ghorashi.",
  * scale-to-bottom settle, dark/red panel sweep revealing the hero, then
  * hero-content + letter-roll reveals. Locks scrolling until done and
  * dispatches `intro:done` on window when finished.
@@ -149,7 +149,7 @@ export function IntroOverlay() {
       const vw = window.innerWidth;
       pContent.style.visibility = "hidden";
       gsap.set(pContent, { scale: 1, x: 0, y: 0 });
-      nameLayer.style.mixBlendMode = "difference";
+      nameLayer.style.mixBlendMode = "normal"; // ivory stays on-palette over the gold blob
       nameParts.forEach((el) => {
         const base = parseFloat(getComputedStyle(el).fontSize);
         el.style.fontSize = `${((base * scaleInfo.scale) / vw) * 100}vw`;
@@ -339,13 +339,13 @@ export function IntroOverlay() {
           ref={pContentRef}
         >
           <div id="preloader-logo" ref={logoRef}>
-            L
+            P
           </div>
           <span id="preloader-luke" ref={lukeRef}>
-            uke
+            aria
           </span>
           <span id="preloader-baffait" ref={baffaitRef}>
-            {" Baffait"}
+            {" Ghorashi"}
           </span>
           <span id="preloader-dot" ref={dotRef}>
             .

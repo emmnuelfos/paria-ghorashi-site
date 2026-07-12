@@ -14,10 +14,10 @@ interface SectionEntry extends SectionDef {
 }
 
 const SECTIONS: SectionDef[] = [
-  { id: "about", name: "About" },
-  { id: "projects", name: "Projects" },
-  { id: "circle-gallery", name: "Gallery" },
-  { id: "skills", name: "Skills" },
+  { id: "about", name: "Story" },
+  { id: "projects", name: "Ventures" },
+  { id: "circle-gallery", name: "Her World" },
+  { id: "skills", name: "Practice" },
   { id: "contact", name: "Contact" },
 ];
 
