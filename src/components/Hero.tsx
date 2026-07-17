@@ -5,7 +5,6 @@ import { gsap, isMobileViewport } from "@/lib/gsap";
 import { CharRoll } from "@/components/CharRoll";
 import { HeroCanvas } from "@/components/HeroCanvas";
 import { COPY, NAV_LINKS, SOCIALS } from "@/data/site";
-import { asset } from "@/lib/asset";
 
 /**
  * Sticky hero inside the 400vh scroll-wrap. After `intro:done`, a scrubbed
@@ -79,32 +78,8 @@ export function Hero() {
           <HeroCanvas />
         </div>
         <div className="hero-content">
-          <a
-            className="monogram hero-brand"
-            id="hero-brand"
-            href="#hero"
-            aria-label="Paria Ghorashi — top"
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              className="brand-logo"
-              src={asset("/assets/paria/paria-logo.svg")}
-              alt="Paria Ghorashi"
-              width={791}
-              height={537}
-            />
-            {/* Light sweep, masked to the logo's own silhouette. Mask URL is
-                inline so it honours the deploy base path. */}
-            <span
-              className="brand-sheen"
-              id="brand-sheen"
-              aria-hidden="true"
-              style={{
-                WebkitMaskImage: `url(${asset("/assets/paria/paria-logo.svg")})`,
-                maskImage: `url(${asset("/assets/paria/paria-logo.svg")})`,
-              }}
-            />
-          </a>
+          {/* The brand mark is <BrandMark /> — it lives outside #hero so it can
+              join the intro lockup; this timeline still fades it on scroll. */}
           <div
             className="hero-tagline"
             id="hero-tagline"

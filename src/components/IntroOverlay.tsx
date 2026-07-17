@@ -123,23 +123,29 @@ export function IntroOverlay() {
     };
 
     /**
-     * Logo entrance geometry: how far to offset/scale #hero-brand so it starts
-     * centred and hero-sized, then docks back to its natural top-right spot by
-     * animating x/y/scale to 0/0/1 (no layout thrash).
+     * Lockup geometry: offset/scale that parks #hero-brand centred just above
+     * the name for the intro. Docking later animates x/y/scale back to 0/0/1 —
+     * its natural top-right resting spot — so there is no layout thrash.
      */
-    const logoFrom = { x: 0, y: 0, scale: 4 };
-    const computeLogoFrom = () => {
+    const logoLock = { x: 0, y: 0, scale: 4 };
+    const computeLogoLockup = () => {
       const el = document.getElementById("hero-brand");
       if (!el) return;
+      gsap.set(el, { x: 0, y: 0, scale: 1 });
       const r = el.getBoundingClientRect();
       if (!r.width) return;
       const vw = window.innerWidth;
       const vh = window.innerHeight;
       const mobile = isMobileViewport();
-      const targetW = Math.min(vw * (mobile ? 0.62 : 0.3), mobile ? 280 : 420);
-      logoFrom.scale = targetW / r.width;
-      logoFrom.x = vw / 2 - (r.left + r.width / 2);
-      logoFrom.y = vh / 2 - (r.top + r.height / 2);
+      const targetW = Math.min(vw * (mobile ? 0.5 : 0.22), mobile ? 200 : 300);
+      logoLock.scale = targetW / r.width;
+      const h = r.height * logoLock.scale;
+      const gap = mobile ? 22 : 40;
+      const nameTop = pContent.getBoundingClientRect().top;
+      // Sit above the name, but never crowd the top edge.
+      const centerY = Math.max(h / 2 + vh * 0.06, nameTop - gap - h / 2);
+      logoLock.x = vw / 2 - (r.left + r.width / 2);
+      logoLock.y = centerY - (r.top + r.height / 2);
     };
 
     /** Re-anchor the settled (scale:1, vw-sized) name at the bottom of the viewport. */
@@ -202,9 +208,6 @@ export function IntroOverlay() {
       gsap.set(chars, { yPercent: 110 });
       gsap.set([logo, luke, baffait], { opacity: 1 });
       gsap.set(dot, { opacity: 0 });
-      // The hero layer is switched on behind the panels, so the brand logo must
-      // stay hidden until its own entrance beat fires.
-      gsap.set("#hero-brand", { opacity: 0 });
 
       // 2) Initial composition layout.
       layoutNames();
@@ -240,15 +243,74 @@ export function IntroOverlay() {
       (window as unknown as { __introTL?: gsap.core.Timeline }).__introTL =
         master;
 
-      // 3) Chars rise from the mask.
-      master.to(chars, {
-        yPercent: 0,
-        duration: 0.4,
-        ease: "power3.out",
-        stagger: { each: 0.025, from: "center" },
-      });
+      // 2b) Brand lockup — the mark leads on black, the name answers beneath.
+      master.call(() => computeLogoLockup(), undefined, 0);
+      master.set(
+        "#hero-brand",
+        {
+          x: () => logoLock.x,
+          y: () => logoLock.y,
+          scale: () => logoLock.scale,
+          opacity: 1,
+        },
+        0
+      );
+      // Monogram settles out of a blur.
+      master.fromTo(
+        "#brand-mark-img",
+        { opacity: 0, scale: 1.08, filter: "blur(16px)" },
+        {
+          opacity: 1,
+          scale: 1,
+          filter: "blur(0px)",
+          duration: 1.05,
+          ease: "power3.out",
+        },
+        0
+      );
+      // Warm bloom breathes in behind it.
+      master.fromTo(
+        "#brand-glow",
+        { opacity: 0, scale: 0.65 },
+        { opacity: 1, scale: 1, duration: 1.2, ease: "power2.out" },
+        0.05
+      );
+      // Wordmark rises out of its own mask — same language as the name's chars.
+      master.fromTo(
+        "#brand-word-img",
+        { yPercent: 24, opacity: 0 },
+        { yPercent: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
+        0.45
+      );
+      // Sheen crosses the metal.
+      master.fromTo(
+        "#brand-sheen",
+        { opacity: 0, backgroundPosition: "210% 0" },
+        {
+          opacity: 1,
+          backgroundPosition: "-90% 0",
+          duration: 1.2,
+          ease: "power2.inOut",
+        },
+        0.55
+      );
+      master.to("#brand-sheen", { opacity: 0, duration: 0.35 }, 1.6);
+
+      // 3) Chars rise from the mask — the name answers the mark.
+      master.to(
+        chars,
+        {
+          yPercent: 0,
+          duration: 0.4,
+          ease: "power3.out",
+          stagger: { each: 0.025, from: "center" },
+        },
+        0.8
+      );
       master.call(() => layoutNames());
       master.to(dot, { opacity: 1, duration: 0.25, ease: "power2.out" });
+      // Hold the lockup — the brand moment.
+      master.to({}, { duration: 0.45 });
 
       // 4) HeroCanvas starts autonomously on mount — kept as a timeline beat.
       master.add(() => {
@@ -258,6 +320,7 @@ export function IntroOverlay() {
 
       // 5) Scale-to-bottom.
       master.call(() => computeScaleStep());
+      master.addLabel("nameDrop");
       master.to(pContent, {
         scale: () => scaleInfo.scale,
         y: () => `+=${scaleInfo.deltaY}`,
@@ -292,55 +355,43 @@ export function IntroOverlay() {
         "-=0.4"
       );
 
-      // 6b) Signature logo beat: materialise centre-screen as the panels clear,
-      //     a gold sheen crosses the metal, then it docks to the top-right.
-      master.addLabel("logoIn", "-=0.4");
-      master.call(() => computeLogoFrom(), undefined, "logoIn");
-      master.fromTo(
+      // 6b) Divergence: the mark eases back (anticipation) as the name drops
+      //     away, then arcs to its corner while the panels wipe the hero in.
+      master.to(
         "#hero-brand",
         {
-          x: () => logoFrom.x,
-          y: () => logoFrom.y,
-          scale: () => logoFrom.scale * 0.94,
-          opacity: 0,
-          clipPath: "inset(0 0 100% 0)",
-          filter: "blur(12px)",
-        },
-        {
-          opacity: 1,
-          scale: () => logoFrom.scale,
-          clipPath: "inset(0 0 0% 0)",
-          filter: "blur(0px)",
-          duration: 0.9,
-          ease: "power3.out",
-          immediateRender: false,
-        },
-        "logoIn"
-      );
-      master.fromTo(
-        "#brand-sheen",
-        { opacity: 0, backgroundPosition: "210% 0" },
-        {
-          opacity: 1,
-          backgroundPosition: "-90% 0",
-          duration: 1.0,
+          scale: () => logoLock.scale * 0.9,
+          y: () => logoLock.y - 18,
+          duration: 0.55,
           ease: "power2.inOut",
-          immediateRender: false,
         },
-        "logoIn+=0.35"
+        "nameDrop"
       );
       master.to(
-        "#brand-sheen",
-        { opacity: 0, duration: 0.3, ease: "power1.out" },
-        "logoIn+=1.15"
+        "#brand-glow",
+        { opacity: 0, duration: 0.7, ease: "power1.out" },
+        "nameDrop+=0.15"
       );
-      // Beat of hold at full size, then the dock.
+
+      // Dock. x and y run on different curves + durations, so the mark travels
+      // an arc into the corner instead of a flat diagonal.
+      master.addLabel("dock", "-=0.55");
       master.to(
         "#hero-brand",
-        { x: 0, y: 0, scale: 1, duration: 1.15, ease: "expo.inOut" },
-        "logoIn+=1.35"
+        { y: 0, duration: 1.0, ease: "power3.inOut" },
+        "dock"
       );
-      master.addLabel("logoDocked", "logoIn+=2.5");
+      master.to(
+        "#hero-brand",
+        { x: 0, duration: 1.3, ease: "power2.inOut" },
+        "dock+=0.1"
+      );
+      master.to(
+        "#hero-brand",
+        { scale: 1, duration: 1.3, ease: "expo.inOut" },
+        "dock"
+      );
+      master.addLabel("logoDocked", "dock+=1.4");
 
       // 7) Hero content reveals — overlap the dock's tail so it reads as one move.
       master.to(

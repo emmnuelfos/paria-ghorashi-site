@@ -249,12 +249,77 @@ body {
   transform: scale(1.05);
 }
 
+/* Fixed + above the intro layers (.name-layer is 10005) so the mark can join
+   the intro lockup and dock through the panel sweep. Hero fades it on scroll. */
 .hero-brand {
-  position: absolute;
+  position: fixed;
   top: 3rem;
   right: 3rem;
-  z-index: 5;
-  will-change: transform, opacity, clip-path, filter;
+  z-index: 10006;
+  display: block;
+  /* The intro timeline owns the reveal; hidden here so it can't flash at the
+     corner before hydration. */
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* The artwork is drawn twice and split by clip-path so the monogram and the
+   wordmark reveal as separate beats (bands measured from the asset). */
+.brand-part {
+  display: block;
+}
+
+/* Each part gets TWO clips: the container is a fixed window, and the image is
+   clipped to its own band. Without the image clip, sliding it inside the
+   window would drag the other half of the artwork into view. */
+.brand-mark {
+  position: relative; /* in flow — sizes the link */
+  clip-path: inset(0 0 20% 0);
+}
+
+.brand-word {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(80% 0 0 0);
+}
+
+.brand-mark .brand-layer {
+  clip-path: inset(0 0 20% 0);
+}
+
+.brand-word .brand-layer {
+  clip-path: inset(80% 0 0 0);
+}
+
+.brand-layer {
+  display: block;
+  width: auto;
+  height: 3.2rem;
+  will-change: transform, opacity, filter;
+}
+
+.hero-brand:hover .brand-layer {
+  opacity: 0.85;
+  transition: opacity 0.45s ease;
+}
+
+/* Warm bloom behind the mark during the lockup; dies as it docks. */
+.brand-glow {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  width: 200%;
+  aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(199, 160, 104, 0.5) 0%,
+    rgba(167, 139, 101, 0.16) 42%,
+    rgba(167, 139, 101, 0) 70%
+  );
+  filter: blur(20px);
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* Gold light sweep confined to the logo silhouette (mask-image set inline so
@@ -307,7 +372,7 @@ body {
     top: 2rem;
     right: 1.5rem;
   }
-  .hero-brand .brand-logo {
+  .hero-brand .brand-layer {
     height: 2.5rem;
   }
   .footer-monogram .brand-logo {
