@@ -93,6 +93,17 @@ export function Hero() {
               width={791}
               height={537}
             />
+            {/* Light sweep, masked to the logo's own silhouette. Mask URL is
+                inline so it honours the deploy base path. */}
+            <span
+              className="brand-sheen"
+              id="brand-sheen"
+              aria-hidden="true"
+              style={{
+                WebkitMaskImage: `url(${asset("/assets/paria/paria-logo.svg")})`,
+                maskImage: `url(${asset("/assets/paria/paria-logo.svg")})`,
+              }}
+            />
           </a>
           <div
             className="hero-tagline"

@@ -122,6 +122,26 @@ export function IntroOverlay() {
         vh - bottomPad - (contentH * scaleInfo.scale) / 2 - centerY;
     };
 
+    /**
+     * Logo entrance geometry: how far to offset/scale #hero-brand so it starts
+     * centred and hero-sized, then docks back to its natural top-right spot by
+     * animating x/y/scale to 0/0/1 (no layout thrash).
+     */
+    const logoFrom = { x: 0, y: 0, scale: 4 };
+    const computeLogoFrom = () => {
+      const el = document.getElementById("hero-brand");
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      if (!r.width) return;
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const mobile = isMobileViewport();
+      const targetW = Math.min(vw * (mobile ? 0.62 : 0.3), mobile ? 280 : 420);
+      logoFrom.scale = targetW / r.width;
+      logoFrom.x = vw / 2 - (r.left + r.width / 2);
+      logoFrom.y = vh / 2 - (r.top + r.height / 2);
+    };
+
     /** Re-anchor the settled (scale:1, vw-sized) name at the bottom of the viewport. */
     const anchorToBottom = () => {
       const vw = window.innerWidth;
@@ -182,6 +202,9 @@ export function IntroOverlay() {
       gsap.set(chars, { yPercent: 110 });
       gsap.set([logo, luke, baffait], { opacity: 1 });
       gsap.set(dot, { opacity: 0 });
+      // The hero layer is switched on behind the panels, so the brand logo must
+      // stay hidden until its own entrance beat fires.
+      gsap.set("#hero-brand", { opacity: 0 });
 
       // 2) Initial composition layout.
       layoutNames();
@@ -212,6 +235,10 @@ export function IntroOverlay() {
       });
 
       const master = gsap.timeline({ delay: 0.2 });
+      // Harmless QA hook (mirrors window.__lenis) so headless checks can slow
+      // or seek the intro instead of racing it in real time.
+      (window as unknown as { __introTL?: gsap.core.Timeline }).__introTL =
+        master;
 
       // 3) Chars rise from the mask.
       master.to(chars, {
@@ -265,7 +292,57 @@ export function IntroOverlay() {
         "-=0.4"
       );
 
-      // 7) Hero content reveals.
+      // 6b) Signature logo beat: materialise centre-screen as the panels clear,
+      //     a gold sheen crosses the metal, then it docks to the top-right.
+      master.addLabel("logoIn", "-=0.4");
+      master.call(() => computeLogoFrom(), undefined, "logoIn");
+      master.fromTo(
+        "#hero-brand",
+        {
+          x: () => logoFrom.x,
+          y: () => logoFrom.y,
+          scale: () => logoFrom.scale * 0.94,
+          opacity: 0,
+          clipPath: "inset(0 0 100% 0)",
+          filter: "blur(12px)",
+        },
+        {
+          opacity: 1,
+          scale: () => logoFrom.scale,
+          clipPath: "inset(0 0 0% 0)",
+          filter: "blur(0px)",
+          duration: 0.9,
+          ease: "power3.out",
+          immediateRender: false,
+        },
+        "logoIn"
+      );
+      master.fromTo(
+        "#brand-sheen",
+        { opacity: 0, backgroundPosition: "210% 0" },
+        {
+          opacity: 1,
+          backgroundPosition: "-90% 0",
+          duration: 1.0,
+          ease: "power2.inOut",
+          immediateRender: false,
+        },
+        "logoIn+=0.35"
+      );
+      master.to(
+        "#brand-sheen",
+        { opacity: 0, duration: 0.3, ease: "power1.out" },
+        "logoIn+=1.15"
+      );
+      // Beat of hold at full size, then the dock.
+      master.to(
+        "#hero-brand",
+        { x: 0, y: 0, scale: 1, duration: 1.15, ease: "expo.inOut" },
+        "logoIn+=1.35"
+      );
+      master.addLabel("logoDocked", "logoIn+=2.5");
+
+      // 7) Hero content reveals — overlap the dock's tail so it reads as one move.
       master.to(
         "#hero-tagline",
         {
@@ -274,7 +351,7 @@ export function IntroOverlay() {
           duration: 1.1,
           ease: "power3.inOut",
         },
-        "-=0.2"
+        "logoDocked-=0.65"
       );
       master.to(
         "#hero-bar",

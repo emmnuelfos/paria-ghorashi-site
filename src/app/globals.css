@@ -254,6 +254,39 @@ body {
   top: 3rem;
   right: 3rem;
   z-index: 5;
+  will-change: transform, opacity, clip-path, filter;
+}
+
+/* Gold light sweep confined to the logo silhouette (mask-image set inline so
+   it resolves against the deploy base path). Driven by the intro timeline. */
+.brand-sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  background-image: linear-gradient(
+    100deg,
+    rgba(255, 245, 224, 0) 38%,
+    rgba(255, 248, 232, 0.9) 50%,
+    rgba(255, 245, 224, 0) 62%
+  );
+  background-size: 260% 100%;
+  background-repeat: no-repeat;
+  background-position: 210% 0;
+  mix-blend-mode: screen;
+  will-change: background-position, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-sheen {
+    display: none;
+  }
 }
 
 .footer-monogram {
