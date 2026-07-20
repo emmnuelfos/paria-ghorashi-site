@@ -243,11 +243,14 @@ export function RevealSequence() {
           { opacity: 1, duration: 0.01, ease: "none" },
           0.3,
         );
+        // On phones the frame only reached full size at the very end of the
+        // scroll-wrap, so it stayed small through most of the scroll. Start and
+        // finish the scale-up earlier there.
         entryTl.fromTo(
           seqEls,
           { scale: 0 },
-          { scale: 1, duration: 0.7, ease: "none" },
-          0.3,
+          { scale: 1, duration: mobile ? 0.42 : 0.7, ease: "none" },
+          mobile ? 0.14 : 0.3,
         );
         entryTl.to(
           charEls,

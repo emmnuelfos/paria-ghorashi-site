@@ -1939,6 +1939,11 @@ a.chr-hover {
     stroke-width: 26;
   }
 
+  /* 400vh of hero scroll is a lot of thumb on a phone. */
+  .scroll-wrap {
+    height: 280vh;
+  }
+
   .proj-item {
     white-space: normal;
     font-size: clamp(1.6rem, 7vw, 2.5rem);
@@ -2532,4 +2537,115 @@ a.chr-hover {
 .footer-name-baffait,
 .footer-name-dot {
   font-size: 12.5vw;
+}
+
+/* ============================================================
+   Mobile: Contact + Footer as plain, static sections.
+   The desktop treatment is a pinned, scrubbed sequence (ivory blob flood,
+   flying frames, clip reveals) plus a fixed footer with a hand-off. On a phone
+   that fights the scroll, so these run in normal flow with no effects — the
+   matching GSAP timelines are skipped in JS (see Contact/FooterSection).
+   ============================================================ */
+@media (max-width: 768px) {
+  .contact {
+    min-height: 0;
+    height: auto;
+    overflow: visible;
+    background: #EDECEB;
+    padding: 12vh 0 10vh;
+  }
+
+  .contact-pin {
+    position: static;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.4rem;
+    padding: 0 6%;
+  }
+
+  /* Effect-only layers have nothing to do in a static section. */
+  .contact-bg,
+  .contact-blob-wrap,
+  .contact-frame,
+  .contact-dispo,
+  .footer-transition,
+  .footer-ascii-wrap {
+    display: none !important;
+  }
+
+  .contact-title {
+    position: static;
+    transform: none !important;
+    width: auto;
+    text-align: center;
+    white-space: normal;
+    font-size: clamp(3.2rem, 15vw, 5rem);
+  }
+
+  .contact-form {
+    position: static;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
+    padding: 0;
+    background: transparent;
+    clip-path: none !important;
+  }
+
+  .contact-bottom {
+    position: static;
+    transform: none !important;
+    bottom: auto;
+    left: auto;
+    width: 100%;
+    align-items: center;
+  }
+
+  /* These ship clipped and are normally opened by the timeline. */
+  .contact-socials,
+  .contact-mail {
+    clip-path: none !important;
+  }
+
+  .footer {
+    position: relative;
+    height: auto;
+    min-height: 0;
+    visibility: visible !important;
+    padding: 12vh 0 6vh;
+  }
+
+  .footer-content {
+    height: auto;
+    justify-content: flex-start;
+    gap: 6vh;
+  }
+
+  .footer-top {
+    position: static;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.8rem;
+    padding: 0 6%;
+    text-align: center;
+  }
+
+  .footer-monogram {
+    position: static;
+    transform: none;
+    align-self: center;
+  }
+
+  .footer-name {
+    position: static;
+    bottom: auto;
+    justify-content: center;
+    /* Centred rather than space-between, so the two words need real breathing
+       room or they collide into "PariaGhorashi." */
+    gap: 0.32em;
+    padding: 0 4vw;
+  }
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap, ScrollTrigger, isMobileViewport } from "@/lib/gsap";
 import { CharRoll } from "@/components/CharRoll";
 import { SOCIALS } from "@/data/site";
 import { asset } from "@/lib/asset";
@@ -132,6 +132,14 @@ export function FooterSection() {
     const leftPre = footer.querySelector<HTMLPreElement>("#ascii-left");
     const rightPre = footer.querySelector<HTMLPreElement>("#ascii-right");
     if (!leftWrap || !rightWrap || !leftPre || !rightPre) return;
+
+    // On phones the footer is a plain static block at the end of the page (see
+    // globals.css), so skip the whole scroll choreography: the ASCII raster,
+    // the mouse parallax, the char-rise on the name and the contact hand-off.
+    if (isMobileViewport()) {
+      footer.style.visibility = "visible";
+      return;
+    }
 
     const cleanups: Array<() => void> = [];
     let disposed = false;

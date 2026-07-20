@@ -70,6 +70,11 @@ export function Contact() {
       return;
     }
 
+    // On phones the contact section renders as a plain static block (see the
+    // mobile rules in globals.css), so none of the pinned/scrubbed choreography
+    // runs — no blob flood, flying frames or clip reveals.
+    if (isMobileViewport()) return;
+
     blobWrap.style.visibility = "hidden";
 
     const show = () => {
