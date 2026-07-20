@@ -11,36 +11,55 @@ const clamp01 = (v: number) => Math.min(Math.max(v, 0), 1);
 
 /**
  * Scroll-scrubbed pinned 3D cylinder orbit of 8 sliced project covers with a
- * blur-revealed phrase riding through the center. Desktop only (CSS hides the
- * section at <=768px; JS setup is also skipped on mobile viewports).
+ * blur-revealed phrase riding through the center.
+ *
+ * Runs on phones too, with the geometry retuned: a shallower orbit (perspective
+ * would otherwise magnify the near images past the viewport) and fewer slices
+ * per image, since every slice is a 3D-transformed node updated each scroll tick.
  */
 export function CircleGallery() {
   const pinRef = useRef<HTMLDivElement | null>(null);
   const phraseRef = useRef<HTMLParagraphElement | null>(null);
 
   useEffect(() => {
-    if (isMobileViewport()) return;
     const pin = pinRef.current;
     const phrase = phraseRef.current;
     if (!pin || !phrase) return;
 
     const vw = window.innerWidth;
+    const mobile = isMobileViewport();
+    const sliceCount = mobile ? 6 : SLICES;
+
+    // Orbit constants (declared before the slice geometry, which bends each
+    // image around the same cylinder radius).
+    // A phone's radius is a fraction of a desktop's, so the orbit collapses
+    // onto the phrase unless it swings proportionally wider and taller.
+    const rx = vw * (mobile ? 0.55 : 0.34); // horizontal radius
+    const rz = mobile ? 300 : 500; // depth radius
+    const tiltY = mobile ? 165 : 180;
+    const offX = vw * 0.85;
 
     // Slice geometry (shared by all 8 images).
-    const imgW = Math.min(Math.max(120, vw * 0.14), 210);
+    const imgW = mobile
+      ? Math.min(vw * 0.34, 132)
+      : Math.min(Math.max(120, vw * 0.14), 210);
     const imgH = (imgW * 2) / 3;
-    const orbitR = (vw * 0.34 + 500) / 2;
-    const sliceW = imgW / SLICES;
+    const orbitR = (rx + rz) / 2;
+    const sliceW = imgW / sliceCount;
     const displayW = sliceW + 1.5;
     const bendRad = imgW / orbitR;
     const totalBendDeg = (bendRad * 180) / Math.PI;
-    const stepDeg = totalBendDeg / SLICES;
+    const stepDeg = totalBendDeg / sliceCount;
+    const midSlice = (sliceCount - 1) / 2;
 
     const wrappers: HTMLDivElement[] = GALLERY_COVERS.map((cover) => {
       const wrapper = document.createElement("div");
       wrapper.className = "cg-img";
       wrapper.style.opacity = "0";
-      for (let s = 0; s < SLICES; s++) {
+      if (mobile) {
+        wrapper.style.width = `${imgW.toFixed(0)}px`;
+      }
+      for (let s = 0; s < sliceCount; s++) {
         const slice = document.createElement("div");
         slice.className = "cg-slice";
         slice.style.width = `${displayW.toFixed(1)}px`;
@@ -50,7 +69,7 @@ export function CircleGallery() {
         slice.style.backgroundSize = `${imgW.toFixed(1)}px ${imgH.toFixed(1)}px`;
         slice.style.backgroundPosition = `${(-s * sliceW).toFixed(1)}px 0`;
         slice.style.transformOrigin = `50% 50% ${(-orbitR).toFixed(1)}px`;
-        slice.style.transform = `rotateY(${((s - 4.5) * stepDeg).toFixed(2)}deg)`;
+        slice.style.transform = `rotateY(${((s - midSlice) * stepDeg).toFixed(2)}deg)`;
         wrapper.appendChild(slice);
       }
       pin.insertBefore(wrapper, phrase);
@@ -61,14 +80,9 @@ export function CircleGallery() {
     const words = Array.from(phrase.querySelectorAll<HTMLElement>(".word"));
     const wordCount = words.length;
 
-    // Orbit constants.
-    const rx = vw * 0.34;
-    const rz = 500;
-    const tiltY = 180;
     const stagger = 0.09;
     const totalRange = 1 + stagger * 7;
     const entryAngle = Math.PI / 2;
-    const offX = vw * 0.85;
 
     // Phrase constants.
     const phraseStart = 0.25;

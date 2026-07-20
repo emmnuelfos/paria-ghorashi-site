@@ -1966,12 +1966,23 @@ a.chr-hover {
 
 
   
+  /* The orbit runs on phones too (geometry retuned in CircleGallery.tsx);
+     shorter scroll range and a smaller perspective so it reads on a narrow,
+     tall viewport. */
   .circle-gallery {
-    display: none !important;
+    height: 420vh;
+  }
+
+  .circle-gallery-pin {
+    perspective: 800px;
   }
 
   .cg-phrase {
-    display: none !important;
+    font-size: clamp(1.35rem, 6.4vw, 2rem);
+    max-width: 86vw;
+    /* Images orbit close to the phrase on a narrow screen — keep it legible
+       as they pass behind it. */
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8), 0 0 6px rgba(0, 0, 0, 0.6);
   }
 
 
