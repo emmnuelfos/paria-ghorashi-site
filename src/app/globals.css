@@ -2652,8 +2652,45 @@ a.chr-hover {
     padding: 0 6%;
   }
 
+  /* A pre-existing mobile rule re-pins this absolutely (computed: absolute /
+     display:block), so it sat out of flow and the big name ran straight through
+     the nav links. Put it back in flow as a centred column. */
   .footer-top {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.4rem;
     padding: 0 6%;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* The template hand-pins each column absolutely for its fixed 100vh footer
+     (first-child at top:60vh/left:50%, the others at top:2rem), which left the
+     parent at height 0 and the columns scattered. Return them to flow. */
+  .footer-top-col,
+  .footer-top-col:first-child,
+  .footer-top-col:nth-child(2),
+  .footer-top-col:nth-child(3) {
+    position: static;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    transform: none;
+    align-items: center;
+  }
+
+  /* Read order: nav -> social -> contact (DOM order is contact first). */
+  .footer-top-col:nth-child(1) {
+    order: 3;
+  }
+  .footer-top-col:nth-child(2) {
+    order: 2;
+  }
+  .footer-top-col:nth-child(3) {
+    order: 1;
   }
 
   .footer-monogram {
