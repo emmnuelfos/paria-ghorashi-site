@@ -1,0 +1,5 @@
+:HL["/paria-ghorashi-site/_next/static/chunks/0e4mqqipgi.84.css","style"]
+:HL["/paria-ghorashi-site/_next/static/media/52b5d5098cb87ddd-s.p.13ehjyjdqyy~v.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/paria-ghorashi-site/_next/static/media/81cef6a21128489e-s.p.0rb1wy2~c~egv.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/paria-ghorashi-site/_next/static/media/9e400763522556e5-s.p.16zy668-enz0s.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"OXS-xqA6Yly4XvRZXyeTk"}

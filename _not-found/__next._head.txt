@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[38671,["/paria-ghorashi-site/_next/static/chunks/058dzy-8pd.sy.js"],"ViewportBoundary"]
+3:I[38671,["/paria-ghorashi-site/_next/static/chunks/058dzy-8pd.sy.js"],"MetadataBoundary"]
+4:"$Sreact.suspense"
+5:I[99033,["/paria-ghorashi-site/_next/static/chunks/058dzy-8pd.sy.js"],"IconMark"]
+0:{"rsc":["$","$1","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],["$","$L2",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L3",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Paria Ghorashi — Entrepreneur, Brand Partner, Public Figure"}],["$","meta","1",{"name":"description","content":"Direction C concept — the world of Paria Ghorashi as a cinematic scroll experience. Internal design review build."}],["$","meta","2",{"name":"robots","content":"noindex, nofollow"}],["$","link","3",{"rel":"icon","href":"/paria-ghorashi-site/favicon.ico?favicon.0x3dzn~oxb6tn.ico","sizes":"256x256","type":"image/x-icon"}],["$","$L5","4",{}]]}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"OXS-xqA6Yly4XvRZXyeTk"}
