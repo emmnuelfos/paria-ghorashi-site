@@ -595,6 +595,13 @@ a.chr-hover {
 .reveal-phrase {
   position: absolute;
   z-index: 2;
+  /* Constrained + centred. Without left/right it sits at its static position
+     and runs off the right edge on phones (the chars use non-breaking spaces,
+     so the line cannot wrap out of trouble). */
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 0 1.25rem;
   font-family: var(--font-bodoni), 'Bodoni Moda', serif;
   font-style: italic;
   font-size: clamp(1.1rem, 2.2vw, 2rem);
@@ -1922,6 +1929,12 @@ a.chr-hover {
     padding-right: 1.5rem;
   }
 
+
+  /* Mobile viewBox is ~1:1 with CSS px, so 72 would be ~18% of the screen.
+     26 keeps the ribbon prominent while the venture names stay legible. */
+  .fluid-line {
+    stroke-width: 26;
+  }
 
   .proj-item {
     white-space: normal;

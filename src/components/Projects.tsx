@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap, ScrollTrigger, isMobileViewport } from "@/lib/gsap";
 import { useLenis } from "@/components/LenisProvider";
 import { PROJECTS } from "@/data/site";
 import type Lenis from "lenis";
@@ -53,6 +53,19 @@ export function Projects() {
 
     const ctx = gsap.context(() => {
       // 1. Fluid line self-draw, scrubbed across the section.
+      // The default path is drawn for a wide canvas; with `slice` on a tall
+      // phone viewport the 1400-wide viewBox scales up to ~2x the screen and
+      // ~84% of the curve lands off-screen left. Swap in a path authored for a
+      // narrow column and let it fit the width exactly.
+      const svg = path.ownerSVGElement;
+      if (svg && isMobileViewport()) {
+        svg.setAttribute("viewBox", "0 0 390 1400");
+        svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+        path.setAttribute(
+          "d",
+          "M -30,-40 C 90,150 300,190 300,420 C 300,650 60,700 90,930 C 115,1130 300,1180 420,1420",
+        );
+      }
       const len = path.getTotalLength();
       gsap.set(path, { strokeDasharray: len, strokeDashoffset: len });
       gsap.to(path, {

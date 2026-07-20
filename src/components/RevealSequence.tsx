@@ -47,7 +47,13 @@ export function RevealSequence() {
     const reduced = prefersReducedMotion();
     const slowHw = mobile || (navigator.hardwareConcurrency ?? 8) <= 4;
     const useBlur = !mobile && !reduced;
-    const dpr = slowHw ? 1 : Math.min(window.devicePixelRatio || 1, 1.5);
+    // Phones are 2–3x displays; rendering the canvas at 1x made the reveal
+    // visibly soft (a 3x upscale of the backing store).
+    const dpr = mobile
+      ? Math.min(window.devicePixelRatio || 1, 2)
+      : slowHw
+        ? 1
+        : Math.min(window.devicePixelRatio || 1, 1.5);
 
     const frames: Array<HTMLImageElement | undefined> = new Array(
       FRAME_COUNT + 1,
@@ -93,7 +99,13 @@ export function RevealSequence() {
       const ch = canvas.height;
       const iw = img.naturalWidth;
       const ih = img.naturalHeight;
-      const scale = Math.max(cw / iw, ch / ih);
+      // The frames are 16:9. Cover-cropping them into a tall phone viewport
+      // uses only a narrow slice of the source and upscales it ~3x, which is
+      // what made the reveal look blurry. On a portrait phone, fit the width
+      // instead so the whole frame shows at native resolution (cinematic
+      // letterbox); desktop keeps the full-bleed cover.
+      const scale =
+        mobile && ch > cw ? cw / iw : Math.max(cw / iw, ch / ih);
       const dw = iw * scale;
       const dh = ih * scale;
       ctx2d.clearRect(0, 0, cw, ch);
@@ -257,7 +269,16 @@ export function RevealSequence() {
             onUpdate: (self) => {
               drawFrameAtProgress(0.82 + self.progress * 0.18);
             },
-            onLeave: () => drawFrameAtProgress(1),
+            // Once past the reveal, retire the layer entirely — it is a
+            // full-viewport fixed canvas + overlay that would otherwise keep
+            // compositing behind every later section (costly on phones).
+            onLeave: () => {
+              drawFrameAtProgress(1);
+              wrap.style.visibility = "hidden";
+            },
+            onEnterBack: () => {
+              wrap.style.visibility = "";
+            },
             onLeaveBack: () => drawFrameAtProgress(0.82),
           },
         });
