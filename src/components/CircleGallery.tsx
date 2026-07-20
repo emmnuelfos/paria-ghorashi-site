@@ -38,6 +38,12 @@ export function CircleGallery() {
     const rz = mobile ? 300 : 500; // depth radius
     const tiltY = mobile ? 165 : 180;
     const offX = vw * 0.85;
+    // Images sit at +tiltY (downward) through the entry and exit phases, which
+    // pulls the whole composition below centre. Lift it back on mobile, where
+    // the empty space above is obvious on a tall viewport.
+    // 0.35 was tuned by measuring the centroid of the visible covers against the
+    // viewport centre across the orbit, weighted toward the dense mid-section.
+    const yBias = mobile ? -tiltY * 0.35 : 0;
 
     // Slice geometry (shared by all 8 images).
     const imgW = mobile
@@ -135,7 +141,7 @@ export function CircleGallery() {
             rotY = 2 * Math.PI;
           }
 
-          el.style.transform = `translate3d(${x}px,${y}px,${z}px) rotateY(${(rotY * 180) / Math.PI}deg)`;
+          el.style.transform = `translate3d(${x}px,${(y + yBias).toFixed(1)}px,${z}px) rotateY(${(rotY * 180) / Math.PI}deg)`;
           el.style.opacity = `${alpha}`;
           el.style.zIndex = `${Math.round(z + 600)}`;
         }
