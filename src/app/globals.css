@@ -2053,6 +2053,15 @@ a.chr-hover {
     left: 6%;
     right: 6%;
     width: auto;
+    /* The flying frames are hidden on mobile, so the ivory backing has nothing
+       to mask — it just read as a floating white box on the black before the
+       blob finished flooding. Sit directly on the blob instead. */
+    background: transparent;
+  }
+
+  /* Italic descenders on "Ghorashi." dropped past the viewport bottom. */
+  .footer-name {
+    bottom: 2.5vh;
   }
 
   .cf-head {

@@ -103,6 +103,10 @@ export function About() {
             },
           }
         );
+        // The CSS ships the photo as opacity:0 + blur(20px) so it never flashes
+        // before JS. Desktop animates the blur away; mobile skips blur entirely,
+        // so it must be cleared explicitly or the photo stays blurred forever.
+        if (mobile) gsap.set(img, { filter: "none" });
         // Blur/opacity clears early — crisp shortly after the photo enters view.
         gsap.fromTo(
           img,

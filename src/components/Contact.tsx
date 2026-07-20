@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, type FormEvent } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap, ScrollTrigger, isMobileViewport } from "@/lib/gsap";
 import { CharRoll } from "@/components/CharRoll";
 import { ArrowRightIcon } from "@/components/icons";
 import { SOCIALS, COPY } from "@/data/site";
@@ -168,11 +168,13 @@ export function Contact() {
       );
 
       // Enquiry form wipes in under the title, alongside the socials reveal.
+      // On mobile it waits until the ivory blob has finished flooding (it fills
+      // over 0 -> 0.6), otherwise the form appears over black.
       tl.fromTo(
         form,
         { clipPath: "inset(0 0 100% 0)" },
         { clipPath: "inset(0 0 0% 0)", duration: 0.22, ease: "none" },
-        0.42,
+        isMobileViewport() ? 0.62 : 0.42,
       );
 
       // Frame pair 1 + dispo 1
