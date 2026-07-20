@@ -134,11 +134,22 @@ export function FooterSection() {
     if (!leftWrap || !rightWrap || !leftPre || !rightPre) return;
 
     // On phones the footer is a plain static block at the end of the page (see
-    // globals.css), so skip the whole scroll choreography: the ASCII raster,
-    // the mouse parallax, the char-rise on the name and the contact hand-off.
+    // globals.css). Still render the ASCII dot-portrait — it's the footer's
+    // texture — but only as static text: no slide-in, mouse parallax, hover
+    // scramble, char-rise on the name or contact hand-off.
     if (isMobileViewport()) {
       footer.style.visibility = "visible";
-      return;
+      let cancelled = false;
+      const img = new Image();
+      img.onload = () => {
+        if (cancelled) return;
+        const ascii = imageToAscii(img, ASCII_COLS);
+        if (ascii) leftPre.textContent = ascii.text;
+      };
+      img.src = asset("/assets/paria/ascii-left.png");
+      return () => {
+        cancelled = true;
+      };
     }
 
     const cleanups: Array<() => void> = [];

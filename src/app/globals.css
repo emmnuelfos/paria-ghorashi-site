@@ -2581,9 +2581,22 @@ a.chr-hover {
   .contact-blob-wrap,
   .contact-frame,
   .contact-dispo,
-  .footer-transition,
-  .footer-ascii-wrap {
+  .footer-transition {
     display: none !important;
+  }
+
+  /* Keep the ASCII dot-portrait as a static background layer behind the footer
+     content (the right pane is already hidden <=1200px). Sized so the 80-column
+     art spans a narrow screen; no slide-in, parallax or hover scramble. */
+  .footer-ascii {
+    width: 100%;
+  }
+
+  .footer-ascii pre {
+    font-size: 0.3rem;
+    letter-spacing: 0.42em;
+    opacity: 0.55;
+    transform: none !important;
   }
 
   .contact-title {
@@ -2624,24 +2637,23 @@ a.chr-hover {
   .footer {
     position: relative;
     height: auto;
-    min-height: 0;
+    /* Tall enough for the dot-portrait behind the content — the footer is
+       content-sized otherwise and would crop the art. */
+    min-height: 88vh;
     visibility: visible !important;
-    padding: 12vh 0 6vh;
+    padding: 10vh 0 6vh;
   }
 
   .footer-content {
     height: auto;
     justify-content: flex-start;
-    gap: 6vh;
+    align-items: center;
+    gap: 3.6vh;
+    padding: 0 6%;
   }
 
   .footer-top {
-    position: static;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.8rem;
     padding: 0 6%;
-    text-align: center;
   }
 
   .footer-monogram {
