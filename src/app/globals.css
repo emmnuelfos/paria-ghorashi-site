@@ -1681,6 +1681,9 @@ a.chr-hover {
   position: fixed;
   inset: 0;
   height: 100vh;
+  /* iOS Safari's 100vh excludes the toolbar, so the giant name at bottom:0 was
+     clipped underneath it. dvh tracks the visible viewport. */
+  height: 100dvh;
   overflow: hidden;
   z-index: 20008;
   visibility: hidden;
@@ -2048,20 +2051,21 @@ a.chr-hover {
     display: none !important;
   }
 
+  /* Full-bleed ivory band rather than an inset panel: edge-to-edge means no
+     floating-box seams, and the black form text stays readable even before the
+     blob has finished flooding (transparent left it invisible on black). */
   .contact-form {
-    top: 30%;
-    left: 6%;
-    right: 6%;
+    top: 24%;
+    left: 0;
+    right: 0;
     width: auto;
-    /* The flying frames are hidden on mobile, so the ivory backing has nothing
-       to mask — it just read as a floating white box on the black before the
-       blob finished flooding. Sit directly on the blob instead. */
-    background: transparent;
+    padding: 1.6rem 6% 1.8rem;
+    background: #EDECEB;
   }
 
   /* Italic descenders on "Ghorashi." dropped past the viewport bottom. */
   .footer-name {
-    bottom: 2.5vh;
+    bottom: calc(2.5vh + env(safe-area-inset-bottom, 0px));
   }
 
   .cf-head {

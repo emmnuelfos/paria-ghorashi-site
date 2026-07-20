@@ -168,13 +168,13 @@ export function Contact() {
       );
 
       // Enquiry form wipes in under the title, alongside the socials reveal.
-      // On mobile it waits until the ivory blob has finished flooding (it fills
-      // over 0 -> 0.6), otherwise the form appears over black.
+      // Mobile reveals earlier: the pin starts handing off to the footer around
+      // ~0.7, so a late reveal never lands in the on-screen window.
       tl.fromTo(
         form,
         { clipPath: "inset(0 0 100% 0)" },
-        { clipPath: "inset(0 0 0% 0)", duration: 0.22, ease: "none" },
-        isMobileViewport() ? 0.62 : 0.42,
+        { clipPath: "inset(0 0 0% 0)", duration: 0.2, ease: "none" },
+        isMobileViewport() ? 0.34 : 0.42,
       );
 
       // Frame pair 1 + dispo 1

@@ -49,8 +49,11 @@ export function RevealSequence() {
     const useBlur = !mobile && !reduced;
     // Phones are 2–3x displays; rendering the canvas at 1x made the reveal
     // visibly soft (a 3x upscale of the backing store).
+    // Phones are 2–3x displays. The reveal fills the portrait viewport, so the
+    // canvas must match the device ratio or it adds its own softening on top of
+    // the source crop (it previously rendered at 1x = a 3x upscale).
     const dpr = mobile
-      ? Math.min(window.devicePixelRatio || 1, 2)
+      ? Math.min(window.devicePixelRatio || 1, 3)
       : slowHw
         ? 1
         : Math.min(window.devicePixelRatio || 1, 1.5);
@@ -99,13 +102,12 @@ export function RevealSequence() {
       const ch = canvas.height;
       const iw = img.naturalWidth;
       const ih = img.naturalHeight;
-      // The frames are 16:9. Cover-cropping them into a tall phone viewport
-      // uses only a narrow slice of the source and upscales it ~3x, which is
-      // what made the reveal look blurry. On a portrait phone, fit the width
-      // instead so the whole frame shows at native resolution (cinematic
-      // letterbox); desktop keeps the full-bleed cover.
-      const scale =
-        mobile && ch > cw ? cw / iw : Math.max(cw / iw, ch / ih);
+      // Cover-fit on every viewport: the reveal is meant to fill the frame,
+      // portrait included. (A letterbox variant was tried to chase a blur that
+      // actually came from the About photo's CSS filter — it cost the portrait
+      // framing for nothing.) Source crop softness is bounded by the 1280x720
+      // frames; the dpr above keeps the canvas from adding more on top.
+      const scale = Math.max(cw / iw, ch / ih);
       const dw = iw * scale;
       const dh = ih * scale;
       ctx2d.clearRect(0, 0, cw, ch);
