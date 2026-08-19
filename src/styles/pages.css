@@ -1,0 +1,822 @@
+/* ============================================================
+   Inner-page editorial system — Paria Ghorashi
+   Built to the client's Refinement & UX/UI Guidelines:
+   refine don't redesign, keep the palette (black / white / warm gold /
+   soft cream) and font, increase whitespace, larger imagery, larger
+   headings, comfortable measure, alternating layouts, subtle motion.
+
+   MOBILE FIRST. Base rules target the phone (the stated priority);
+   min-width queries progressively enhance upward.
+   ============================================================ */
+
+:root {
+  --pg-black: #000000;
+  --pg-ink: #0b0a09;
+  --pg-ivory: #edeceb;
+  --pg-cream: #f4f0e9;
+  --pg-gold: #a78b65;
+  --pg-gold-soft: #c1a375;
+
+  /* Vertical rhythm. Luxury spacing: generous, and consistent. */
+  --pg-section-y: 14vh;
+  --pg-gutter: 6vw;
+  --pg-measure: 62ch;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --pg-section-y: 18vh;
+    --pg-gutter: 8vw;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --pg-section-y: 20vh;
+    --pg-gutter: 7vw;
+  }
+}
+
+/* ---------------------------------------------------------- page shell */
+
+.pg-main {
+  position: relative;
+  background: var(--pg-black);
+  color: var(--pg-ivory);
+  overflow-x: clip;
+}
+
+.pg-section {
+  position: relative;
+  padding: var(--pg-section-y) var(--pg-gutter);
+}
+
+.pg-section--tight {
+  padding-top: calc(var(--pg-section-y) * 0.55);
+  padding-bottom: calc(var(--pg-section-y) * 0.55);
+}
+
+.pg-section--cream {
+  background: var(--pg-cream);
+  color: var(--pg-ink);
+}
+
+.pg-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.pg-inner--narrow {
+  max-width: 880px;
+}
+
+/* ---------------------------------------------------------- typography */
+
+.pg-eyebrow {
+  font-family: var(--font-jost), "Jost", sans-serif;
+  font-weight: 400;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--pg-gold);
+  margin: 0 0 1.6rem;
+}
+
+.pg-section--cream .pg-eyebrow {
+  color: #8a7048;
+}
+
+/* Display headings — Bodoni, larger than the previous draft per brief. */
+.pg-h1 {
+  font-family: var(--font-bodoni), "Bodoni Moda", serif;
+  font-weight: 500;
+  font-size: clamp(2.5rem, 9.5vw, 6.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+
+.pg-h2 {
+  font-family: var(--font-bodoni), "Bodoni Moda", serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 6.6vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 0 0 2rem;
+}
+
+.pg-h3 {
+  font-family: var(--font-bodoni), "Bodoni Moda", serif;
+  font-weight: 500;
+  font-size: clamp(1.4rem, 4.4vw, 1.9rem);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin: 0 0 0.7rem;
+}
+
+.pg-body {
+  font-family: var(--font-jost), "Jost", sans-serif;
+  font-weight: 300;
+  font-size: clamp(1rem, 4.1vw, 1.14rem);
+  line-height: 1.72;
+  color: rgba(237, 236, 235, 0.74);
+  max-width: var(--pg-measure);
+  margin: 0 0 1.4rem;
+}
+
+.pg-section--cream .pg-body {
+  color: rgba(11, 10, 9, 0.76);
+}
+
+.pg-body--lead {
+  font-size: clamp(1.08rem, 4.6vw, 1.35rem);
+  line-height: 1.66;
+  color: rgba(237, 236, 235, 0.86);
+}
+
+.pg-em {
+  color: var(--pg-gold);
+  font-style: italic;
+}
+
+.pg-rule {
+  height: 1px;
+  background: rgba(167, 139, 101, 0.34);
+  border: 0;
+  margin: 0;
+}
+
+/* ------------------------------------------------------------- buttons */
+/* Brief: keep the current style, increase padding slightly, refine hover,
+   keep sizing consistent. Full width on mobile per the mobile guidance. */
+
+.pg-btn-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-top: 2.6rem;
+}
+
+.pg-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  width: 100%;
+  min-height: 56px; /* comfortable touch target */
+  padding: 1.15rem 2.2rem;
+  font-family: var(--font-jost), "Jost", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  border: 1px solid var(--pg-gold);
+  border-radius: 0;
+  cursor: pointer;
+  transition:
+    background-color 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.5s ease;
+}
+
+.pg-btn--primary {
+  background: var(--pg-gold);
+  color: #0b0a09;
+}
+
+.pg-btn--primary:hover {
+  background: var(--pg-gold-soft);
+  border-color: var(--pg-gold-soft);
+}
+
+.pg-btn--ghost {
+  background: transparent;
+  color: var(--pg-ivory);
+}
+
+.pg-btn--ghost:hover {
+  background: var(--pg-ivory);
+  color: #0b0a09;
+  border-color: var(--pg-ivory);
+}
+
+.pg-section--cream .pg-btn--ghost {
+  color: #0b0a09;
+}
+
+.pg-section--cream .pg-btn--ghost:hover {
+  background: #0b0a09;
+  color: var(--pg-cream);
+  border-color: #0b0a09;
+}
+
+@media (min-width: 768px) {
+  .pg-btn-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .pg-btn {
+    width: auto;
+  }
+}
+
+/* ---------------------------------------------------------- page hero */
+
+.pg-hero {
+  position: relative;
+  padding: calc(var(--pg-section-y) * 1.1) var(--pg-gutter)
+    calc(var(--pg-section-y) * 0.8);
+  border-bottom: 1px solid rgba(237, 236, 235, 0.08);
+}
+
+.pg-hero-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.pg-hero .pg-h1 {
+  max-width: 16ch;
+}
+
+.pg-hero-body {
+  margin-top: 2.2rem;
+}
+
+/* Hero image: full screen width on mobile, as instructed. */
+.pg-hero-figure {
+  position: relative;
+  margin: 3.5rem calc(var(--pg-gutter) * -1) 0;
+  overflow: hidden;
+}
+
+.pg-hero-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 900px) {
+  .pg-hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(3rem, 6vw, 6rem);
+    align-items: center;
+  }
+  .pg-hero-figure {
+    margin: 0;
+  }
+}
+
+/* ------------------------------------------------- editorial alternating */
+/* Brief: image left/text right, then reversed, to create movement.
+   Mobile stacks — never side-by-side, per the mobile guidance. */
+
+.pg-split {
+  display: grid;
+  gap: 2.6rem;
+  align-items: center;
+}
+
+.pg-split + .pg-split {
+  margin-top: calc(var(--pg-section-y) * 0.9);
+}
+
+.pg-split-figure {
+  position: relative;
+  margin: 0 calc(var(--pg-gutter) * -1);
+  overflow: hidden;
+}
+
+.pg-split-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Slow zoom on hover — one of the brief's approved motions. */
+.pg-split-figure:hover img {
+  transform: scale(1.035);
+}
+
+@media (min-width: 900px) {
+  .pg-split {
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(3rem, 6vw, 6.5rem);
+  }
+  .pg-split-figure {
+    margin: 0;
+  }
+  /* Alternate: even rows put the image on the right. */
+  .pg-split--reverse .pg-split-figure {
+    order: 2;
+  }
+}
+
+/* ------------------------------------------------------------- listings */
+
+.pg-list {
+  border-top: 1px solid rgba(237, 236, 235, 0.12);
+}
+
+.pg-list-item {
+  padding: 2.4rem 0;
+  border-bottom: 1px solid rgba(237, 236, 235, 0.12);
+}
+
+.pg-list-item .pg-body {
+  margin-bottom: 0;
+}
+
+.pg-list-index {
+  display: block;
+  font-family: var(--font-jost), "Jost", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  color: var(--pg-gold);
+  margin-bottom: 0.9rem;
+}
+
+@media (min-width: 900px) {
+  .pg-list-item {
+    display: grid;
+    grid-template-columns: 5rem 1fr 1.15fr;
+    gap: 2.5rem;
+    align-items: baseline;
+    padding: 2.8rem 0;
+  }
+  .pg-list-index {
+    margin-bottom: 0;
+  }
+  .pg-list-item .pg-h3 {
+    margin-bottom: 0;
+  }
+}
+
+/* ---------------------------------------------------------------- cards */
+
+.pg-cards {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.pg-card {
+  display: flex;
+  flex-direction: column;
+  padding: 2.2rem 1.8rem;
+  border: 1px solid rgba(237, 236, 235, 0.14);
+  background: rgba(237, 236, 235, 0.015);
+  transition:
+    border-color 0.5s ease,
+    background-color 0.5s ease,
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pg-card:hover {
+  border-color: rgba(167, 139, 101, 0.6);
+  background: rgba(167, 139, 101, 0.05);
+  transform: translateY(-3px);
+}
+
+.pg-card .pg-body {
+  margin-bottom: 0;
+  font-size: 1rem;
+}
+
+.pg-card-terms {
+  margin-top: auto;
+  padding-top: 1.6rem;
+  font-family: var(--font-jost), "Jost", sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pg-gold);
+}
+
+.pg-card-link {
+  margin-top: 1.4rem;
+  font-family: var(--font-jost), "Jost", sans-serif;
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--pg-ivory);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: color 0.4s ease, gap 0.4s ease;
+}
+
+.pg-card-link:hover {
+  color: var(--pg-gold);
+  gap: 1rem;
+}
+
+@media (min-width: 700px) {
+  .pg-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.8rem;
+  }
+}
+
+@media (min-width: 1100px) {
+  .pg-cards--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .pg-card {
+    padding: 2.6rem 2.2rem;
+  }
+}
+
+/* ----------------------------------------------------------- pull quote */
+
+.pg-quote {
+  position: relative;
+  padding: calc(var(--pg-section-y) * 0.9) var(--pg-gutter);
+  text-align: center;
+}
+
+.pg-quote-text {
+  font-family: var(--font-bodoni), "Bodoni Moda", serif;
+  font-weight: 500;
+  font-style: italic;
+  font-size: clamp(1.5rem, 5.6vw, 2.9rem);
+  line-height: 1.28;
+  letter-spacing: -0.015em;
+  color: var(--pg-ivory);
+  max-width: 20ch;
+  margin: 0 auto;
+}
+
+.pg-quote-cite {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2.4rem;
+  font-family: var(--font-jost), "Jost", sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(237, 236, 235, 0.6);
+}
+
+.pg-quote-cite::before {
+  content: "";
+  width: clamp(2rem, 6vw, 3.5rem);
+  height: 1px;
+  background: var(--pg-gold);
+}
+
+/* ------------------------------------------------------------ stat band */
+
+.pg-stats {
+  display: grid;
+  gap: 2.8rem;
+}
+
+.pg-stat-value {
+  font-family: var(--font-bodoni), "Bodoni Moda", serif;
+  font-weight: 500;
+  font-size: clamp(3.2rem, 14vw, 5.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--pg-ivory);
+  font-variant-numeric: tabular-nums;
+  display: block;
+}
+
+.pg-stat-body {
+  margin-top: 1.1rem;
+  font-family: var(--font-jost), "Jost", sans-serif;
+  font-weight: 300;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: rgba(237, 236, 235, 0.56);
+  max-width: 26ch;
+}
+
+.pg-stat {
+  padding-top: 1.8rem;
+  border-top: 1px solid rgba(167, 139, 101, 0.38);
+}
+
+@media (min-width: 700px) {
+  .pg-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3.2rem;
+  }
+}
+
+@media (min-width: 1100px) {
+  .pg-stats--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ------------------------------------------------------------- CTA band */
+
+.pg-cta {
+  text-align: center;
+  padding: calc(var(--pg-section-y) * 1.05) var(--pg-gutter);
+  border-top: 1px solid rgba(237, 236, 235, 0.1);
+}
+
+.pg-cta .pg-h2 {
+  max-width: 18ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pg-cta .pg-body {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.pg-cta .pg-btn-row {
+  justify-content: center;
+}
+
+/* ------------------------------------------------------------- keylines */
+
+.pg-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pg-tag {
+  font-family: var(--font-jost), "Jost", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: rgba(237, 236, 235, 0.66);
+  padding: 0.6rem 1.1rem;
+  border: 1px solid rgba(237, 236, 235, 0.16);
+  border-radius: 999px;
+}
+
+.pg-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pg-checklist li {
+  position: relative;
+  padding: 0 0 0 1.9rem;
+  margin-bottom: 1.05rem;
+  font-family: var(--font-jost), "Jost", sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.98rem, 4vw, 1.06rem);
+  line-height: 1.6;
+  color: rgba(237, 236, 235, 0.74);
+  max-width: var(--pg-measure);
+}
+
+.pg-checklist li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 0.7rem;
+  height: 1px;
+  background: var(--pg-gold);
+}
+
+.pg-section--cream .pg-checklist li {
+  color: rgba(11, 10, 9, 0.78);
+}
+
+/* --------------------------------------------------------- subtle motion */
+/* Brief: fades and image reveals only. No flashy movement. */
+
+.pg-reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.pg-reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pg-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .pg-split-figure:hover img {
+    transform: none;
+  }
+}
+
+/* ------------------------------------------------------------ fact row */
+
+.pg-facts {
+  display: grid;
+  gap: 2.4rem;
+}
+
+.pg-fact {
+  padding-top: 1.6rem;
+  border-top: 1px solid rgba(167, 139, 101, 0.38);
+}
+
+.pg-fact-value {
+  display: block;
+  font-family: var(--font-bodoni), 'Bodoni Moda', serif;
+  font-weight: 500;
+  font-size: clamp(2.4rem, 11vw, 3.6rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--pg-ivory);
+}
+
+.pg-fact-label {
+  display: block;
+  margin-top: 0.9rem;
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(237, 236, 235, 0.55);
+}
+
+@media (min-width: 700px) {
+  .pg-facts { grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+}
+
+/* --------------------------------------------------------- two column */
+
+.pg-two-col {
+  display: grid;
+  gap: 3.4rem;
+}
+
+@media (min-width: 900px) {
+  .pg-two-col { grid-template-columns: 1fr 1fr; gap: 4.5rem; }
+}
+
+/* ---------------------------------------------------------------- form */
+
+.pg-form {
+  margin-top: 3rem;
+}
+
+.pg-fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0 0 3.2rem;
+}
+
+.pg-legend {
+  padding: 0;
+  margin-bottom: 1.8rem;
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--pg-gold);
+}
+
+.pg-field-grid {
+  display: grid;
+  gap: 1.6rem;
+}
+
+.pg-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.6rem;
+}
+
+.pg-field-grid .pg-field { margin-bottom: 0; }
+
+.pg-label {
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(237, 236, 235, 0.6);
+  margin-bottom: 0.7rem;
+}
+
+.pg-hint {
+  margin-left: 0.6rem;
+  text-transform: none;
+  letter-spacing: 0.04em;
+  color: rgba(237, 236, 235, 0.38);
+}
+
+.pg-input {
+  width: 100%;
+  min-height: 52px; /* comfortable mobile touch target */
+  padding: 0.9rem 0;
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 1rem; /* >=16px so iOS does not zoom on focus */
+  color: var(--pg-ivory);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(237, 236, 235, 0.28);
+  border-radius: 0;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: border-color 0.4s ease;
+}
+
+.pg-input:focus {
+  border-bottom-color: var(--pg-gold);
+}
+
+.pg-input:focus-visible {
+  outline: 2px solid var(--pg-gold);
+  outline-offset: 4px;
+}
+
+select.pg-input {
+  color: var(--pg-ivory);
+  background-image: linear-gradient(45deg, transparent 50%, rgba(237,236,235,0.5) 50%),
+                    linear-gradient(135deg, rgba(237,236,235,0.5) 50%, transparent 50%);
+  background-position: right 14px center, right 8px center;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 2rem;
+}
+
+select.pg-input option { background: #101010; color: var(--pg-ivory); }
+
+.pg-textarea { resize: vertical; line-height: 1.6; min-height: 120px; }
+
+.pg-input--file {
+  padding: 0.9rem 0;
+  font-size: 0.9rem;
+  color: rgba(237, 236, 235, 0.6);
+}
+
+.pg-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  margin: 0 0 2.4rem;
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: rgba(237, 236, 235, 0.74);
+  cursor: pointer;
+}
+
+.pg-consent input {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 0.15rem;
+  accent-color: var(--pg-gold);
+}
+
+.pg-form .pg-btn { width: 100%; }
+
+.pg-form-note {
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--pg-gold);
+  margin: 0 0 1.6rem;
+}
+
+.pg-form-note a { color: inherit; }
+.pg-form-note--error { color: #d98b8b; }
+
+.pg-form-done {
+  margin-top: 3rem;
+  padding: 2.6rem 2rem;
+  border: 1px solid rgba(167, 139, 101, 0.5);
+  background: rgba(167, 139, 101, 0.06);
+}
+
+.pg-form-done .pg-body { margin-bottom: 0; }
+
+@media (min-width: 700px) {
+  .pg-field-grid { grid-template-columns: 1fr 1fr; gap: 1.8rem 2.4rem; }
+  .pg-field--wide { grid-column: 1 / -1; }
+  .pg-form .pg-btn { width: auto; min-width: 280px; }
+}

@@ -1,0 +1,372 @@
+/* ============================================================
+   Site chrome — fixed header, full-screen menu, expanded footer.
+   Mobile first, matching the editorial system in pages.css.
+   ============================================================ */
+
+/* ------------------------------------------------------------- header */
+
+.pg-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem var(--pg-gutter);
+  transition:
+    background-color 0.6s ease,
+    border-color 0.6s ease,
+    padding 0.6s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.pg-header.is-scrolled {
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom-color: rgba(237, 236, 235, 0.09);
+}
+
+/* While the overlay is open the bar sits on top of it, so keep it clear. */
+.pg-header.is-open {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom-color: transparent;
+  z-index: 9200;
+}
+
+.pg-header-logo {
+  display: block;
+  line-height: 0;
+}
+
+.pg-header-logo img {
+  display: block;
+  width: auto;
+  height: 2.5rem;
+  transition: opacity 0.4s ease;
+}
+
+.pg-header-logo:hover img {
+  opacity: 0.8;
+}
+
+.pg-header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+/* Consultation CTA — the brief says it must stay highly visible. Hidden on
+   the smallest screens where it would crowd the bar; it is pinned inside the
+   menu overlay instead, so it is never more than one tap away. */
+.pg-header-cta {
+  display: none;
+  font-family: var(--font-jost), "Jost", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #0b0a09;
+  background: var(--pg-gold);
+  padding: 0.9rem 1.5rem;
+  transition: background-color 0.4s ease;
+}
+
+.pg-header-cta:hover {
+  background: var(--pg-gold-soft);
+}
+
+@media (min-width: 860px) {
+  .pg-header {
+    padding: 1.4rem var(--pg-gutter);
+  }
+  .pg-header-logo img {
+    height: 3rem;
+  }
+  .pg-header-cta {
+    display: inline-flex;
+  }
+}
+
+/* ---------------------------------------------------------- hamburger */
+
+.pg-burger {
+  position: relative;
+  width: 48px;
+  height: 48px; /* full 48px touch target */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.pg-burger span {
+  display: block;
+  width: 26px;
+  height: 1.5px;
+  background: var(--pg-ivory);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+}
+
+.pg-header.is-open .pg-burger span:first-child {
+  transform: translateY(4.25px) rotate(45deg);
+}
+
+.pg-header.is-open .pg-burger span:last-child {
+  transform: translateY(-4.25px) rotate(-45deg);
+}
+
+/* --------------------------------------------------------- full menu */
+
+.pg-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 9100;
+  background: var(--pg-black);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 7.5rem var(--pg-gutter) calc(2.5rem + env(safe-area-inset-bottom, 0px));
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.55s ease, visibility 0.55s ease;
+}
+
+.pg-menu.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.pg-menu[hidden] {
+  display: none;
+}
+
+.pg-menu-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.pg-menu-link {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.55rem 0;
+  font-family: var(--font-bodoni), "Bodoni Moda", serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 9vw, 3.4rem);
+  line-height: 1.16;
+  letter-spacing: -0.02em;
+  color: var(--pg-ivory);
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.4s ease;
+}
+
+.pg-menu.is-open .pg-menu-link {
+  opacity: 1;
+  transform: none;
+}
+
+.pg-menu-link:hover,
+.pg-menu-link.is-current {
+  color: var(--pg-gold);
+}
+
+.pg-menu-index {
+  font-family: var(--font-jost), "Jost", sans-serif;
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  color: var(--pg-gold);
+  opacity: 0.7;
+}
+
+.pg-menu-foot {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(237, 236, 235, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.pg-menu-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  font-family: var(--font-jost), "Jost", sans-serif;
+  font-size: 0.86rem;
+  letter-spacing: 0.06em;
+}
+
+.pg-menu-contact a {
+  color: rgba(237, 236, 235, 0.66);
+  text-decoration: none;
+  transition: color 0.4s ease;
+}
+
+.pg-menu-contact a:hover {
+  color: var(--pg-gold);
+}
+
+.pg-menu-socials {
+  display: flex;
+  gap: 1.6rem;
+}
+
+@media (min-width: 860px) {
+  .pg-menu {
+    padding-top: 9rem;
+    justify-content: center;
+    gap: 5vh;
+  }
+  .pg-menu-nav {
+    max-width: 1320px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .pg-menu-foot {
+    max-width: 1320px;
+    width: 100%;
+    margin: 0 auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .pg-menu-contact {
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+  }
+  .pg-menu-foot .pg-btn {
+    width: auto;
+  }
+}
+
+/* ------------------------------------------------------------- footer */
+
+.pg-footer {
+  position: relative;
+  background: var(--pg-black);
+  color: var(--pg-ivory);
+  border-top: 1px solid rgba(237, 236, 235, 0.1);
+  padding: calc(var(--pg-section-y) * 0.85) var(--pg-gutter) 0;
+}
+
+.pg-footer-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  gap: 3.4rem;
+}
+
+.pg-footer-logo {
+  display: block;
+  line-height: 0;
+  margin-bottom: 1.8rem;
+}
+
+.pg-footer-logo img {
+  display: block;
+  width: auto;
+  height: 3.4rem;
+}
+
+.pg-footer-statement {
+  font-family: var(--font-bodoni), "Bodoni Moda", serif;
+  font-style: italic;
+  font-size: clamp(1.15rem, 5vw, 1.5rem);
+  line-height: 1.4;
+  color: rgba(237, 236, 235, 0.82);
+  max-width: 24ch;
+  margin: 0 0 2.2rem;
+}
+
+.pg-footer-cta {
+  width: 100%;
+}
+
+.pg-footer-label {
+  font-family: var(--font-jost), "Jost", sans-serif;
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--pg-gold);
+  margin: 0 0 1.4rem;
+}
+
+.pg-footer-nav ul,
+.pg-footer-contact ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.pg-footer-nav a,
+.pg-footer-contact a {
+  font-family: var(--font-jost), "Jost", sans-serif;
+  font-weight: 300;
+  font-size: 0.96rem;
+  letter-spacing: 0.02em;
+  color: rgba(237, 236, 235, 0.68);
+  text-decoration: none;
+  transition: color 0.4s ease;
+  /* Comfortable tap target without visually spacing the list out. */
+  display: inline-block;
+  padding: 0.22rem 0;
+}
+
+.pg-footer-nav a:hover,
+.pg-footer-contact a:hover {
+  color: var(--pg-gold);
+}
+
+.pg-footer-base {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 2.4rem 0 calc(2.4rem + env(safe-area-inset-bottom, 0px));
+  margin-top: calc(var(--pg-section-y) * 0.55);
+  border-top: 1px solid rgba(237, 236, 235, 0.1);
+  font-family: var(--font-jost), "Jost", sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: rgba(237, 236, 235, 0.45);
+}
+
+@media (min-width: 700px) {
+  .pg-footer-nav ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .pg-footer-cta {
+    width: auto;
+  }
+}
+
+@media (min-width: 1000px) {
+  .pg-footer-inner {
+    grid-template-columns: 1.25fr 1fr 0.8fr;
+    gap: 4rem;
+  }
+  .pg-footer-nav ul {
+    grid-template-columns: 1fr;
+  }
+}

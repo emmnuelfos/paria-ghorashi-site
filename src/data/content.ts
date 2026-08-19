@@ -15,6 +15,24 @@ export interface NavItem {
 }
 
 /**
+ * Routes that actually exist. Pages ship in batches, and the navigation lists
+ * the full site map, so without this gate the header and footer would surface
+ * dead links (and Next would prefetch 404s) for anything not yet built.
+ * Add a route here the moment its page.tsx lands.
+ */
+export const LIVE_ROUTES = new Set<string>([
+  "/",
+  "/about",
+  "/work-with-paria",
+  "/consultation",
+  "/advisory",
+  "/partnerships",
+]);
+
+export const isLive = (href: string) =>
+  href.startsWith("#") || href.startsWith("http") || LIVE_ROUTES.has(href);
+
+/**
  * Primary menu. The guidelines specify a simple 7-item mobile menu; the copy
  * master lists an 11-item site map. Both are satisfied by keeping the menu
  * simple and letting "Work With Paria" act as the hub — which is that page's

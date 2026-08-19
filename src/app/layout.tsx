@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Bodoni_Moda, Jost } from "next/font/google";
 import "./globals.css";
+import "../styles/pages.css";
+import "../styles/chrome.css";
 
 const bodoni = Bodoni_Moda({
   subsets: ["latin"],
