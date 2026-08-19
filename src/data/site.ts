@@ -67,9 +67,13 @@ export const COPY = {
     "My name is Paria. A brand strategist and growth architect with more than twenty-five years across luxury, beauty, technology and media — always seeking the meeting point of identity and influence.",
   cgPhrase:
     'Great brands are built through <span class="other-accent">identity</span>, <span class="other-accent">emotion</span> and long-term positioning.',
-  manifestoKicker: "The Ethos",
+  // Home Section 2 "The Positioning Statement" — headline and pull quote are
+  // verbatim from the client's approved Website Copy Master (v1.0, July 2026).
+  // NOTE: the previous quote here was written in-house and attributed to her.
+  // Never attribute words to the client that she did not say.
+  manifestoKicker: "The Positioning",
   manifestoQuote:
-    'I don\'t build companies. I build <span class="mf-em">worlds</span> people want to <span class="mf-em">belong</span> to.',
+    'I do not look at a business through <span class="mf-em">one lens</span>. I look at what needs to <span class="mf-em">connect</span> for the business to move forward.',
   manifestoCite: "Paria Ghorashi",
   skillsSubtitle: "What She Does",
   skillsText:
