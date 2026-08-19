@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { AWARDS } from "@/data/site";
+import { MEDIA } from "@/data/pages-content-2";
 
 /**
  * "As Seen In" — a refined publication marquee replacing the studied
@@ -8,8 +8,9 @@ import { AWARDS } from "@/data/site";
  * marquee; paused under reduced-motion (see globals.css).
  */
 export function Awards() {
-  const pubs = AWARDS.map((a) => a.org);
-  const features = AWARDS.map((a) => a.prize);
+  // Home Section 10 — Media & Recognition. Publications from the master.
+  const pubs = MEDIA.asSeenIn.items;
+  const features = MEDIA.categories.items.map((c) => c.title);
 
   return (
     <section className="awards" id="press" aria-label="Press and recognition">
@@ -54,10 +55,8 @@ export function Awards() {
 
       {/* Screen-reader list of the same recognition (marquee is aria-hidden). */}
       <ul className="sr-only">
-        {AWARDS.map((a) => (
-          <li key={`${a.org}-${a.prize}`}>
-            {a.org} — {a.prize} ({a.date})
-          </li>
+        {pubs.map((name) => (
+          <li key={name}>{name}</li>
         ))}
       </ul>
     </section>

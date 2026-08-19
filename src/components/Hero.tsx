@@ -1,6 +1,7 @@
 "use client";
 
 import { Fragment, useEffect } from "react";
+import Link from "next/link";
 import { gsap, isMobileViewport } from "@/lib/gsap";
 import { CharRoll } from "@/components/CharRoll";
 import { HeroCanvas } from "@/components/HeroCanvas";
@@ -80,11 +81,19 @@ export function Hero() {
         <div className="hero-content">
           {/* The brand mark is <BrandMark /> — it lives outside #hero so it can
               join the intro lockup; this timeline still fades it on scroll. */}
-          <div
-            className="hero-tagline"
-            id="hero-tagline"
-            dangerouslySetInnerHTML={{ __html: COPY.heroTagline }}
-          />
+          <div className="hero-tagline" id="hero-tagline">
+            <span className="hero-eyebrow">{COPY.heroEyebrow}</span>
+            <span dangerouslySetInnerHTML={{ __html: COPY.heroTagline }} />
+            {/* Section 1 requires both CTAs above the fold. */}
+            <span className="hero-ctas">
+              <Link href="/work-with-paria" className="hero-cta">
+                Work With Paria
+              </Link>
+              <Link href="/consultation" className="hero-cta hero-cta--ghost">
+                Book a 1-Hour Consultation
+              </Link>
+            </span>
+          </div>
           <div className="hero-line" id="hero-line" />
           <div className="hero-bar" id="hero-bar">
             <div className="hero-bar-left">

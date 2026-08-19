@@ -28,13 +28,14 @@ export const GALLERY_COVERS: string[] = [
 ].map(asset);
 
 export const SKILL_GROUPS: SkillGroup[] = [
-  { key: "strategy", title: "Brand Strategy", items: ["Positioning", "Identity", "Market Relevance", "Differentiation", "Long-term Growth"] },
-  { key: "growth", title: "Business Growth", items: ["Startup to Scale", "Commercial Development", "Investment-led Ventures", "International Expansion"] },
-  { key: "partnerships", title: "Partnerships", items: ["Strategic Introductions", "Brand Collaborations", "Ambassadorships", "High-level Networks"] },
-  { key: "media", title: "Media & Positioning", items: ["Public Relations", "Founder Positioning", "Thought Leadership", "Reputation", "Strategic Storytelling"] },
-  { key: "creative", title: "Creative Direction", items: ["Campaigns", "Editorial", "Photography", "Video-first Content"] },
-  { key: "speaking", title: "Speaking", items: ["Keynotes", "Panels", "Hosting", "Moderation", "Representation"] },
-  { key: "industries", title: "Industries", items: ["Luxury", "Beauty", "Technology", "Media", "Hospitality", "Real Estate", "Lifestyle"] },
+  { key: "consulting", title: "Strategic Consulting", items: ["Clarity on business direction, brand positioning, growth priorities, market relevance, and the next decisions that matter."] },
+  { key: "advisory", title: "Executive & Founder Advisory", items: ["Ongoing strategic guidance for founders, CEOs, leadership teams, investors, and organisations facing growth, transition, or expansion."] },
+  { key: "positioning", title: "Brand Positioning", items: ["Defining how a business should be understood, differentiated, trusted, and remembered."] },
+  { key: "partnerships", title: "Partnerships & Business Development", items: ["Identifying aligned partners, creating commercial opportunities, developing introductions, and building relationships with long-term value."] },
+  { key: "visibility", title: "Visibility, Media & Reputation", items: ["Strengthening founder and brand presence through strategic storytelling, media positioning, thought leadership, and reputation development."] },
+  { key: "representation", title: "Brand Partnerships & Representation", items: ["Representing selected brands, destinations, and organisations through campaigns, events, content, public appearances, and long-term ambassadorships."] },
+  { key: "events", title: "Events & Experiences", items: ["Creating launches, private gatherings, investor events, brand activations, and experiences designed around the right audience and purpose."] },
+  { key: "speaking", title: "Speaking, Hosting & Moderation", items: ["Keynotes, panel discussions, interviews, event hosting, moderation, and public representation."] },
 ];
 
 export const AWARDS: Award[] = [
@@ -58,29 +59,42 @@ export const NAV_LINKS: SocialLink[] = [
 ];
 
 export const COPY = {
+  /* Home Section 1 — HERO. Approved copy, Website Copy Master v1.0. */
+  heroEyebrow: "ENTREPRENEUR. STRATEGIC ADVISOR. BRAND PARTNER.",
   heroTagline:
-    'Serial entrepreneur, <span class="other-accent">building brands that matter</span>,<br/>across luxury, business &amp; culture.',
+    'Building Brands, Businesses and <span class="other-accent">Meaningful Partnerships</span>.',
   revealPhrase: "World full of possibilities.",
-  aboutText:
-    'As a<span class="other-accent"> serial entrepreneur</span>, I transform brands, scale businesses, and build influential ventures — blending strategy and <span class="other-accent">emotion</span>.',
-  aboutSub:
-    "My name is Paria. A brand strategist and growth architect with more than twenty-five years across luxury, beauty, technology and media — always seeking the meeting point of identity and influence.",
-  cgPhrase:
-    'Great brands are built through <span class="other-accent">identity</span>, <span class="other-accent">emotion</span> and long-term positioning.',
-  // Home Section 2 "The Positioning Statement" — headline and pull quote are
-  // verbatim from the client's approved Website Copy Master (v1.0, July 2026).
-  // NOTE: the previous quote here was written in-house and attributed to her.
-  // Never attribute words to the client that she did not say.
+
+  /* Section 2 — THE POSITIONING STATEMENT. */
   manifestoKicker: "The Positioning",
+  manifestoHeadline: "The Future Belongs to the Connected.",
+  manifestoBody:
+    "Businesses no longer grow through marketing alone. Growth now sits at the intersection of strategy, technology, influence, community, partnerships, visibility, and disciplined execution.",
   manifestoQuote:
     'I do not look at a business through <span class="mf-em">one lens</span>. I look at what needs to <span class="mf-em">connect</span> for the business to move forward.',
   manifestoCite: "Paria Ghorashi",
-  skillsSubtitle: "What She Does",
+
+  /* Section 4 — BUILT FROM EXPERIENCE (the About block). */
+  aboutText:
+    'Advice built through <span class="other-accent">experience</span>. She has built and scaled businesses, transformed service concepts into technology platforms, developed global communities, and advised emerging ventures.',
+  aboutSub:
+    "Her experience includes founding blowout&go, developing bgX into a global beauty-technology platform, building Made For You Global as an international community, and leading PGPM across strategy, content, partnerships, events, influence, and business growth.",
+
+  /* Section 5 — EXPERIENCE ACROSS. */
+  cgPhrase:
+    'A world built through <span class="other-accent">experience</span>, across industries and international markets.',
+
+  /* Section 3 — HOW PARIA HELPS. */
+  skillsSubtitle: "How Paria Helps",
   skillsText:
-    "Entrepreneur, brand partner and public figure — 25+ years across luxury, beauty, technology and media.",
+    "Clear direction. Stronger positioning. Meaningful growth.",
+  skillsIntro:
+    "Paria works with clients at different stages, from early ideas and founder-led businesses to established companies and international brands. Every engagement starts with the client’s current position, commercial priorities, audience, and long-term ambition.",
+
+  /* Section 11 — FINAL CTA (the contact block). */
   contactDispo1:
-    'Open to <span class="other-accent">brand collaborations</span>, strategic partnerships and speaking engagements — worldwide.',
+    'Let’s build something <span class="other-accent">meaningful</span>. For advisory, consulting, brand partnerships, speaking, media, events, and business development enquiries.',
   contactDispo2:
-    'For<span class="other-accent"> media, advisory</span> and<span class="other-accent"> business development</span> enquiries — let\'s create something exceptional.',
+    'Share what you are <span class="other-accent">building</span> and where you need support.',
   mail: "paria@pgpm.ae",
 };

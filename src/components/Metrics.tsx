@@ -3,16 +3,21 @@
 import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger, prefersReducedMotion } from "@/lib/gsap";
 
-/** Grounded in her supplied content: 25+ years, 8 ventures, 7 industries. */
+/**
+ * Home Section 6 "Selected Numbers" — the client's own approved figures from
+ * the Website Copy Master, replacing the earlier inferred "08 ventures / 07
+ * industries" (which contradicted the master: it deliberately says "Multiple").
+ *
+ * The master instructs: "Before final publishing, verify all figures with Paria
+ * and update live social numbers. Do not publish unverified performance
+ * claims." Four of these carry `pending` and MUST be confirmed before this site
+ * goes public — see PENDING_VERIFICATION in src/data/content.ts.
+ */
 const STATS = [
-  {
-    value: 25,
-    suffix: "+",
-    pad: 0,
-    label: "Years across luxury, beauty, technology & media",
-  },
-  { value: 8, suffix: "", pad: 2, label: "Ventures founded & scaled" },
-  { value: 7, suffix: "", pad: 2, label: "Industries shaped" },
+  { value: 25, suffix: "+", pad: 0, label: "Years across entrepreneurship, luxury, technology, media, beauty, hospitality, and business." },
+  { value: 500, suffix: "K+", pad: 0, label: "Global community reached through entrepreneurship, lifestyle, travel, business, and authentic storytelling.", pending: true },
+  { value: 120, suffix: "+", pad: 0, label: "Brand collaborations across luxury, hospitality, beauty, technology, healthcare, travel, media, and lifestyle.", pending: true },
+  { value: 15, suffix: "+", pad: 0, label: "Countries connected through collaborations, business activity, media, speaking, and brand partnerships.", pending: true },
 ];
 
 const fmt = (n: number, pad: number, suffix: string) =>
@@ -77,7 +82,7 @@ export function Metrics() {
   return (
     <section className="metrics" id="metrics" ref={ref}>
       <div className="metrics-inner">
-        <p className="metrics-kicker">A quarter-century in motion</p>
+        <p className="metrics-kicker">A Journey in Numbers</p>
         <div className="metrics-grid">
           {STATS.map((s) => (
             <div className="metric-col" key={s.label}>

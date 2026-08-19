@@ -9,6 +9,12 @@ import { Projects } from "@/components/Projects";
 import { CircleGallery } from "@/components/CircleGallery";
 import { Skills } from "@/components/Skills";
 import { Metrics } from "@/components/Metrics";
+import {
+  IndustriesBand,
+  CollaborateBand,
+  ConsultationBand,
+  ClientsBand,
+} from "@/components/HomeSections";
 import { Awards } from "@/components/Awards";
 import { Contact } from "@/components/Contact";
 import { FooterSection } from "@/components/FooterSection";
@@ -34,8 +40,12 @@ export default function Home() {
         <Projects />
       </section>
       <CircleGallery />
+      <IndustriesBand />
       <Skills />
       <Metrics />
+      <ClientsBand />
+      <CollaborateBand />
+      <ConsultationBand />
       <Awards />
       <Contact />
       <FooterSection />
