@@ -2,6 +2,7 @@ import { LenisProvider } from "@/components/LenisProvider";
 import { IntroOverlay } from "@/components/IntroOverlay";
 import { Hero } from "@/components/Hero";
 import { BrandMark } from "@/components/BrandMark";
+import { SiteHeader } from "@/components/SiteHeader";
 import { RevealSequence } from "@/components/RevealSequence";
 import { Manifesto } from "@/components/Manifesto";
 import { About } from "@/components/About";
@@ -31,6 +32,7 @@ export default function Home() {
   return (
     <LenisProvider>
       <IntroOverlay />
+      <SiteHeader variant="home" />
       <BrandMark />
       <Hero />
       <RevealSequence />
