@@ -3,6 +3,7 @@ import { Bodoni_Moda, Jost } from "next/font/google";
 import "./globals.css";
 import "../styles/pages.css";
 import "../styles/chrome.css";
+import { CookieBanner } from "@/components/CookieBanner";
 
 const bodoni = Bodoni_Moda({
   subsets: ["latin"],
@@ -31,7 +32,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${bodoni.variable} ${jost.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <CookieBanner />
+      </body>
     </html>
   );
 }

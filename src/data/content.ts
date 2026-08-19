@@ -32,6 +32,9 @@ export const LIVE_ROUTES = new Set<string>([
   "/media",
   "/ventures",
   "/pgpm",
+  "/contact",
+  "/privacy",
+  "/terms",
 ]);
 
 export const isLive = (href: string) =>

@@ -948,3 +948,128 @@ select.pg-input option { background: #101010; color: var(--pg-ivory); }
 }
 
 .pg-wordmark:hover { color: var(--pg-gold); }
+
+/* ------------------------------------------------------ notice / legal */
+
+.pg-notice {
+  padding: 1.4rem 1.6rem;
+  margin: 0 0 3rem;
+  border-left: 2px solid var(--pg-gold);
+  background: rgba(167, 139, 101, 0.07);
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 0.96rem;
+  line-height: 1.6;
+  color: rgba(237, 236, 235, 0.78);
+  max-width: var(--pg-measure);
+}
+
+/* ------------------------------------------------------- contact list */
+
+.pg-contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1.6rem;
+}
+
+.pg-contact-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid rgba(11, 10, 9, 0.14);
+}
+
+.pg-contact-label {
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8a7048;
+}
+
+.pg-contact-list a {
+  font-family: var(--font-bodoni), 'Bodoni Moda', serif;
+  font-size: clamp(1.15rem, 5vw, 1.5rem);
+  color: var(--pg-ink);
+  text-decoration: none;
+  transition: color 0.4s ease;
+  padding: 0.2rem 0; /* tap target */
+}
+
+.pg-contact-list a:hover { color: #8a7048; }
+
+@media (min-width: 700px) {
+  .pg-contact-list { grid-template-columns: repeat(3, 1fr); gap: 2.4rem; }
+}
+
+/* ------------------------------------------------------ cookie banner */
+
+.pg-cookie {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9500;
+  padding: 1.6rem var(--pg-gutter) calc(1.6rem + env(safe-area-inset-bottom, 0px));
+  background: rgba(8, 8, 8, 0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(167, 139, 101, 0.34);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.pg-cookie-copy {
+  margin: 0;
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: rgba(237, 236, 235, 0.78);
+  max-width: 62ch;
+}
+
+.pg-cookie-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.pg-cookie-actions .pg-btn {
+  min-height: 50px;
+  padding: 0.95rem 1.8rem;
+}
+
+.pg-cookie-manage {
+  align-self: center;
+  /* >=44px tap target (was 41px) */
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.7rem 1rem;
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(237, 236, 235, 0.6);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.pg-cookie-manage:hover { color: var(--pg-gold); }
+
+@media (min-width: 860px) {
+  .pg-cookie {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2.4rem;
+  }
+  .pg-cookie-actions { flex-direction: row; align-items: center; flex-shrink: 0; }
+  .pg-cookie-actions .pg-btn { width: auto; }
+}
