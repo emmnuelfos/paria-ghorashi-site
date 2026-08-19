@@ -820,3 +820,131 @@ select.pg-input option { background: #101010; color: var(--pg-ivory); }
   .pg-field--wide { grid-column: 1 / -1; }
   .pg-form .pg-btn { width: auto; min-width: 280px; }
 }
+
+/* --------------------------------------------------------- accordion */
+
+.pg-acc { border-top: 1px solid rgba(237, 236, 235, 0.12); }
+
+.pg-acc-item { border-bottom: 1px solid rgba(237, 236, 235, 0.12); }
+
+.pg-acc-head {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  padding: 1.7rem 0;
+  cursor: pointer;
+  list-style: none;
+  min-height: 56px; /* touch target */
+}
+
+.pg-acc-head::-webkit-details-marker { display: none; }
+
+.pg-acc-head:focus-visible {
+  outline: 2px solid var(--pg-gold);
+  outline-offset: 3px;
+}
+
+.pg-acc-index {
+  flex-shrink: 0;
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  color: var(--pg-gold);
+}
+
+.pg-acc-title {
+  flex: 1;
+  font-family: var(--font-bodoni), 'Bodoni Moda', serif;
+  font-weight: 500;
+  font-size: clamp(1.25rem, 5vw, 1.8rem);
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+  color: var(--pg-ivory);
+  transition: color 0.4s ease;
+}
+
+.pg-acc-item[open] .pg-acc-title,
+.pg-acc-head:hover .pg-acc-title { color: var(--pg-gold); }
+
+.pg-acc-icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+}
+
+.pg-acc-icon::before,
+.pg-acc-icon::after {
+  content: '';
+  position: absolute;
+  background: var(--pg-gold);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pg-acc-icon::before { top: 50%; left: 0; width: 100%; height: 1px; }
+.pg-acc-icon::after { left: 50%; top: 0; width: 1px; height: 100%; }
+
+.pg-acc-item[open] .pg-acc-icon::after { transform: scaleY(0); }
+
+.pg-acc-body { padding: 0 0 2.2rem; }
+
+.pg-acc-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.4rem 0 0;
+  display: grid;
+  gap: 0.6rem 1.6rem;
+}
+
+.pg-acc-list li {
+  position: relative;
+  padding-left: 1.4rem;
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 0.96rem;
+  line-height: 1.5;
+  color: rgba(237, 236, 235, 0.62);
+}
+
+.pg-acc-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 0.55rem;
+  height: 1px;
+  background: rgba(167, 139, 101, 0.8);
+}
+
+@media (min-width: 700px) {
+  .pg-acc-list { grid-template-columns: repeat(2, 1fr); }
+  .pg-acc-head { padding: 2rem 0; gap: 1.6rem; }
+  .pg-acc-body { padding-left: calc(0.66rem + 1.6rem); }
+}
+
+@media (min-width: 1100px) {
+  .pg-acc-list { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Wordmark row — publications. Rendered as text, never as logos, so nothing
+   implies editorial endorsement before the client verifies each feature. */
+.pg-wordmarks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem 2.2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pg-wordmark {
+  font-family: var(--font-bodoni), 'Bodoni Moda', serif;
+  font-size: clamp(1.05rem, 4.6vw, 1.6rem);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: rgba(237, 236, 235, 0.72);
+  transition: color 0.4s ease;
+}
+
+.pg-wordmark:hover { color: var(--pg-gold); }

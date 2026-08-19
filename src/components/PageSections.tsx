@@ -261,3 +261,39 @@ export function Checklist({ items }: { items: readonly string[] }) {
     </ul>
   );
 }
+
+/**
+ * Capability accordion — used by Strategic Services and PGPM, which each carry
+ * ten capabilities with eight sub-items. The brief asks to reduce the amount of
+ * text visible at one time, so detail stays collapsed until asked for. Native
+ * <details> keeps it keyboard-accessible and working without JS.
+ */
+export function CapabilityAccordion({
+  items,
+}: {
+  items: { title: string; body: string; includes: string[] }[];
+}) {
+  return (
+    <div className="pg-acc">
+      {items.map((it, i) => (
+        <Reveal key={it.title} as="div" delay={i * 30}>
+          <details className="pg-acc-item">
+            <summary className="pg-acc-head">
+              <span className="pg-acc-index">{String(i + 1).padStart(2, "0")}</span>
+              <span className="pg-acc-title">{it.title}</span>
+              <span className="pg-acc-icon" aria-hidden="true" />
+            </summary>
+            <div className="pg-acc-body">
+              <p className="pg-body">{it.body}</p>
+              <ul className="pg-acc-list">
+                {it.includes.map((inc) => (
+                  <li key={inc}>{inc}</li>
+                ))}
+              </ul>
+            </div>
+          </details>
+        </Reveal>
+      ))}
+    </div>
+  );
+}
