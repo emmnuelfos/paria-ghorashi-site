@@ -23,6 +23,7 @@ export function Projects() {
   const previewRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const dateRef = useRef<HTMLSpanElement>(null);
+  const bodyRef = useRef<HTMLParagraphElement>(null);
   const coverRef = useRef<HTMLImageElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
 
@@ -32,6 +33,7 @@ export function Projects() {
     const preview = previewRef.current;
     const card = cardRef.current;
     const dateEl = dateRef.current;
+    const bodyEl = bodyRef.current;
     const cover = coverRef.current;
     const cursor = cursorRef.current;
     if (!path || !list || !preview || !card || !dateEl || !cover || !cursor) {
@@ -120,6 +122,7 @@ export function Projects() {
         const swap = () => {
           cover.src = p.cover;
           dateEl.textContent = p.date;
+          if (bodyEl) bodyEl.textContent = p.body ?? "";
         };
         gsap.killTweensOf(card);
         if (!hadActive) {
@@ -319,6 +322,9 @@ export function Projects() {
           </div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img id="proj-cover" ref={coverRef} src={PROJECTS[0].cover} alt="" />
+          <p className="proj-body" id="proj-body" ref={bodyRef}>
+            {PROJECTS[0].body}
+          </p>
         </div>
       </div>
       <div className="proj-cursor" id="proj-cursor" ref={cursorRef}>

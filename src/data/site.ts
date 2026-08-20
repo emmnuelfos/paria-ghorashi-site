@@ -4,15 +4,18 @@ import { asset } from "@/lib/asset";
 /** Content for Paria Ghorashi — Direction C "The Motion Study".
  *  All copy sourced from her supplied brief, brand portfolio and PGPM deck. */
 
+/**
+ * Home Section 8 — HOW BRANDS COLLABORATE WITH PARIA.
+ * Reuses the existing editorial list + proximity-preview design; `date` carries
+ * the short label and `body` shows in the preview card.
+ */
 export const PROJECTS: Project[] = [
-  { id: "blowoutandgo", name: "Blowout&Go", date: "Est. 2012", category: "Beauty Services", cover: "/assets/paria/ventures/blowoutandgo.jpg", coverAlt: "Blowout&Go — at-home beauty services" },
-  { id: "bgx", name: "bgX", date: "Est. 2016", category: "Beauty-Tech", cover: "/assets/paria/ventures/bgx.jpg", coverAlt: "bgX — beauty-tech platform with Uber and Balmain Hair Couture" },
-  { id: "pgpm", name: "PGPM", date: "Est. 2016", category: "Brand Agency", cover: "/assets/paria/ventures/pgpm.jpg", coverAlt: "PGPM — global boutique agency" },
-  { id: "madeforyou", name: "Made For You", date: "Est. 2022", category: "Members Club", cover: "/assets/paria/ventures/madeforyou.jpg", coverAlt: "Made For You Global — members club for female entrepreneurs" },
-  { id: "book", name: "The Book", date: "In Progress", category: "Publishing", cover: "/assets/paria/ventures/book.jpg", coverAlt: "Upcoming book" },
-  { id: "unscripted", name: "Unscripted", date: "Talk Show", category: "Media", cover: "/assets/paria/ventures/unscripted.jpg", coverAlt: "Unscripted with Paria — original talk show" },
-  { id: "speaking", name: "Speaking", date: "Worldwide", category: "Keynotes", cover: "/assets/paria/ventures/speaking.jpg", coverAlt: "International speaking engagements" },
-  { id: "partnerships", name: "Partnerships", date: "Select", category: "Collaborations", cover: "/assets/paria/ventures/partnerships.jpg", coverAlt: "Brand partnerships and collaborations" },
+  { id: "ambassador", name: "Brand Ambassador", date: "Long-term", category: "Representation", body: "Long-term representation through campaigns, events, public appearances, storytelling, and trusted association.", cover: "/assets/paria/pages/partners-hero.jpg", coverAlt: "Paria Ghorashi at Festival de Cannes" },
+  { id: "destination", name: "Destination & Hospitality", date: "Campaigns", category: "Travel", body: "Presenting destinations, luxury hotels, resorts, tourism boards, and airlines through experience-led storytelling.", cover: "/assets/paria/cg-overwater.jpg", coverAlt: "Overwater destination" },
+  { id: "founder", name: "Founder & Executive Stories", date: "Narrative", category: "Positioning", body: "Helping founders and organisations communicate vision, leadership, values, and business purpose.", cover: "/assets/paria/pages/about-venture.jpg", coverAlt: "Paria Ghorashi at work" },
+  { id: "content", name: "Content & Campaigns", date: "Production", category: "Creative", body: "Premium photography, short-form video, interviews, editorial stories, and social-first content.", cover: "/assets/paria/pages/speaking-1.jpg", coverAlt: "Paria Ghorashi in conversation" },
+  { id: "events", name: "Events & Public Engagements", date: "Hosting", category: "Live", body: "Hosting, moderating, attending launches, speaking, conducting interviews, and supporting brand experiences.", cover: "/assets/paria/pages/about-beyond.jpg", coverAlt: "Paria Ghorashi at an event" },
+  { id: "strategic", name: "Strategic Brand Partner", date: "Ongoing", category: "Partnership", body: "Working beyond a campaign through ideas, introductions, partnerships, positioning, and long-term direction.", cover: "/assets/paria/pages/editorial-car.jpg", coverAlt: "Paria Ghorashi" },
 ].map((p) => ({ ...p, cover: asset(p.cover) }));
 
 /** 3:2 covers for the orbit gallery — her world. */
@@ -88,8 +91,12 @@ export const COPY = {
   aboutButton: { label: "Read Paria’s Story", href: "/about" },
 
   /* Section 5 — EXPERIENCE ACROSS. */
-  cgPhrase:
-    'A world built through <span class="other-accent">experience</span>, across industries and international markets.',
+  cgPhrase: 'A World Built Through <span class="other-accent">Experience</span>.',
+  industries: [
+    "Technology", "Marketplaces", "Enterprise Software", "Luxury", "Beauty",
+    "Hospitality", "Real Estate", "Travel", "Media", "Fashion", "Healthcare",
+    "Communities", "Events", "Influence", "Partnerships", "Business Growth",
+  ],
 
   /* Section 3 — HOW PARIA HELPS. */
   skillsSubtitle: "How Paria Helps",

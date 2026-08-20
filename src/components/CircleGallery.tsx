@@ -193,6 +193,11 @@ export function CircleGallery() {
           ref={phraseRef}
           dangerouslySetInnerHTML={{ __html: COPY.cgPhrase }}
         />
+        <ul className="cg-industries" aria-label="Industries">
+          {COPY.industries.map((i) => (
+            <li key={i}>{i}</li>
+          ))}
+        </ul>
       </div>
     </section>
   );

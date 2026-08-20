@@ -10,12 +10,7 @@ import { Projects } from "@/components/Projects";
 import { CircleGallery } from "@/components/CircleGallery";
 import { Skills } from "@/components/Skills";
 import { Metrics } from "@/components/Metrics";
-import {
-  IndustriesBand,
-  CollaborateBand,
-  ConsultationBand,
-  ClientsBand,
-} from "@/components/HomeSections";
+import { ConsultationBand, ClientsBand } from "@/components/HomeSections";
 import { Awards } from "@/components/Awards";
 import { Contact } from "@/components/Contact";
 import { FooterSection } from "@/components/FooterSection";
@@ -36,17 +31,18 @@ export default function Home() {
       <BrandMark />
       <Hero />
       <RevealSequence />
+      {/* Section order follows the Website Copy Master exactly.
+          S5 reuses the orbit gallery and S8 reuses the editorial list rather
+          than adding new sections. */}
       <section className="section-after" id="section-after">
         <Manifesto />
+        <Skills />
         <About />
-        <Projects />
       </section>
       <CircleGallery />
-      <IndustriesBand />
-      <Skills />
       <Metrics />
       <ClientsBand />
-      <CollaborateBand />
+      <Projects />
       <ConsultationBand />
       <Awards />
       <Contact />
