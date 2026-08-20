@@ -1,5 +1,7 @@
 import { Fragment } from "react";
+import Link from "next/link";
 import { MEDIA } from "@/data/pages-content-2";
+import { COPY } from "@/data/site";
 
 /**
  * "As Seen In" — a refined publication marquee replacing the studied
@@ -52,6 +54,12 @@ export function Awards() {
       <p className="press-note">
         Featured across luxury, beauty, technology &amp; business media.
       </p>
+
+      <div className="press-cta">
+        <Link href={COPY.mediaButton.href} className="pg-btn pg-btn--ghost">
+          {COPY.mediaButton.label}
+        </Link>
+      </div>
 
       {/* Screen-reader list of the same recognition (marquee is aria-hidden). */}
       <ul className="sr-only">

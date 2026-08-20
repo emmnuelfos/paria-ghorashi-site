@@ -18,10 +18,14 @@ const STATS = [
   { value: 500, suffix: "K+", pad: 0, label: "Global community reached through entrepreneurship, lifestyle, travel, business, and authentic storytelling.", pending: true },
   { value: 120, suffix: "+", pad: 0, label: "Brand collaborations across luxury, hospitality, beauty, technology, healthcare, travel, media, and lifestyle.", pending: true },
   { value: 15, suffix: "+", pad: 0, label: "Countries connected through collaborations, business activity, media, speaking, and brand partnerships.", pending: true },
+  { value: 2.5, suffix: "M+", pad: 0, decimals: 1, label: "Content reach generated across original content, campaigns, partnerships, and media activity.", pending: true },
+  { text: "Multiple", label: "Ventures founded, scaled, advised, represented, or accelerated." },
 ];
 
-const fmt = (n: number, pad: number, suffix: string) =>
-  (pad ? String(n).padStart(pad, "0") : String(n)) + suffix;
+const fmt = (n: number, pad: number, suffix: string, decimals = 0) => {
+  const v = decimals ? n.toFixed(decimals) : String(Math.round(n));
+  return (pad ? v.padStart(pad, "0") : v) + suffix;
+};
 
 /**
  * "Signature Numbers" — an editorial credibility band (not part of the studied
@@ -37,7 +41,9 @@ export function Metrics() {
     const reduced = prefersReducedMotion();
 
     const ctx = gsap.context(() => {
-      const nums = gsap.utils.toArray<HTMLElement>(".metric-num", section);
+      const nums = gsap.utils
+        .toArray<HTMLElement>(".metric-num", section)
+        .filter((el) => el.dataset.target !== undefined);
 
       if (reduced) {
         nums.forEach((el) => {
@@ -45,6 +51,7 @@ export function Metrics() {
             Number(el.dataset.target),
             Number(el.dataset.pad || 0),
             el.dataset.suffix || "",
+            Number(el.dataset.decimals || 0),
           );
         });
         return;
@@ -63,6 +70,7 @@ export function Metrics() {
         const target = Number(el.dataset.target);
         const pad = Number(el.dataset.pad || 0);
         const suffix = el.dataset.suffix || "";
+        const decimals = Number(el.dataset.decimals || 0);
         const obj = { v: 0 };
         gsap.to(obj, {
           v: target,
@@ -70,7 +78,7 @@ export function Metrics() {
           ease: "power2.out",
           scrollTrigger: { trigger: el, start: "top 85%", once: true },
           onUpdate: () => {
-            el.textContent = fmt(Math.round(obj.v), pad, suffix);
+            el.textContent = fmt(obj.v, pad, suffix, decimals);
           },
         });
       });
@@ -86,14 +94,19 @@ export function Metrics() {
         <div className="metrics-grid">
           {STATS.map((s) => (
             <div className="metric-col" key={s.label}>
-              <span
-                className="metric-num"
-                data-target={s.value}
-                data-pad={s.pad}
-                data-suffix={s.suffix}
-              >
-                {s.pad ? "00" : "0"}
-              </span>
+              {"text" in s ? (
+                <span className="metric-num">{s.text}</span>
+              ) : (
+                <span
+                  className="metric-num"
+                  data-target={s.value}
+                  data-pad={s.pad}
+                  data-suffix={s.suffix}
+                  data-decimals={s.decimals ?? 0}
+                >
+                  {s.pad ? "00" : "0"}
+                </span>
+              )}
               <span className="metric-label">{s.label}</span>
             </div>
           ))}

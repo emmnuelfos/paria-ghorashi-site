@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger, isMobileDevice } from "@/lib/gsap";
 import { wrapWords } from "@/lib/text";
-import { CharRoll } from "@/components/CharRoll";
+import Link from "next/link";
 import { ArrowRightIcon } from "@/components/icons";
 import { COPY } from "@/data/site";
 import { asset } from "@/lib/asset";
@@ -157,8 +157,11 @@ export function About() {
       <div className="about-sub" id="about-sub">
         {COPY.aboutSub}
       </div>
-      <div className="about-btn">
-        <CharRoll text="Info" href="#about" />
+      <div className="about-sub about-sub--third">{COPY.aboutThird}</div>
+      <div className="about-cta">
+        <Link href={COPY.aboutButton.href} className="pg-btn pg-btn--ghost">
+          {COPY.aboutButton.label}
+        </Link>
       </div>
       <div className="about-version">
         <ArrowRightIcon />

@@ -75,6 +75,8 @@ export function Manifesto() {
     <section className="manifesto" id="manifesto" ref={rootRef}>
       <div className="manifesto-inner">
         <p className="manifesto-kicker">{COPY.manifestoKicker}</p>
+        <h2 className="manifesto-headline">{COPY.manifestoHeadline}</h2>
+        <p className="manifesto-body">{COPY.manifestoBody}</p>
         <blockquote
           className="manifesto-quote"
           id="manifesto-quote"

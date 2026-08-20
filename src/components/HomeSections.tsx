@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
-import { Section, CardGrid } from "@/components/PageSections";
+import { Section, CardGrid, Buttons } from "@/components/PageSections";
 import { HOME } from "@/data/content";
 
 /**
@@ -42,6 +42,9 @@ export function CollaborateBand() {
       <div style={{ marginTop: "3.5rem" }}>
         <CardGrid items={HOME.collaborate.items} cols3 />
       </div>
+      <Reveal delay={80}>
+        <Buttons items={HOME.collaborate.buttons} />
+      </Reveal>
     </Section>
   );
 }

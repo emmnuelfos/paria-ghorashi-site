@@ -84,6 +84,11 @@ export function Hero() {
           <div className="hero-tagline" id="hero-tagline">
             <span className="hero-eyebrow">{COPY.heroEyebrow}</span>
             <span dangerouslySetInnerHTML={{ __html: COPY.heroTagline }} />
+            {COPY.heroBody.map((t, i) => (
+              <span key={i} className="hero-support">
+                {t}
+              </span>
+            ))}
             {/* Section 1 requires both CTAs above the fold. */}
             <span className="hero-ctas">
               <Link href="/work-with-paria" className="hero-cta">

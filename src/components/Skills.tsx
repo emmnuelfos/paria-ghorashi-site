@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, type MouseEvent } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
-import { CharRoll } from "@/components/CharRoll";
+import Link from "next/link";
 import { ArrowRightIcon } from "@/components/icons";
 import { SKILL_GROUPS, COPY } from "@/data/site";
 
@@ -104,16 +104,20 @@ export function Skills() {
     <section className="skills" id="skills" ref={sectionRef}>
       <div className="skills-inner">
         <div className="skills-left">
-          <div className="skills-subtitle">What She Does</div>
+          <div className="skills-subtitle">{COPY.skillsSubtitle}</div>
           <div className="skills-text">{COPY.skillsText}</div>
+          <p className="skills-intro">{COPY.skillsIntro}</p>
           <div className="skills-separator"></div>
-          <div>
-            <CharRoll
-              className="skills-contact"
-              text={"Contact me\u{1F7A3}"}
-              href="#contact"
-              spaceGaps
-            />
+          <div className="skills-buttons">
+            {COPY.skillsButtons.map((b, i) => (
+              <Link
+                key={b.href}
+                href={b.href}
+                className={`pg-btn ${i === 0 ? "pg-btn--primary" : "pg-btn--ghost"}`}
+              >
+                {b.label}
+              </Link>
+            ))}
           </div>
           <div className="skills-arrow" id="skills-arrow" ref={arrowRef}>
             <ArrowRightIcon />

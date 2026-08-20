@@ -2,6 +2,7 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import { gsap, ScrollTrigger, isMobileViewport } from "@/lib/gsap";
+import Link from "next/link";
 import { CharRoll } from "@/components/CharRoll";
 import { ArrowRightIcon } from "@/components/icons";
 import { SOCIALS, COPY } from "@/data/site";
@@ -377,6 +378,21 @@ export function Contact() {
               </>
             )}
           </form>
+          <div className="contact-final">
+            <h2 className="contact-final-title">{COPY.finalCtaHeadline}</h2>
+            <p className="contact-final-body">{COPY.finalCtaBody}</p>
+            <div className="contact-final-btns">
+              {COPY.finalCtaButtons.map((b, i) => (
+                <Link
+                  key={b.href}
+                  href={b.href}
+                  className={`pg-btn ${i === 0 ? "pg-btn--primary" : "pg-btn--ghost"}`}
+                >
+                  {b.label}
+                </Link>
+              ))}
+            </div>
+          </div>
           <div className="contact-bottom" id="contact-bottom">
             <nav
               className="contact-socials"

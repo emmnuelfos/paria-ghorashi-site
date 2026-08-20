@@ -2752,3 +2752,134 @@ a.chr-hover {
   user-select: none;
   -webkit-user-select: none;
 }
+
+
+/* ============================================================
+   Homepage content elements required by the Copy Master that the
+   original sections did not carry (supporting copy, section
+   headlines, intros and CTAs).
+   ============================================================ */
+
+/* S1 hero supporting copy */
+.hero-support {
+  display: block;
+  margin-top: 0.9rem;
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 0.78rem;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  color: rgba(237, 236, 235, 0.72);
+  max-width: 34rem;
+}
+
+/* S2 positioning statement */
+.manifesto-headline {
+  font-family: var(--font-bodoni), 'Bodoni Moda', serif;
+  font-weight: 500;
+  font-size: clamp(1.9rem, 6vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: #EDECEB;
+  margin: 0 0 1.6rem;
+  max-width: 18ch;
+}
+
+.manifesto-body {
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.98rem, 4vw, 1.1rem);
+  line-height: 1.72;
+  color: rgba(237, 236, 235, 0.68);
+  max-width: 60ch;
+  margin: 0 0 3rem;
+}
+
+/* S3 how paria helps */
+.skills-intro {
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.95rem, 3.9vw, 1.05rem);
+  line-height: 1.7;
+  color: rgba(237, 236, 235, 0.66);
+  max-width: 52ch;
+  margin: 1.8rem 0 0;
+}
+
+.skills-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 2.5rem;
+}
+
+/* S4 built from experience */
+.about-sub--third { margin-top: 1.4rem; }
+
+.about-cta { margin-top: 2.6rem; }
+
+/* S10 media */
+.press-cta { padding: 3rem 4rem 0; }
+
+/* S11 final CTA */
+.contact-final {
+  position: absolute;
+  top: 34%;
+  left: 6%;
+  right: 6%;
+  z-index: 5;
+  text-align: left;
+}
+
+.contact-final-title {
+  font-family: var(--font-bodoni), 'Bodoni Moda', serif;
+  font-weight: 700;
+  font-size: clamp(1.8rem, 5.4vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: #000;
+  margin: 0 0 1.2rem;
+  max-width: 16ch;
+}
+
+.contact-final-body {
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.95rem, 3.9vw, 1.05rem);
+  line-height: 1.65;
+  color: rgba(0, 0, 0, 0.72);
+  max-width: 46ch;
+  margin: 0 0 2rem;
+}
+
+.contact-final-btns { display: flex; flex-direction: column; gap: 0.8rem; }
+
+.contact-final-btns .pg-btn--ghost { color: #0b0a09; }
+
+.contact-final-btns .pg-btn--ghost:hover {
+  background: #0b0a09;
+  color: #EDECEB;
+  border-color: #0b0a09;
+}
+
+@media (min-width: 700px) {
+  .skills-buttons { flex-direction: row; flex-wrap: wrap; }
+  .skills-buttons .pg-btn { width: auto; }
+  .contact-final-btns { flex-direction: row; flex-wrap: wrap; }
+  .contact-final-btns .pg-btn { width: auto; }
+  .about-cta .pg-btn { width: auto; }
+}
+
+/* On mobile the contact block is static (see the mobile rules above), so the
+   final CTA joins the flow instead of being pinned. */
+@media (max-width: 768px) {
+  .contact-final {
+    position: static;
+    left: auto;
+    right: auto;
+    top: auto;
+    width: 100%;
+    margin-bottom: 2.5rem;
+  }
+  .press-cta { padding: 2.5rem 1.5rem 0; }
+}

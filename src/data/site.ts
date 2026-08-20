@@ -63,6 +63,10 @@ export const COPY = {
   heroEyebrow: "ENTREPRENEUR. STRATEGIC ADVISOR. BRAND PARTNER.",
   heroTagline:
     'Building Brands, Businesses and <span class="other-accent">Meaningful Partnerships</span>.',
+  heroBody: [
+    "For more than twenty-five years, Paria Ghorashi has built companies, developed platforms, advised founders, represented international brands, and connected people with opportunities across business, luxury, technology, media, hospitality, and culture.",
+    "Today, she works with founders, organisations, destinations, and global brands seeking stronger positioning, credible visibility, strategic partnerships, and long-term growth.",
+  ],
   revealPhrase: "World full of possibilities.",
 
   /* Section 2 — THE POSITIONING STATEMENT. */
@@ -79,6 +83,9 @@ export const COPY = {
     'Advice built through <span class="other-accent">experience</span>. She has built and scaled businesses, transformed service concepts into technology platforms, developed global communities, and advised emerging ventures.',
   aboutSub:
     "Her experience includes founding blowout&go, developing bgX into a global beauty-technology platform, building Made For You Global as an international community, and leading PGPM across strategy, content, partnerships, events, influence, and business growth.",
+  aboutThird:
+    "This background gives her a practical understanding of what founders face, what brands need, and where good ideas lose momentum.",
+  aboutButton: { label: "Read Paria’s Story", href: "/about" },
 
   /* Section 5 — EXPERIENCE ACROSS. */
   cgPhrase:
@@ -90,11 +97,23 @@ export const COPY = {
     "Clear direction. Stronger positioning. Meaningful growth.",
   skillsIntro:
     "Paria works with clients at different stages, from early ideas and founder-led businesses to established companies and international brands. Every engagement starts with the client’s current position, commercial priorities, audience, and long-term ambition.",
+  skillsButtons: [
+    { label: "Explore All Services", href: "/services" },
+    { label: "Start a Conversation", href: "/contact" },
+  ],
+  mediaButton: { label: "View Media & Features", href: "/media" },
 
   /* Section 11 — FINAL CTA (the contact block). */
   contactDispo1:
     'Let’s build something <span class="other-accent">meaningful</span>. For advisory, consulting, brand partnerships, speaking, media, events, and business development enquiries.',
   contactDispo2:
     'Share what you are <span class="other-accent">building</span> and where you need support.',
+  finalCtaHeadline: "Let’s Build Something Meaningful.",
+  finalCtaBody:
+    "For advisory, consulting, brand partnerships, speaking, media, events, and business development enquiries, share what you are building and where you need support.",
+  finalCtaButtons: [
+    { label: "Start a Conversation", href: "/contact" },
+    { label: "Book a Consultation", href: "/consultation" },
+  ],
   mail: "paria@pgpm.ae",
 };
