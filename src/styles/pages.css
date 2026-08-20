@@ -1500,3 +1500,29 @@ select.pg-input option { background: #101010; color: var(--pg-ivory); }
 .pg-quote .pg-btn-row {
   justify-content: center;
 }
+
+/* ---- page-hero display size by headline length ----
+   .pg-h1's clamp caps at 6.5rem and 9.5vw exceeds that cap at every desktop
+   width, so all 13 heroes rendered at exactly 104px regardless of length.
+   Measured: /about/ 109 chars = 11 lines = 117% of the viewport, /media/ 85%,
+   /advisory/ 74%. Short headlines keep their impact; long ones step down and
+   take a wider measure so the lines fill instead of stacking. */
+.pg-hero .pg-h1 {
+  /* The hero text column, not this max-width, is what binds at desktop, so the
+     base step comes down too: at 104px even a 50-character headline ran to six
+     lines and 64% of the viewport. */
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  max-width: 18ch;
+  text-wrap: balance;
+}
+
+.pg-hero .pg-h1--long {
+  font-size: clamp(2.1rem, 5.4vw, 3.5rem);
+  max-width: 24ch;
+}
+
+.pg-hero .pg-h1--xlong {
+  font-size: clamp(1.95rem, 4.8vw, 3rem);
+  max-width: 26ch;
+  line-height: 1.06;
+}

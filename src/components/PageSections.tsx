@@ -54,6 +54,20 @@ export function Section({
 }
 
 /** Page hero: eyebrow, large headline, lead copy, buttons, and a large image. */
+/**
+ * A display size that suits a twelve-character headline buries a
+ * hundred-character one: every page hero rendered at the same 104px on
+ * desktop, so /about/'s 109-character headline ran to eleven lines and 117% of
+ * the viewport — taller than the screen it sits on. CSS cannot measure text, so
+ * the length band is chosen here and the step is set in pages.css.
+ */
+function h1LengthClass(headline: string) {
+  const n = headline.trim().length;
+  if (n > 95) return "pg-h1--xlong";
+  if (n > 42) return "pg-h1--long";
+  return "";
+}
+
 export function PageHero({
   eyebrow,
   headline,
@@ -74,7 +88,7 @@ export function PageHero({
   const copy = (
     <div>
       {eyebrow && <p className="pg-eyebrow">{eyebrow}</p>}
-      <h1 className="pg-h1">{headline}</h1>
+      <h1 className={`pg-h1 ${h1LengthClass(headline)}`.trim()}>{headline}</h1>
       {body.length > 0 && (
         <div className="pg-hero-body">
           {body.map((p, i) => (
