@@ -27,7 +27,11 @@ for(const r of ROUTES){
     }).length;
     const imgs=[...document.querySelectorAll("img")].filter(i=>!i.hasAttribute("alt")).length;
     const h1=document.querySelectorAll("h1").length;
-    return {sw,small:[...new Set(small)],empty,imgs,h1};
+    // Hero height vs the viewport. This check did not exist, which is how a
+    // hero at 222% of the screen passed QA: only the HEADING was measured.
+    const heroEl=document.querySelector(".pg-hero");
+    const heroPct=heroEl?Math.round(heroEl.getBoundingClientRect().height/innerHeight*100):null;
+    return {sw,small:[...new Set(small)],empty,imgs,h1,heroPct};
   });
   const bad=[];
   if(resp.status()!==200) bad.push(`HTTP ${resp.status()}`);
@@ -36,6 +40,9 @@ for(const r of ROUTES){
   if(d.empty) bad.push(`${d.empty} dead href`);
   if(d.imgs) bad.push(`${d.imgs} img no alt`);
   if(d.h1!==1) bad.push(`h1 count=${d.h1}`);
+  // Desktop should essentially fit one screen; the phone stacks, so it cannot.
+  const heroCap = 175;
+  if(d.heroPct!==null && d.heroPct>heroCap) bad.push(`hero ${d.heroPct}% of viewport (>${heroCap})`);
   if(errs.length) bad.push(`JS: ${errs[0]}`);
   if(bad.length){fail++;console.log(`** ${r.padEnd(20)} ${bad.join(" | ")}`);}
   else console.log(`ok ${r}`);

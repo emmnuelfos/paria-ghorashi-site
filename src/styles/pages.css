@@ -1532,3 +1532,62 @@ select.pg-input option { background: #101010; color: var(--pg-ivory); }
 .pg-cookie--hidden {
   display: none !important;
 }
+
+/* ============================================================
+   PAGE HERO HEIGHT
+   ------------------------------------------------------------
+   The hero figure had `height: auto`, so a portrait image set its
+   own height from its aspect ratio. Measured at 1440x900 the
+   /work-with-paria/ image rendered 547x1658 and took the whole
+   section to 2001px — 222% of the viewport, with /speaking/ at
+   213% and most other pages over 100%.
+
+   The image is now capped against the viewport and cropped to
+   fill, so a tall portrait can no longer set the section height.
+   Framing is biased upward because these are standing portraits;
+   centring the crop cuts heads.
+   ============================================================ */
+
+.pg-hero {
+  padding: calc(var(--pg-section-y) * 0.8) var(--pg-gutter)
+    calc(var(--pg-section-y) * 0.6);
+}
+
+.pg-hero-figure img {
+  /* Stacked on the phone, so the image takes a smaller share of the fold. */
+  max-height: 40vh;
+  object-fit: cover;
+  object-position: center 22%;
+}
+
+@media (min-width: 900px) {
+  .pg-hero-figure img {
+    max-height: 66vh;
+  }
+}
+
+/* The hero text column was narrower than the image column, so long approved
+   copy wrapped into more lines and drove the section height (/about/ ran to
+   124% of the viewport on its own text). Giving the text the larger share
+   costs the image nothing — it is height-capped and cropped to fill. */
+@media (min-width: 900px) {
+  .pg-hero-grid {
+    grid-template-columns: 1.22fr 0.78fr;
+  }
+}
+
+/* Phone hero spacing. Stacked, the gaps between eyebrow, headline, copy and
+   figure add up to most of a screen on the longest page. Tightened so the
+   rhythm still reads as generous without pushing the fold twice over. */
+@media (max-width: 899px) {
+  .pg-hero {
+    padding: calc(var(--pg-section-y) * 0.62) var(--pg-gutter)
+      calc(var(--pg-section-y) * 0.45);
+  }
+  .pg-hero-body {
+    margin-top: 1.5rem;
+  }
+  .pg-hero-figure {
+    margin-top: 2.2rem;
+  }
+}
