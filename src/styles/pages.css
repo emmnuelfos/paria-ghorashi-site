@@ -398,6 +398,9 @@
 
 .pg-card-link {
   margin-top: 1.4rem;
+  /* 44px minimum touch target — measured at 18px before. */
+  min-height: 44px;
+  align-items: center;
   font-family: var(--font-jost), "Jost", sans-serif;
   font-size: 0.74rem;
   font-weight: 500;
@@ -992,6 +995,9 @@ select.pg-input option { background: #101010; color: var(--pg-ivory); }
 }
 
 .pg-contact-list a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-family: var(--font-bodoni), 'Bodoni Moda', serif;
   font-size: clamp(1.15rem, 5vw, 1.5rem);
   color: var(--pg-ink);

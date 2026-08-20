@@ -54,6 +54,11 @@
   line-height: 0;
 }
 
+.pg-header-logo {
+  min-height: 44px;
+  align-items: center;
+}
+
 .pg-header-logo img {
   display: block;
   width: auto;
@@ -261,6 +266,9 @@
 }
 
 .pg-menu-contact a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   color: rgba(237, 236, 235, 0.66);
   text-decoration: none;
   transition: color 0.4s ease;
@@ -362,6 +370,8 @@
 
 .pg-footer-nav a,
 .pg-footer-contact a {
+  min-height: 44px;
+  align-items: center;
   font-family: var(--font-jost), "Jost", sans-serif;
   font-weight: 300;
   font-size: 0.96rem;
@@ -370,7 +380,7 @@
   text-decoration: none;
   transition: color 0.4s ease;
   /* Comfortable tap target without visually spacing the list out. */
-  display: inline-block;
+  display: inline-flex;
   padding: 0.22rem 0;
 }
 
