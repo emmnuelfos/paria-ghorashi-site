@@ -3103,3 +3103,174 @@ a.chr-hover {
     padding: 6vh 1.5rem 5vh;
   }
 }
+
+/* ============================================================
+   HOMEPAGE READING SCALE
+   ------------------------------------------------------------
+   The homepage had accumulated eleven different body sizes
+   (9.9px–27.2px), three weights and opacities from 0.5 to 1.0,
+   so nothing read as a system and the smallest copy measured
+   3.04:1 against the hero field — below the 4.5:1 WCAG AA floor
+   and the client's "can't hardly read".
+
+   One scale, applied to homepage-scoped selectors only. The
+   shared .pg-body used by the inner pages is deliberately NOT
+   touched here — that is a separate, approved change.
+
+   Weight moves 300 -> 400: a 300 weight on a dark ground loses
+   stem contrast at reading sizes regardless of how large it is.
+   ============================================================ */
+
+:root {
+  /* 17px at 390 -> 20px at 1920. Never below 17px. */
+  --home-body: clamp(1.0625rem, 1.012rem + 0.208vw, 1.25rem);
+  /* Lead paragraphs that open a section. */
+  --home-lead: clamp(1.1875rem, 1.06rem + 0.52vw, 1.625rem);
+  /* Supporting/list copy — still never below 15px. */
+  --home-body-sm: clamp(0.9375rem, 0.9rem + 0.156vw, 1.0625rem);
+  --home-lh: 1.62;
+  --home-ink: rgba(237, 236, 235, 0.88);
+  --home-ink-dim: rgba(237, 236, 235, 0.76);
+  --home-ink-invert: rgba(11, 10, 9, 0.84);
+}
+
+/* S1 — hero supporting copy (the block the client circled). */
+.hero-support {
+  font-size: var(--home-body);
+  font-weight: 400;
+  line-height: var(--home-lh);
+  color: var(--home-ink);
+  max-width: 34ch;
+}
+
+/* S2 — manifesto body (the second block the client circled). */
+.manifesto-body {
+  font-size: var(--home-body);
+  font-weight: 400;
+  line-height: var(--home-lh);
+  color: var(--home-ink);
+}
+
+/* S3 — services intro. */
+.skills-intro {
+  font-size: var(--home-body);
+  font-weight: 400;
+  line-height: var(--home-lh);
+  color: var(--home-ink);
+}
+
+/* S4 — about paragraphs. The first is a lead; the rest are body.
+   Desktop already read well at 27px, mobile did not at 14.4px. */
+.about-sub {
+  font-size: var(--home-lead);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--home-ink);
+}
+.about-sub--third {
+  font-size: var(--home-body);
+  line-height: var(--home-lh);
+  color: var(--home-ink-dim);
+}
+
+/* S5 — the industry list riding through the orbit. */
+.cg-industries li {
+  font-size: var(--home-body-sm);
+  font-weight: 400;
+  color: var(--home-ink-dim);
+}
+
+/* S8 — how brands collaborate. */
+.projects-body {
+  font-size: var(--home-body);
+  font-weight: 400;
+  line-height: var(--home-lh);
+  color: var(--home-ink);
+}
+
+/* S10 — media standfirst. */
+.press-intro {
+  font-size: var(--home-body);
+  font-weight: 400;
+  line-height: var(--home-lh);
+  color: var(--home-ink);
+}
+
+/* S7 / S9 / S11 — sections built from the shared editorial
+   components. Scoped by their homepage-only ancestors so the
+   inner pages keep their current scale untouched. */
+#clients .pg-body,
+.home-consult .pg-body,
+.home-consult-body {
+  font-size: var(--home-body);
+  font-weight: 400;
+  line-height: var(--home-lh);
+}
+#clients .pg-body {
+  color: var(--home-ink);
+}
+/* S9 sits on cream, so it needs the inverted ink. */
+.home-consult .pg-body,
+.home-consult-body {
+  color: var(--home-ink-invert);
+}
+
+/* ============================================================
+   HERO LEGIBILITY
+   ------------------------------------------------------------
+   The copy carried mix-blend-mode: difference over the WebGL
+   gold field. That blend has a vanishing band: the composite is
+   |backdrop - source|, so wherever the field approaches the text
+   colour the glyphs null out to nothing. It is why "Meaningful
+   Partnerships" disappears on the bright frames, and it cannot
+   be tuned into passing — the failure is in the blend maths.
+
+   Replaced with a real scrim: the field keeps its full colour on
+   the open side of the frame and is carried down to a dark
+   ground under the copy, so contrast no longer depends on which
+   frame of the animation is on screen.
+   ============================================================ */
+
+.hero-tagline {
+  mix-blend-mode: normal;
+}
+
+.hero-canvas::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* Desktop: the copy sits left, so the ground darkens leftward
+     and releases the field across the open right of the frame. */
+  background: linear-gradient(
+    100deg,
+    rgba(11, 10, 9, 0.94) 0%,
+    rgba(11, 10, 9, 0.88) 26%,
+    rgba(11, 10, 9, 0.6) 46%,
+    rgba(11, 10, 9, 0.12) 66%,
+    rgba(11, 10, 9, 0) 82%
+  );
+}
+
+@media (max-width: 899px) {
+  /* Phone: the copy spans the full width, so the scrim has to be
+     vertical instead — dark under the block, clearing toward the
+     bottom where the wordmark sits on its own dark ground. */
+  .hero-canvas::after {
+    background: linear-gradient(
+      to bottom,
+      rgba(11, 10, 9, 0.92) 0%,
+      rgba(11, 10, 9, 0.88) 42%,
+      rgba(11, 10, 9, 0.66) 68%,
+      rgba(11, 10, 9, 0.5) 100%
+    );
+  }
+}
+
+/* S11 — closing CTA body. Sits on the cream panel, so inverted ink. */
+.contact-final-body {
+  font-size: var(--home-body);
+  font-weight: 400;
+  line-height: var(--home-lh);
+  color: var(--home-ink-invert);
+}

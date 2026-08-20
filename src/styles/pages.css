@@ -1244,3 +1244,122 @@ select.pg-input option { background: #101010; color: var(--pg-ivory); }
 @media (min-width: 700px) {
   .hero-ctas { flex-direction: row; flex-wrap: wrap; }
 }
+
+/* ============================================================
+   HERO LOCKUP — TWO COLUMNS ON DESKTOP
+   ------------------------------------------------------------
+   Measured before this rule: the copy block ran to y=674 at 1440
+   while the giant wordmark starts at y=579 — a 95px overlap, and
+   208px at 1366x768. The collision predates the type increase
+   (the block was already colliding on short laptops) but larger
+   reading sizes widen it, so the block has to get shorter rather
+   than smaller.
+
+   The frame had 77% of its width empty, so the height goes
+   sideways: headline holds the left column, the reading copy and
+   the actions move to the right. Roughly halves the stack height
+   and puts the empty space to work.
+
+   Phone and tablet keep the single stacked column — measured
+   clearance there is +70px and +180px, so they were never the
+   problem and are deliberately untouched.
+   ============================================================ */
+
+@media (min-width: 1150px) {
+  .hero-tagline {
+    display: grid;
+    flex-direction: unset;
+    width: min(100%, var(--hero-panel));
+    max-width: min(100%, var(--hero-panel));
+    grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr);
+    column-gap: clamp(2.5rem, 3.6vw, 5.5rem);
+    align-items: start;
+  }
+
+  .hero-eyebrow {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  /* The headline holds the left column across the reading rows. */
+  #hero-tagline > span:nth-of-type(2) {
+    grid-column: 1;
+    grid-row: 2 / span 3;
+    align-self: start;
+    max-width: 13ch;
+    font-size: clamp(2.35rem, 3.1vw, 3.5rem);
+    line-height: 1.08;
+  }
+
+  .hero-support {
+    grid-column: 2;
+    max-width: 44ch;
+  }
+  /* No leading gap — it aligns to the headline's cap height. */
+  .hero-support:first-of-type {
+    margin-top: 0;
+  }
+
+  .hero-ctas {
+    grid-column: 2;
+    margin-top: 2rem;
+  }
+}
+
+/* The scrim ramp is derived from the copy panel, not guessed: when the copy
+   moved into the right column it landed in the gradient's clearing zone and
+   measured contrast fell to 4.27:1. Deriving both from --hero-seam means the
+   dark ground always ends where the copy ends. */
+.hero {
+  --hero-gutter: clamp(1.5rem, 0.86rem + 2.22vw, 4.5rem);
+  --hero-panel: min(66rem, 80vw);
+  --hero-seam: calc(var(--hero-gutter) + var(--hero-panel));
+}
+
+@media (min-width: 1150px) {
+  .hero-canvas::after {
+    background: linear-gradient(
+      100deg,
+      rgba(11, 10, 9, 0.95) 0,
+      rgba(11, 10, 9, 0.92) calc(var(--hero-seam) * 0.6),
+      rgba(11, 10, 9, 0.86) calc(var(--hero-seam) * 0.92),
+      rgba(11, 10, 9, 0.4) calc(var(--hero-seam) + 6vw),
+      rgba(11, 10, 9, 0) calc(var(--hero-seam) + 18vw)
+    );
+  }
+}
+
+/* Short laptops (1366x768, 1280x800) are the binding case: the wordmark sits
+   high because it is anchored to the viewport bottom, leaving ~410px for the
+   whole lockup. Measured clearance there was +15px, so the vertical rhythm
+   tightens just on short viewports rather than shrinking the type everywhere. */
+@media (min-width: 1150px) and (max-height: 850px) {
+  .hero-support {
+    line-height: 1.54;
+  }
+  .hero-support + .hero-support {
+    margin-top: 0.9rem;
+  }
+  .hero-ctas {
+    margin-top: 1.5rem;
+  }
+  #hero-tagline > span:nth-of-type(2) {
+    font-size: clamp(2.2rem, 2.75vw, 3rem);
+  }
+}
+
+/* Mobile hero gutter + brand-mark clearance.
+   Measured at 390: the copy block sat x 24→390, flush to the right edge with a
+   24px gutter only on the left, because a later `max-width:100%` rule overrode
+   the intended calc(100vw - 3rem). And the eyebrow ran x 24→386 straight under
+   the fixed brand mark at x 307→366. pages.css loads after globals.css, so the
+   correction belongs here. */
+@media (max-width: 899px) {
+  .hero-tagline {
+    max-width: calc(100vw - 3rem);
+  }
+  /* Wrap the eyebrow before it reaches the brand mark. */
+  .hero-eyebrow {
+    max-width: calc(100% - 5rem);
+  }
+}
