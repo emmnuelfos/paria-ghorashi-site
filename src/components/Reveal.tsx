@@ -41,7 +41,12 @@ export function Reveal({
           }
         }
       },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.08 },
+      // threshold 0, not a ratio: the -12% bottom margin already holds the
+      // reveal back until the block is properly in view. Requiring a visible
+      // fraction on top of that can strand a block that loads parked inside
+      // the excluded band (deep link, or a browser-restored scroll position)
+      // with opacity 0 and no scroll event to release it.
+      { rootMargin: "0px 0px -12% 0px", threshold: 0 },
     );
     io.observe(el);
     return () => io.disconnect();

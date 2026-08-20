@@ -1,5 +1,5 @@
 import { chromium } from "playwright-core";
-const B="http://localhost:4321";
+const B=process.env.QA_BASE || "http://localhost:4321";
 const ROUTES=["/","/about/","/work-with-paria/","/consultation/","/advisory/","/partnerships/",
 "/services/","/speaking/","/media/","/ventures/","/pgpm/","/contact/","/privacy/","/terms/"];
 const b=await chromium.launch({channel:"msedge",headless:true,args:["--use-gl=angle","--use-angle=swiftshader","--enable-unsafe-swiftshader"]});

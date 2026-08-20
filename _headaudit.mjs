@@ -1,6 +1,6 @@
 import { chromium } from "playwright-core";
 import fs from "fs";
-const B="http://localhost:4321";
+const B=process.env.QA_BASE || "http://localhost:4321";
 const src = fs.readFileSync("src/data/content.ts","utf8");
 // Pull the SEO map's approved title/description pairs straight from the data file.
 const seo = {};
