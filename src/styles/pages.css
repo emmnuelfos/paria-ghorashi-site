@@ -1492,3 +1492,11 @@ select.pg-input option { background: #101010; color: var(--pg-ivory); }
 .pg-section--cream .pg-eyebrow {
   color: #7d6540;
 }
+
+/* A centred CTA band centred its heading and body with auto margins, but
+   .pg-btn-row is a full-width flex row that still defaulted to flex-start —
+   so the buttons sat hard left under centred copy on seven pages. */
+.pg-cta .pg-btn-row,
+.pg-quote .pg-btn-row {
+  justify-content: center;
+}

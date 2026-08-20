@@ -3274,3 +3274,35 @@ a.chr-hover {
   line-height: var(--home-lh);
   color: var(--home-ink-invert);
 }
+
+/* ============================================================
+   S4 ABOUT — ONE LEFT EDGE
+   ------------------------------------------------------------
+   The body carried `width: 28%; margin-left: 20%` from the
+   original clone layout, so at 1440 the headline and the button
+   sat at x=64 while the paragraphs began at x=326 — a 262px
+   indent with nothing in the gap. Measured, not eyeballed.
+
+   The paragraphs now share the left edge with the headline and
+   the button. The measure is capped by the portrait rather than
+   by a fixed ch value: the photo's left edge tracks the viewport
+   (1140px at 1920 but 660px at 1440), so a flat 46ch clears at
+   desktop and runs underneath the image below it.
+
+   Desktop only — the phone stacks, where the text is full width
+   and there is no photo beside it to clear.
+   ============================================================ */
+@media (min-width: 901px) {
+  .about-sub {
+    width: 100%;
+    /* 46ch for measure, or whatever clears the portrait — whichever is less. */
+    max-width: min(46ch, calc(45vw - 7rem));
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .about-sub {
+    max-width: 100%;
+  }
+}
