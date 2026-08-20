@@ -327,6 +327,17 @@ export function Projects() {
           </p>
         </div>
       </div>
+      {/* The preview card shows one description at a time as you scroll, so the
+          full set would otherwise never be in the DOM together — bad for search
+          engines and for anyone not driving the proximity interaction. Same
+          approach as the press marquee. */}
+      <ul className="sr-only">
+        {PROJECTS.map((p) => (
+          <li key={p.id}>
+            {p.name} — {p.body}
+          </li>
+        ))}
+      </ul>
       <div className="proj-cursor" id="proj-cursor" ref={cursorRef}>
         See more
       </div>
