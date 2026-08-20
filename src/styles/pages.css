@@ -796,6 +796,18 @@ select.pg-input option { background: #101010; color: var(--pg-ivory); }
   accent-color: var(--pg-gold);
 }
 
+/* Inline sentence links are exempt from the 44px target rule, but the hit area
+   can still be extended past the visual bounds — the negative margin cancels the
+   padding so the consent line itself does not reflow. */
+.pg-consent a {
+  display: inline-block;
+  padding: 0.7rem 0.25rem;
+  margin: -0.7rem -0.25rem;
+  color: var(--pg-gold);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
 .pg-form .pg-btn { width: 100%; }
 
 .pg-form-note {

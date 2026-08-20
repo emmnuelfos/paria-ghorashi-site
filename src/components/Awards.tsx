@@ -17,8 +17,9 @@ export function Awards() {
   return (
     <section className="awards" id="press" aria-label="Press and recognition">
       <div className="press-head">
-        <span className="press-kicker">Recognition</span>
-        <h2 className="press-title">As Seen In</h2>
+        <span className="press-kicker">Media &amp; Recognition</span>
+        <h2 className="press-title">{COPY.mediaHeadline}</h2>
+        <p className="press-intro">{COPY.mediaBody}</p>
       </div>
 
       <div className="press-marquee" aria-hidden="true">
@@ -51,10 +52,8 @@ export function Awards() {
         </div>
       </div>
 
-      <p className="press-note">
-        Featured across luxury, beauty, technology &amp; business media.
-      </p>
-
+      {/* The Copy Master's S10 standfirst now sits above the marquee, so the
+          old clone-era note underneath would only restate it. */}
       <div className="press-cta">
         <Link href={COPY.mediaButton.href} className="pg-btn pg-btn--ghost">
           {COPY.mediaButton.label}

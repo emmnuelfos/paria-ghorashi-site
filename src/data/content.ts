@@ -354,7 +354,7 @@ export const ABOUT = {
   intro: [
     "Paria Ghorashi is an entrepreneur, strategic advisor, brand partner, and public figure whose career spans fashion, beauty, technology, media, hospitality, real estate, luxury, communities, and international business.",
     "Born in Iran, raised in Norway, and based in Dubai, her perspective has been shaped by different markets, cultures, and industries. Her career began in fashion and luxury retail, where she built a strong foundation in customer behaviour, brand experience, product, positioning, and commercial decision-making.",
-    "She later moved into entrepreneurship, launching ventures that combined service, technology, community, and global ambition. Across each stage, the focus stayed consistent: identify what people need, build the right structure around the opportunity, and connect the people required to move it forward.",
+    "She later moved into entrepreneurship, launching ventures that combined service, technology, community, media, and global ambition. Across each stage, the focus stayed consistent: identify what people need, build the right structure around the opportunity, and connect the people required to move it forward.",
   ],
   journey: [
     {
@@ -407,7 +407,7 @@ export const ABOUT = {
     "Her contributions have included serving in advisory capacities, supporting entrepreneurship and women-led communities, raising awareness around health and early detection, and using her platform to support meaningful causes.",
   ],
   quote:
-    "The strongest opportunities rarely sit inside one department. They appear when the right idea, person, brand, community, and timing come together.",
+    "“The strongest opportunities rarely sit inside one department. They appear when the right idea, person, brand, community, and timing come together.”",
   buttons: [
     { label: "Work With Paria", href: "/work-with-paria" },
     { label: "Book a Consultation", href: "/consultation" },

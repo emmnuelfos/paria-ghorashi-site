@@ -3,7 +3,8 @@
 import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger, isMobileViewport } from "@/lib/gsap";
 import { useLenis } from "@/components/LenisProvider";
-import { PROJECTS } from "@/data/site";
+import Link from "next/link";
+import { PROJECTS, COPY } from "@/data/site";
 import type Lenis from "lenis";
 
 /**
@@ -150,6 +151,11 @@ export function Projects() {
         gsap.to(card, { opacity: 0, duration: 0.25, ease: "power2.in" });
       };
 
+      // The distance-based x-drift is a desktop flourish: on a phone the list is
+      // full-bleed, so an 80px shift pushes the longer names off the right edge
+      // and clips them.
+      const driftMax = isMobileViewport() ? 0 : 80;
+
       const onScroll = () => {
         const vh = window.innerHeight;
         let closestIdx = -1;
@@ -157,7 +163,7 @@ export function Projects() {
         items.forEach((el, i) => {
           const rect = el.getBoundingClientRect();
           const dist = Math.abs(rect.top + rect.height / 2 - vh / 2);
-          xTo[i](Math.min(dist / (vh / 2), 1) * 80);
+          xTo[i](Math.min(dist / (vh / 2), 1) * driftMax);
           if (dist < closestDist) {
             closestDist = dist;
             closestIdx = i;
@@ -298,6 +304,11 @@ export function Projects() {
             d="M -80,0 C 300,-20  600,150  540,400 C 490,650   0,655    300,1050 C 600,1385 650,1250 850,1200 C 1050,1150 1350,1250 1540,1300"
           />
         </svg>
+        <div className="projects-head">
+          <p className="projects-eyebrow">How Brands Collaborate</p>
+          <h2 className="projects-title">{COPY.collabHeadline}</h2>
+          <p className="projects-body">{COPY.collabBody}</p>
+        </div>
         <div className="projects-inner">
           <div className="projects-list" id="projects-list" ref={listRef}>
             {PROJECTS.map((p, i) => (
@@ -310,6 +321,11 @@ export function Projects() {
               </div>
             ))}
           </div>
+        </div>
+        <div className="projects-cta">
+          <Link href={COPY.collabButton.href} className="pg-btn pg-btn--ghost">
+            {COPY.collabButton.label}
+          </Link>
         </div>
       </div>
       <div className="proj-preview" id="proj-preview" ref={previewRef}>

@@ -2288,7 +2288,7 @@ a.chr-hover {
   font-weight: 500;
   font-style: italic;
   font-size: clamp(2.4rem, 5vw, 4.2rem);
-  line-height: 1;
+  line-height: 1.06;
   letter-spacing: -0.02em;
   color: #EDECEB;
 }
@@ -3007,4 +3007,99 @@ a.chr-hover {
 
 @media (max-width: 768px) {
   .proj-body { display: none; } /* the preview card is hidden on mobile */
+}
+
+/* ---- Section 8 header + CTA (How Brands Collaborate) ----
+   The list itself is a sticky proximity interaction, so the section's headline
+   and body sit above it as a normal editorial block, and the button below it.
+   Mobile-first: the desktop rules widen the measure once there is room. */
+.projects-head {
+  position: relative;
+  z-index: 2;
+  padding: 0 1.5rem 8vh;
+  max-width: 34rem;
+}
+
+/* The scroll-drawn gold line sweeps across this block at some section heights,
+   which would put the gold eyebrow on a gold ground. A soft scrim guarantees a
+   dark ground for the text without hiding the line around it. */
+.projects-head::before {
+  content: "";
+  position: absolute;
+  inset: -14% -25% -8%;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at 32% 46%,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 0.88) 46%,
+    rgba(0, 0, 0, 0) 76%
+  );
+}
+
+.projects-eyebrow {
+  margin: 0 0 1.1rem;
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 0.68rem;
+  color: #A78B65;
+}
+
+.projects-title {
+  margin: 0 0 1.4rem;
+  font-family: var(--font-bodoni), 'Bodoni Moda', serif;
+  font-weight: 500;
+  font-style: italic;
+  font-size: clamp(2.1rem, 8vw, 4.2rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: #EDECEB;
+}
+
+.projects-body {
+  margin: 0;
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: rgba(237, 236, 235, 0.68);
+}
+
+.projects-cta {
+  position: relative;
+  z-index: 2;
+  padding: 8vh 1.5rem 0;
+}
+
+.projects-cta .pg-btn {
+  display: inline-flex;
+}
+
+@media (min-width: 900px) {
+  .projects-head {
+    padding: 0 12vw 12vh;
+    max-width: 46rem;
+  }
+  .projects-body {
+    font-size: 1.05rem;
+  }
+  .projects-cta {
+    padding: 10vh 12vw 0;
+  }
+}
+
+/* Section 10 standfirst under the media headline. */
+.press-intro {
+  margin: 1.5rem 0 0;
+  max-width: 36rem;
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: rgba(237, 236, 235, 0.66);
+}
+
+@media (max-width: 899px) {
+  .press-head {
+    padding: 6vh 1.5rem 5vh;
+  }
 }

@@ -75,15 +75,19 @@ export const COPY = {
   /* Section 2 — THE POSITIONING STATEMENT. */
   manifestoKicker: "The Positioning",
   manifestoHeadline: "The Future Belongs to the Connected.",
-  manifestoBody:
+  manifestoBody: [
     "Businesses no longer grow through marketing alone. Growth now sits at the intersection of strategy, technology, influence, community, partnerships, visibility, and disciplined execution.",
+    "Paria brings these areas together through a founder-led perspective shaped by building ventures, entering new markets, developing global collaborations, and working closely with brands, executives, investors, and public figures.",
+  ],
   manifestoQuote:
-    'I do not look at a business through <span class="mf-em">one lens</span>. I look at what needs to <span class="mf-em">connect</span> for the business to move forward.',
+    '“I do not look at a business through <span class="mf-em">one lens</span>. I look at what needs to <span class="mf-em">connect</span> for the business to move forward.”',
   manifestoCite: "Paria Ghorashi",
 
   /* Section 4 — BUILT FROM EXPERIENCE (the About block). */
+  aboutHeadline:
+    'Advice Built Through <span class="other-accent">Experience</span>.',
   aboutText:
-    'Advice built through <span class="other-accent">experience</span>. She has built and scaled businesses, transformed service concepts into technology platforms, developed global communities, and advised emerging ventures.',
+    "Paria’s approach is grounded in more than observation. She has built and scaled businesses, transformed service concepts into technology platforms, developed global communities, advised emerging ventures, and worked across complex industries.",
   aboutSub:
     "Her experience includes founding blowout&go, developing bgX into a global beauty-technology platform, building Made For You Global as an international community, and leading PGPM across strategy, content, partnerships, events, influence, and business growth.",
   aboutThird:
@@ -109,6 +113,17 @@ export const COPY = {
     { label: "Start a Conversation", href: "/contact" },
   ],
   mediaButton: { label: "View Media & Features", href: "/media" },
+
+  /* Section 8 — HOW BRANDS COLLABORATE WITH PARIA. */
+  collabHeadline: "More Than Visibility.",
+  collabBody:
+    "Paria collaborates with selected brands and organisations where her experience, credibility, audience, and relationships support a clear business or communication objective.",
+  collabButton: { label: "View Partnership Opportunities", href: "/partnerships" },
+
+  /* Section 10 — MEDIA & RECOGNITION. */
+  mediaHeadline: "A Story Shared Globally.",
+  mediaBody:
+    "Paria’s work and entrepreneurial journey have been featured across international and regional media, including business, fashion, luxury, beauty, technology, and lifestyle platforms.",
 
   /* Section 11 — FINAL CTA (the contact block). */
   contactDispo1:

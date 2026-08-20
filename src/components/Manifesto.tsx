@@ -76,7 +76,11 @@ export function Manifesto() {
       <div className="manifesto-inner">
         <p className="manifesto-kicker">{COPY.manifestoKicker}</p>
         <h2 className="manifesto-headline">{COPY.manifestoHeadline}</h2>
-        <p className="manifesto-body">{COPY.manifestoBody}</p>
+        {COPY.manifestoBody.map((t, i) => (
+          <p key={i} className="manifesto-body">
+            {t}
+          </p>
+        ))}
         <blockquote
           className="manifesto-quote"
           id="manifesto-quote"

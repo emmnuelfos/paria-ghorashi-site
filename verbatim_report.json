@@ -1,0 +1,72 @@
+{
+ "/": {
+  "total": 61,
+  "missing": [
+   "Technology · Marketplaces · Enterprise Software · Luxury · Beauty · Hospitality · Real Estate · Travel · Media · Fashion · Healthcare · Communities · Events · Influence · Partnerships · Business Growth"
+  ]
+ },
+ "/about/": {
+  "total": 27,
+  "missing": []
+ },
+ "/work-with-paria/": {
+  "total": 31,
+  "missing": []
+ },
+ "/consultation/": {
+  "total": 67,
+  "missing": [
+   "Founders · Entrepreneurs · CEOs · Executives · Startups · Family Businesses · Luxury Brands · Hospitality Businesses · Technology Companies · Beauty and Wellness Brands · Real Estate Businesses · Public Figures · Creators Building Businesses · International Companies Exploring the UAE",
+   "Current Business Stage: Idea / Startup / Growth / Established / Corporate",
+   "Annual Revenue Range, optional",
+   "Describe your business, brand, or current project.",
+   "Upload a presentation or supporting document, optional",
+   "Checkbox: I understand the session fee and booking terms.",
+   "Thank you. Your consultation request has been received. The team will review your information and contact you with the next booking and payment steps.",
+   "Your Strategic Consultation With Paria Ghorashi",
+   "Thank you for booking a private strategic consultation with Paria Ghorashi. Your session is confirmed for [DATE] at [TIME] [TIME ZONE]. Please send any final supporting documents at least 24 hours before the session. Your video-call link will appear below. We look forward to speaking with you."
+  ]
+ },
+ "/advisory/": {
+  "total": 18,
+  "missing": []
+ },
+ "/partnerships/": {
+  "total": 25,
+  "missing": []
+ },
+ "/services/": {
+  "total": 94,
+  "missing": []
+ },
+ "/speaking/": {
+  "total": 28,
+  "missing": []
+ },
+ "/media/": {
+  "total": 11,
+  "missing": [
+   "Harper’s Bazaar · Vogue · Evening Standard · Ahlan! · Hello! Middle East · CNN · Forbes Middle East · Gulf News · Arabian Business · Cosmopolitan · Grazia · MBC · CNBC Arabia · Sky News Arabia · Arab News · Bloomberg Asharq · Time Out Dubai · Gulf Business",
+   "Download Media Kit"
+  ]
+ },
+ "/ventures/": {
+  "total": 8,
+  "missing": []
+ },
+ "/pgpm/": {
+  "total": 23,
+  "missing": [
+   "Visit PGPM"
+  ]
+ },
+ "/contact/": {
+  "total": 27,
+  "missing": [
+   "Thank you for contacting Paria Ghorashi. Your enquiry has been received and will be reviewed. The team will respond where the opportunity and requested support are aligned.",
+   "Email: paria@pgpm.ae",
+   "Instagram: @pariaghorashi",
+   "LinkedIn: Paria Ghorashi"
+  ]
+ }
+}

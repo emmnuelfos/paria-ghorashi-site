@@ -90,7 +90,7 @@ export function Metrics() {
   return (
     <section className="metrics" id="metrics" ref={ref}>
       <div className="metrics-inner">
-        <p className="metrics-kicker">A Journey in Numbers</p>
+        <p className="metrics-kicker">A Journey in Numbers.</p>
         <div className="metrics-grid">
           {STATS.map((s) => (
             <div className="metric-col" key={s.label}>

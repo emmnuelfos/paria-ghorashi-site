@@ -4,6 +4,7 @@ import "./globals.css";
 import "../styles/pages.css";
 import "../styles/chrome.css";
 import { CookieBanner } from "@/components/CookieBanner";
+import { SEO } from "@/data/content";
 
 const bodoni = Bodoni_Moda({
   subsets: ["latin"],
@@ -21,9 +22,10 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
-  title: "Paria Ghorashi — Entrepreneur, Brand Partner, Public Figure",
-  description:
-    "Direction C concept — the world of Paria Ghorashi as a cinematic scroll experience. Internal design review build.",
+  // Approved strings from the Website Copy Master, not a working placeholder.
+  title: SEO.home.title,
+  description: SEO.home.description,
+  // Staging build. This must be lifted at launch — see LAUNCH_BLOCKERS.md.
   robots: { index: false, follow: false },
 };
 

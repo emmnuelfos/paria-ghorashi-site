@@ -152,11 +152,12 @@ export function About() {
       <div
         className="about-text"
         id="about-text"
-        dangerouslySetInnerHTML={{ __html: COPY.aboutText }}
+        dangerouslySetInnerHTML={{ __html: COPY.aboutHeadline }}
       />
       <div className="about-sub" id="about-sub">
-        {COPY.aboutSub}
+        {COPY.aboutText}
       </div>
+      <div className="about-sub about-sub--third">{COPY.aboutSub}</div>
       <div className="about-sub about-sub--third">{COPY.aboutThird}</div>
       <div className="about-cta">
         <Link href={COPY.aboutButton.href} className="pg-btn pg-btn--ghost">
