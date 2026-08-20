@@ -2709,3 +2709,46 @@ a.chr-hover {
     padding: 0 4vw;
   }
 }
+
+
+/* ============================================================
+   QA pass — touch targets on the original homepage components.
+   The brief requires larger touch areas; these predate the inner-page
+   system and measured 17-40px. Padding is used (not height) so the
+   existing layouts and the letter-roll masks are unaffected.
+   ============================================================ */
+
+.chr-hover,
+.contact-mail,
+.cf-submit {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.hero-bar-center .chr-hover,
+.hero-bar-right .chr-hover,
+.footer-top-col .chr-hover,
+.contact-socials .chr-hover {
+  min-height: 44px;
+}
+
+.cf-input {
+  min-height: 44px;
+}
+
+.monogram.hero-brand {
+  min-height: 44px;
+  align-items: center;
+}
+
+/* The letter-roll renders every character twice (a top and a bottom copy) to
+   drive the hover animation. The bottom copy is clipped visually, but it still
+   lands in textContent — so search engines, copy-paste and text extraction all
+   see "IInnssttaaggrraamm". The client flagged exactly this. The duplicate is
+   decorative, so hide it from assistive tech and text selection; the wrapper
+   already carries aria-hidden and each link supplies a real aria-label. */
+.ch-bot {
+  user-select: none;
+  -webkit-user-select: none;
+}
