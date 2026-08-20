@@ -1363,3 +1363,132 @@ select.pg-input option { background: #101010; color: var(--pg-ivory); }
     max-width: calc(100% - 5rem);
   }
 }
+
+/* ============================================================
+   SITE-WIDE READING SCALE
+   ------------------------------------------------------------
+   The scale approved on the homepage, now the single source of
+   truth for every page. pages.css loads after globals.css, so
+   redefining the --home-* tokens here points the homepage at the
+   same values rather than keeping two copies of the numbers.
+
+   Inner pages measured before this: .pg-body 16px/300 mobile and
+   18.2px/300 desktop at 0.74 opacity across 150 nodes, form
+   labels at 11.2px, and .pg-hint at 0.38 opacity — roughly 1.9:1
+   on black, well under the 4.5:1 floor.
+   ============================================================ */
+
+:root {
+  /* Canonical steps. 17px -> 20px, never below 17px for reading copy. */
+  --pg-read: clamp(1.0625rem, 1.012rem + 0.208vw, 1.25rem);
+  --pg-read-lead: clamp(1.1875rem, 1.06rem + 0.52vw, 1.625rem);
+  --pg-read-sm: clamp(0.9375rem, 0.9rem + 0.156vw, 1.0625rem);
+  --pg-read-xs: clamp(0.8125rem, 0.79rem + 0.104vw, 0.9375rem);
+  --pg-read-lh: 1.62;
+  --pg-ink-strong: rgba(237, 236, 235, 0.88);
+  --pg-ink-mid: rgba(237, 236, 235, 0.78);
+  --pg-ink-invert: rgba(11, 10, 9, 0.84);
+  --pg-ink-invert-mid: rgba(11, 10, 9, 0.74);
+
+  /* The homepage now reads from the same steps. */
+  --home-body: var(--pg-read);
+  --home-lead: var(--pg-read-lead);
+  --home-body-sm: var(--pg-read-sm);
+  --home-lh: var(--pg-read-lh);
+  --home-ink: var(--pg-ink-strong);
+  --home-ink-dim: var(--pg-ink-mid);
+  --home-ink-invert: var(--pg-ink-invert);
+}
+
+/* ---- primary reading copy ---- */
+.pg-body {
+  font-size: var(--pg-read);
+  font-weight: 400;
+  line-height: var(--pg-read-lh);
+  color: var(--pg-ink-strong);
+}
+
+.pg-body--lead {
+  font-size: var(--pg-read-lead);
+  line-height: 1.5;
+  color: var(--pg-ink-strong);
+}
+
+.pg-section--cream .pg-body {
+  color: var(--pg-ink-invert);
+}
+
+/* ---- supporting copy that was carrying real sentences ---- */
+.pg-consent,
+.pg-notice,
+.pg-cookie-copy {
+  font-size: var(--pg-read-sm);
+  font-weight: 400;
+  line-height: 1.58;
+  color: var(--pg-ink-mid);
+}
+
+.pg-acc-head {
+  font-size: var(--pg-read-sm);
+  font-weight: 400;
+}
+
+.pg-tag {
+  font-size: var(--pg-read-xs);
+  font-weight: 400;
+  color: var(--pg-ink-mid);
+}
+
+/* ---- small UI text: raised off the floor and out of the
+   low-opacity range that was failing contrast ---- */
+.pg-label {
+  font-size: var(--pg-read-xs);
+  font-weight: 500;
+  color: rgba(237, 236, 235, 0.8);
+}
+
+.pg-hint {
+  font-size: var(--pg-read-xs);
+  /* was 0.38 — approx 1.9:1 on black */
+  color: rgba(237, 236, 235, 0.72);
+}
+
+.pg-fact-label,
+.pg-quote-cite,
+.pg-cookie-manage {
+  font-size: var(--pg-read-xs);
+  color: rgba(237, 236, 235, 0.76);
+}
+
+.pg-card-link,
+.pg-card-terms {
+  font-size: var(--pg-read-xs);
+}
+
+.pg-eyebrow {
+  font-size: clamp(0.75rem, 0.73rem + 0.08vw, 0.8125rem);
+}
+
+.pg-btn,
+.pg-header-cta {
+  font-size: clamp(0.8125rem, 0.79rem + 0.104vw, 0.9375rem);
+}
+
+.pg-menu-socials {
+  font-size: var(--pg-read-xs);
+}
+
+/* ---- cream-section corrections ----
+   Two classes had no cream variant, so they inherited dark-section colours
+   onto the light panel:
+   - .pg-wordmark rendered ivory at 0.72 on cream (1.03:1 — the publication
+     names on /media/ were effectively invisible)
+   - .pg-eyebrow's cream gold #8a7048 computes to ~4.0:1, just under AA;
+     #7d6540 carries the same warmth at 4.65:1 */
+.pg-section--cream .pg-wordmark {
+  color: rgba(11, 10, 9, 0.78);
+}
+
+.pg-section--cream .pg-eyebrow {
+  color: #7d6540;
+}

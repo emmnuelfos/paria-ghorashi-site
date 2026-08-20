@@ -419,3 +419,9 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* chrome.css loads after pages.css, so the header CTA's own font-size wins
+   over the site-wide reading scale. Bring it onto the same step here. */
+.pg-header-cta {
+  font-size: clamp(0.8125rem, 0.79rem + 0.104vw, 0.9375rem);
+}
