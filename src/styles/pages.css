@@ -1526,3 +1526,9 @@ select.pg-input option { background: #101010; color: var(--pg-ivory); }
   max-width: 26ch;
   line-height: 1.06;
 }
+
+/* The consent banner is never unmounted (see CookieBanner.tsx) — visibility is
+   a class toggle so React only ever sets attributes on it. */
+.pg-cookie--hidden {
+  display: none !important;
+}

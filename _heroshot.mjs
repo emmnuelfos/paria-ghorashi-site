@@ -11,7 +11,7 @@ for (const [label,vp,mob] of [["desktop",{width:1920,height:1000},false],["lapto
   await p.waitForFunction(()=>!!window.__introTL,{timeout:20000});
   await p.evaluate(()=>{window.__introTL.progress(1);});
   await p.waitForTimeout(1800);
-  await p.evaluate(()=>{const c=document.querySelector(".pg-cookie");if(c)c.remove();});
+  await p.evaluate(()=>{const c=document.querySelector(".pg-cookie");if(c)c.classList.add("pg-cookie--hidden");});
   await p.screenshot({path:`_hero_${TAG}_${label}.png`});
   await ctx.close();
 }

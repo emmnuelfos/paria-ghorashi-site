@@ -176,7 +176,9 @@ export function CircleGallery() {
     });
 
     return () => {
-      st.kill();
+      // kill(true) reverts the pin, unwrapping the .pin-spacer GSAP inserts
+      // around this React-rendered node so React can remove it cleanly.
+      st.kill(true);
       wrappers.forEach((w) => w.remove());
       phrase.innerHTML = COPY.cgPhrase;
       phrase.style.opacity = "";

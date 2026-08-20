@@ -439,9 +439,20 @@ export function IntroOverlay() {
         lenisRef.current?.start();
         window.scrollTo(0, 0);
         window.dispatchEvent(new CustomEvent("intro:done"));
-        // Mirrors the original site: these nodes never remount in this SPA.
-        panel.remove();
-        bg.remove();
+        // These two nodes are rendered by React (see the JSX below), so they
+        // must NOT be removed from the DOM here. The original single-page site
+        // could do that safely; this app has 14 routes and client-side
+        // navigation, so when React later unmounted the homepage it tried to
+        // remove children that were already gone and threw
+        //   NotFoundError: Failed to execute 'removeChild' on 'Node'
+        // in the commit phase, which Chrome renders as a blank
+        // "This page couldn't load" screen. Every link out of the homepage was
+        // affected, while a direct load of the same URL was fine — which is why
+        // it survived testing that only ever navigated directly.
+        //
+        // Hiding retires them just as effectively and leaves React owning them.
+        panel.style.display = "none";
+        bg.style.display = "none";
       });
 
       // Skip: jump straight to the settled final state.

@@ -13,7 +13,7 @@ for(const r of ROUTES){
   errs.length=0;
   const resp=await p.goto(B+r,{waitUntil:"load",timeout:45000});
   if(r==="/"){ await p.waitForFunction(()=>!!window.__introTL,{timeout:20000}); await p.evaluate(()=>{window.__introTL.progress(1);}); await p.waitForTimeout(1000); }
-  await p.evaluate(()=>{const c=document.querySelector(".pg-cookie");if(c)c.remove();});
+  await p.evaluate(()=>{const c=document.querySelector(".pg-cookie");if(c)c.classList.add("pg-cookie--hidden");});
   await p.evaluate(async()=>{const H=document.body.scrollHeight;for(let y=0;y<H;y+=600){window.scrollTo(0,y);await new Promise(r=>setTimeout(r,40));}window.scrollTo(0,0);});
   await p.waitForTimeout(400);
   const d=await p.evaluate(()=>{
