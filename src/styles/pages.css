@@ -1591,3 +1591,18 @@ select.pg-input option { background: #101010; color: var(--pg-ivory); }
     margin-top: 2.2rem;
   }
 }
+
+/* The fixed header is ~80px tall, and the mobile hero's top padding computed
+   to ~73px — so every inner page opened with its eyebrow sitting inside the
+   header. Measured on advisory, partnerships, pgpm, privacy, speaking and
+   contact: eyebrow at y=77 against a header rule at y=80. Guarantee clearance
+   rather than relying on the section rhythm to be large enough. */
+.pg-hero {
+  padding-top: max(calc(var(--pg-section-y) * 0.8), 7.5rem);
+}
+
+@media (max-width: 899px) {
+  .pg-hero {
+    padding-top: max(calc(var(--pg-section-y) * 0.62), 7rem);
+  }
+}

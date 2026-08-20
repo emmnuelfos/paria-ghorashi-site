@@ -425,3 +425,22 @@
 .pg-header-cta {
   font-size: clamp(0.8125rem, 0.79rem + 0.104vw, 0.9375rem);
 }
+
+/* ============================================================
+   HEADER LEGIBILITY
+   ------------------------------------------------------------
+   Visual QA found the same defect on eleven pages: at 0.82 the
+   scrolled header was tinted enough to dirty the copy passing
+   behind it but not enough to hide it, so body text, headings and
+   index numbers rendered straight through the PG monogram and the
+   wordmark — gold on gold in several places.
+
+   Near-solid instead. A header that clearly sits above the page
+   reads as deliberate; a half-transparent one reads as broken.
+   ============================================================ */
+.pg-header.is-scrolled {
+  background: rgba(11, 10, 9, 0.97);
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+  border-bottom-color: rgba(237, 236, 235, 0.12);
+}

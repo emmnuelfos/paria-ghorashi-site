@@ -89,11 +89,14 @@ export function About() {
       if (cancelled || !img) return;
       ctx.add(() => {
         // Parallax across the full journey through the viewport.
+        // +/-50% of the image height is ~250px of travel on a phone, which
+        // carried the photo up into the "SINCE 2012" line above it no matter
+        // how much standoff the CSS gave. Desktop has the room; mobile does not.
         gsap.fromTo(
           img,
-          { y: "-50%" },
+          { y: mobile ? "-12%" : "-50%" },
           {
-            y: "50%",
+            y: mobile ? "12%" : "50%",
             ease: "none",
             scrollTrigger: {
               trigger: "#about-photo-wrap",

@@ -3306,3 +3306,39 @@ a.chr-hover {
     max-width: 100%;
   }
 }
+
+/* The S4 headline was left at `width: 66.6%` when the paragraphs below it were
+   capped to clear the portrait, so it ran straight over her face at every
+   common desktop width except 1920 — measured overlaps of 70px at 1600, 191px
+   at 1440, 187px at 1280 and 162px at 1024. Same cap as the paragraphs. */
+@media (min-width: 901px) {
+  .about-text {
+    max-width: calc(45vw - 7rem);
+  }
+}
+
+/* "SINCE 2012" sat at the right edge of a 66.6%-wide block, which put it on
+   the portrait at every desktop width and on mobile — 153x75px of overlap at
+   1440. Same cap as the headline and the paragraphs above it. */
+@media (min-width: 901px) {
+  .about-version {
+    max-width: calc(45vw - 7rem);
+  }
+}
+
+/* On the phone the block stacks but "SINCE 2012" kept its right alignment, so
+   it landed on the portrait (36x36px overlap). Left-aligned it joins the same
+   edge as the headline, copy and button. */
+@media (max-width: 900px) {
+  .about-version {
+    text-align: left;
+  }
+}
+
+/* Standoff for the mobile portrait; its parallax travel is clamped in
+   About.tsx so this no longer has to absorb ~250px of movement. */
+@media (max-width: 900px) {
+  .about-photo-wrap {
+    margin-top: 8vh;
+  }
+}
